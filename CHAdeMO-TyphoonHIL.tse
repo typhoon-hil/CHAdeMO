@@ -1,0 +1,2917 @@
+version = 4.2
+
+//
+// Saved by sw version: 2023.2
+//
+
+model "chademo-typhoonhil" {
+    configuration {
+        hil_device = "HIL606"
+        hil_configuration_id = 7
+        simulation_method = exact
+        simulation_time_step = auto
+        simulation_discret_scaling = 1.0
+        dsp_timer_periods = 100e-6, 50e-3
+        ss_calc_method = "systematic elimination"
+        enb_pole_shift = True
+        enb_gds_oversampling = True
+        show_modes = False
+        device_ao_limit_enable = False
+        reset_analog_outputs_on_sim_stop = True
+        reset_digital_outputs_on_sim_stop = True
+        vhil_adio_loopback = False
+        cpl_stb = False
+        enb_dep_sw_detect = False
+        code_section = "internal memory"
+        data_section = "internal memory"
+        sys_sp_rate_1 = 0.0001
+        sys_sp_rate_2 = 0.05
+        sys_real_type_precision = "default"
+        user_real_type_precision = "default"
+        sys_cpu_optimization = "high"
+        user_cpu_optimization = "high"
+        user_cpu_part_option = "default"
+        matrix_based_reduction = True
+        cpl_dynamics_analysis = False
+        export_ss_to_pickle = False
+        ground_scope_core = False
+        dss_num_tol = 1e-15
+        cce_platform = "generic"
+        cce_use_relative_names = False
+        cce_type_mapping_real = "double"
+        cce_type_mapping_uint = "unsigned int"
+        cce_type_mapping_int = "int"
+        cce_directory = ""
+        cce_custom_type_int = ""
+        cce_custom_type_uint = ""
+        cce_custom_type_real = ""
+        tunable_params = "component defined"
+        sp_compiler_type = "C++ compiler"
+        sig_stim = "off"
+        export_resource_list = ""
+        export_dependency_list = ""
+        excluded_resource_list = ""
+        export_out_file = ""
+        export_lock_top_level = True
+        export_encrypt_library = True
+        export_encrypt_resources = True
+    }
+
+    component Subsystem Root {
+        component "core/CAN Bus Receive" "EVSE PARAMS" {
+            data_length = "6"
+            execution_rate = "100e-3"
+            file_label = "Import DBC file"
+            file_path = "Import DBC file"
+            identifier_type = "CAN 2.0 A (11 bit identifier)"
+            identifier_value = "108"
+            signals = "[{\'name\': \'EVSEweldCheck\', \'start_bit\': \'0\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'EVSEweldCheck\', \'name_changed\': \'False\'}, {\'name\': \'EVSEavailVoltage\', \'start_bit\': \'8\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'V\', \'name_old\': \'EVSEavailVoltage\', \'name_changed\': \'False\'}, {\'name\': \'EVSEavailCurrent\', \'start_bit\': \'24\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'A\', \'name_old\': \'EVSEavailCurrent\', \'name_changed\': \'False\'}, {\'name\': \'EVSEthresholdVoltage\', \'start_bit\': \'32\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'V\', \'name_old\': \'EVSEthresholdVoltage\', \'name_changed\': \'False\'}]"
+        }
+        [
+            position = 8168, 7872
+            size = 160, 120
+        ]
+
+        component "core/CAN Bus Send" "EV - BATTERY SPECS" {
+            data_length = "7"
+            file_label = "Import DBC file"
+            file_path = "Import DBC file"
+            identifier_type = "CAN 2.0 A (11 bit identifier)"
+            signals = "[{\'name\': \'EVmaxChargeVoltage\', \'start_bit\': \'32\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'V\', \'name_old\': \'EVmaxChargeVoltage\', \'name_changed\': \'False\'}, {\'name\': \'EVpackSizeKWH\', \'start_bit\': \'48\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'%\', \'name_old\': \'EVpackSizeKWH\', \'name_changed\': \'False\'}]"
+            transmit_period = "100.0"
+            transmit_type = "{\'On event\': True, \'On timer\': False, \'On request\': False}"
+        }
+        [
+            position = 7856, 7648
+            size = 160, 120
+        ]
+
+        component "core/CAN Setup" "CAN Setup1" {
+            can1_cd = "1"
+            can1_er = "1e-3"
+            can1_ts1 = "1"
+            can1_ts2 = "1"
+            can2_cd = "1"
+            can2_er = "1e-3"
+            can2_ts1 = "1"
+            can2_ts2 = "1"
+            hil_device_id_combo_values = "[\'0\']"
+            saved_hil_device_config = "{\'0\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'1e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'1e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'1\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'2\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'3\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'4\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'5\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'6\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'7\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'8\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'9\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'10\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'11\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'12\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'13\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'14\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'15\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}}"
+        }
+        [
+            position = 8016, 7648
+        ]
+
+        component "core/CAN Bus Receive" "EVSE STATUS" {
+            data_length = "8"
+            execution_rate = "100e-3"
+            file_label = "Import DBC file"
+            file_path = "Import DBC file"
+            identifier_type = "CAN 2.0 A (11 bit identifier)"
+            identifier_value = "109"
+            signals = "[{\'name\': \'EVSEbChademo10Protocol\', \'start_bit\': \'0\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'EVSEbChademo10Protocol\', \'name_changed\': \'False\'}, {\'name\': \'EVSEpresentVoltage\', \'start_bit\': \'8\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'V\', \'name_old\': \'EVSEpresentVoltage\', \'name_changed\': \'False\'}, {\'name\': \'EVSEpresentCurrent\', \'start_bit\': \'24\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'A\', \'name_old\': \'EVSEpresentCurrent\', \'name_changed\': \'False\'}, {\'name\': \'EVSEstatus\', \'start_bit\': \'40\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'EVSEstatus\', \'name_changed\': \'False\'}, {\'name\': \'EVSEremainingChargeSeconds\', \'start_bit\': \'48\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'EVSEremainingChargeSeconds\', \'name_changed\': \'False\'}]"
+        }
+        [
+            position = 8168, 8136
+            size = 160, 120
+        ]
+
+        component "core/CAN Bus Send" "CHARGING TIME" {
+            data_length = "8"
+            file_label = "Import DBC file"
+            file_path = "Import DBC file"
+            identifier_type = "CAN 2.0 A (11 bit identifier)"
+            identifier_value = "101"
+            signals = "[{\'name\': \'EVhowLongCharge\', \'start_bit\': \'16\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'min\', \'name_old\': \'EVhowLongCharge\', \'name_changed\': \'False\'}, {\'name\': \'EVhowLongWeThink\', \'start_bit\': \'32\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'min\', \'name_old\': \'EVhowLongWeThink\', \'name_changed\': \'False\'}]"
+            transmit_period = "100.0"
+            transmit_type = "{\'On event\': True, \'On timer\': False, \'On request\': False}"
+        }
+        [
+            position = 7856, 7912
+            size = 160, 120
+        ]
+
+        component "core/CAN Bus Send" "EV STATUS" {
+            data_length = "8"
+            file_label = "Import DBC file"
+            file_path = "Import DBC file"
+            identifier_type = "CAN 2.0 A (11 bit identifier)"
+            identifier_value = "102"
+            signals = "[{\'name\': \'EVtalkingProtocol\', \'start_bit\': \'0\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'EVtalking09protocol\', \'name_changed\': \'True\'}, {\'name\': \'EVtargetVoltage\', \'start_bit\': \'8\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'V\', \'name_old\': \'EVtargetVoltage\', \'name_changed\': \'False\'}, {\'name\': \'EVaskingAmps\', \'start_bit\': \'24\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'A\', \'name_old\': \'EVaskingAmps\', \'name_changed\': \'False\'}, {\'name\': \'EVfaults\', \'start_bit\': \'32\', \'length\': \'5\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'EVfaults\', \'name_changed\': \'False\'}, {\'name\': \'EVstatus\', \'start_bit\': \'40\', \'length\': \'5\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'EVstatus\', \'name_changed\': \'False\'}, {\'name\': \'EVkiloWattHours\', \'start_bit\': \'48\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'%\', \'name_old\': \'EVkiloWattHours\', \'name_changed\': \'False\'}]"
+            transmit_period = "100.0"
+            transmit_type = "{\'On event\': True, \'On timer\': False, \'On request\': False}"
+        }
+        [
+            position = 7856, 8184
+            size = 160, 120
+        ]
+
+        component "core/Advanced C function" "Advanced C function2" {
+            add_src_path = "chademo.cpp;chademo.h;globals.h"
+            add_src_path_full = "C:\Users\Teodora Mijovic\Desktop\CHAdeMO\chademo.cpp;C:\Users\Teodora Mijovic\Desktop\CHAdeMO\chademo.h;C:\Users\Teodora Mijovic\Desktop\CHAdeMO\globals.h"
+            arb_defs = "/*Begin code section*/
+
+/*End code section*/"
+            execution_rate = "100e-6"
+            global_variables = "real Count;real PreviousMillis;real Interval;real Time;real CurrentSecs;uint debugTick;real receiveMillis;real auxReceiveParams;real auxReceiveStatus;uint receiveID;real varTargetCurrent;"
+            init_fnc = "/*Begin code section*/
+receiveMillis = 0;
+auxReceiveParams = 0;
+auxReceiveStatus = 0;
+receiveID = 0;
+
+ERRORdoP = 0;
+errorDoProcessing = 0;
+ERRORhandle = 0;
+errorHandle = 0;
+
+CHADEMO();
+
+chademo.evse_params.availVoltage = 0;
+chademo.evse_params.availCurrent = 0;
+chademo.evse_params.thresholdVoltage = 0;
+chademo.bChademo10Protocol = 0;
+chademo.evse_status.presentVoltage = 0;
+chademo.evse_status.presentCurrent = 0;
+chademo.evse_status.status = 0;
+chademo.evse_status.remainingChargeSeconds = 0;
+
+settings.maxChargeVoltage = 0;
+
+talkingProtocol = 0;
+
+howLongCharge = 0;
+howLongWeThink = 0;
+
+settings.packSizeKWH = 33.0; //just a random guess. Maybe it should default to zero though?
+settings.ampHours = 0.0;
+settings.kiloWattHours = 0.0; // Is empty kiloWattHours count up
+settings.maxChargeVoltage = 158;
+settings.minChargeAmperage = 20;
+settings.capacity = 180;
+settings.debuggingLevel = 1;
+
+settings.targetChargeVoltage = 160; //targetVoltage
+settings.maxChargeAmperage = 130; //targetCurrent
+chademo.updateTargetAV();
+
+Count = 0;
+PreviousMillis = 0;
+Interval = 10;
+Time = 0;
+debugTick = 0;
+
+//chademo.CurrentMillis = 0;
+
+Voltage = 0;
+Current  = 0;
+//Power = 0;
+
+in1 = 1;
+in2 = 0;
+
+out1= 0;
+out2 = 0;
+out3 = 0;
+/*End code section*/"
+            input_terminals = "inherit currentMillis;inherit receiveParams;inherit receiveStatus;inherit weldCheck;inherit availVoltage;inherit availCurrent;inherit thresholdVoltage;inherit bChademo10Protocol;uint presentVoltage;inherit presentCurrent;inherit evseStatus;uint remainingChargeSeconds;inherit currentSeconds;inherit bChademoRequest;inherit SIvoltage;inherit SIcurrent;inherit SIkwh;"
+            input_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit"
+            input_terminals_feedthrough = "True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True"
+            input_terminals_show_labels = "False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False"
+            output_fnc = "/*Begin code section*/
+chademo.bChademoRequest = bChademoRequest;
+CurrentSeconds = currentSeconds;
+
+ERRORdoP = errorDoProcessing;
+ERRORhandle = errorHandle;
+
+chademoState = chademo.chademoState;
+
+bChademoMode = chademo.bChademoMode;
+bChademoRequestOutput = chademo.bChademoRequest;
+bChademoSendRequestsOutput = chademo.bChademoSendRequests;
+
+out1111 = out1;
+out2222 = out2;
+out3333 = out3;
+
+chademo.CurrentMillis = currentMillis;  
+
+if (debugTick == 1) 
+{
+    debugTick = 0;
+}
+
+chademo.loop(currentMillis);
+insertionTime = chademo.insertionTime;
+
+if (chademo.sendBatt == 1) 
+{
+    chademo.sendBatt = 0;
+    sendBatt = 1;
+    maxChargeVoltage = settings.maxChargeVoltage;
+    packSizeKWH = settings.packSizeKWH;
+}
+else sendBatt = 0;
+      
+if (chademo.sendStatus == 1)
+{
+    chademo.sendStatus = 0;
+    sendStatus = 1;
+    
+    if (bChademo10Protocol) talkingProtocol = 2;  //check this!!
+    targetVoltage = chademo.carStatus.targetVoltage;
+    askingAmps = chademo.askingAmps;
+    faults = chademo.faults;
+    status = chademo.status;
+    kiloWattHours = settings.kiloWattHours;
+}
+else sendStatus = 0;
+    
+if (chademo.sendTime == 1)  
+{
+    chademo.sendTime = 0;
+    sendTime = 1;
+    
+    howLongCharge = 90;
+    howLongWeThink = 60;
+}
+else sendTime = 0;
+
+if (chademo.CurrentMillis - PreviousMillis >= Interval)
+{ 
+    Time = chademo.CurrentMillis - PreviousMillis;
+    PreviousMillis = chademo.CurrentMillis;
+    
+    Count++;
+    Voltage = SIvoltage;
+    Current = SIcurrent;
+    settings.kiloWattHours = SIkwh;
+    
+    chademo.doProcessing();
+    
+    if(Count >= 50)
+    {
+        Count = 0;
+        
+        if (!chademo.bChademoMode)
+        {
+            chademo.checkChargingState(); // looking for reset of charging.
+        }
+    }
+}
+
+if (currentMillis - 100 == receiveMillis)  //I\'m checking every 100ms if there is a received message
+{
+    receiveMillis = currentMillis;
+    
+    if(receiveParams > auxReceiveParams)
+    {
+        auxReceiveParams = receiveParams;
+        receiveID = 0x108;
+        
+        chademo.evse_params.supportWeldCheck = weldCheck;
+        chademo.evse_params.availVoltage =  (availVoltage & 0xFF) + 256*(availVoltage & 0xFF00);
+        chademo.evse_params.availCurrent = availCurrent;
+        chademo.evse_params.thresholdVoltage = (thresholdVoltage & 0xFF) + 256*(thresholdVoltage & 0xFF00);
+        
+        chademo.handleCANFrame(currentMillis, receiveID);
+    }
+    
+    if (receiveStatus > auxReceiveStatus)
+    {
+        auxReceiveStatus = receiveStatus;
+        receiveID = 0x109;
+       
+        if (bChademo10Protocol > 1) chademo.bChademo10Protocol = 1;
+        chademo.evse_status.presentVoltage = (presentVoltage & 0xFF) + 256*(presentVoltage & 0xFF00); //?? evse_status.presentVoltage = frame.data.byte[1] + 256 * frame.data.byte[2];
+        chademo.evse_status.presentCurrent = presentCurrent;
+        chademo.evse_status.status = evseStatus;
+        
+        if (remainingChargeSeconds < 0xFF)
+        {
+            chademo.evse_status.remainingChargeSeconds = (remainingChargeSeconds & 0xFF) * 10;
+        }
+        else
+        {
+            chademo.evse_status.remainingChargeSeconds = (remainingChargeSeconds & 0xFF00) * 60;
+        }
+
+        chademo.handleCANFrame(currentMillis, receiveID);
+    }
+}
+/*End code section*/"
+            output_terminals = "inherit CurrentSeconds;uint sendBatt;uint sendStatus;uint sendTime;inherit maxChargeVoltage;inherit packSizeKWH;inherit howLongCharge;inherit howLongWeThink;inherit talkingProtocol;inherit targetVoltage;inherit askingAmps;inherit faults;inherit status;inherit kiloWattHours;inherit chademoState;inherit insertionTime;inherit bChademoMode;inherit bChademoRequestOutput;inherit out1111;inherit bChademoSendRequestsOutput;inherit out2222;inherit out3333;inherit ERRORdoP;inherit ERRORhandle;"
+            output_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit"
+            output_terminals_feedthrough = "True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True"
+            output_terminals_show_labels = "False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False"
+        }
+        [
+            position = 6688, 7816
+            hide_name = True
+            size = 120, 400
+        ]
+
+        component "core/C function" "C function1" {
+            execution_rate = "100e-6"
+            global_variables = "uint currentMillis;uint currentSeconds;"
+            init_fnc = "/*Begin code section*/
+currentMillis = 0;
+currentSeconds = 0;
+rst = 1;
+
+out_millis = 0;
+out_seconds = 0;
+/*End code section*/"
+            input_terminals = "inherit in;"
+            input_terminals_dimensions = "inherit"
+            input_terminals_feedthrough = "True"
+            input_terminals_show_labels = "False"
+            output_fnc = "/*Begin code section*/
+rst = 1;
+
+if(in == 10) 
+{
+    currentMillis += 1;
+    out_millis = currentMillis;
+    
+    if ((currentMillis % 1000) == 0 )
+    { 
+        currentSeconds += 1;
+        out_seconds = currentSeconds;
+    }
+    rst = 0;
+}
+/*End code section*/"
+            output_terminals = "uint out_millis;uint out_seconds;int rst;"
+            output_terminals_dimensions = "inherit;inherit;inherit"
+            output_terminals_feedthrough = "True;True;True"
+            output_terminals_show_labels = "False;False;False"
+        }
+        [
+            position = 7856, 8432
+            hide_name = True
+            size = 48, 64
+        ]
+
+        component "core/Counter" Counter1 {
+            execution_rate = "100e-6"
+            ext_reset = "falling"
+        }
+        [
+            position = 7760, 8432
+            size = 48, 48
+        ]
+
+        component "core/Unit Delay" "Unit Delay1" {
+        }
+        [
+            position = 7800, 8528
+            rotation = down
+            hide_name = True
+        ]
+
+        component "core/Constant" Constant3 {
+            signal_type = "uint"
+        }
+        [
+            position = 7632, 8424
+            hide_name = True
+        ]
+
+        component "core/Probe" CurrentSeconds {
+        }
+        [
+            position = 6808, 7296
+        ]
+
+        component "core/SCADA Input" SIreceiveParams {
+            format = "uint"
+            min = "0"
+            signal_type = "uint"
+            unit = ""
+        }
+        [
+            position = 6232, 7552
+        ]
+
+        component "core/SCADA Input" SIreceiveStatus {
+            format = "uint"
+            min = "0"
+            signal_type = "uint"
+            unit = ""
+        }
+        [
+            position = 6232, 7608
+        ]
+
+        component "core/SCADA Input" SIweldCheck {
+            unit = ""
+        }
+        [
+            position = 6264, 7688
+        ]
+
+        component "core/SCADA Input" SIavailVoltage {
+            format = "uint"
+            min = "0"
+            signal_type = "uint"
+            unit = "V"
+        }
+        [
+            position = 6264, 7752
+        ]
+
+        component "core/SCADA Input" SIavailCurrent {
+            format = "uint"
+            min = "0"
+            signal_type = "uint"
+            unit = "A"
+        }
+        [
+            position = 6264, 7808
+        ]
+
+        component "core/SCADA Input" SIthresholdVoltage {
+            format = "uint"
+            min = "0"
+            signal_type = "uint"
+            unit = "V"
+        }
+        [
+            position = 6264, 7864
+        ]
+
+        component "core/SCADA Input" SIbChademo10Protocol {
+            format = "uint"
+            min = "0"
+            signal_type = "uint"
+            unit = ""
+        }
+        [
+            position = 6328, 7936
+        ]
+
+        component "core/SCADA Input" SIpresentVoltage {
+            unit = "V"
+        }
+        [
+            position = 6328, 8000
+        ]
+
+        component "core/SCADA Input" SIpresentCurrent {
+            format = "uint"
+            min = "0"
+            signal_type = "uint"
+            unit = "A"
+        }
+        [
+            position = 6328, 8064
+        ]
+
+        component "core/SCADA Input" SIevseStatus {
+            format = "uint"
+            min = "0"
+            signal_type = "uint"
+            unit = ""
+        }
+        [
+            position = 6328, 8120
+        ]
+
+        component "core/SCADA Input" SIremainingChargeSeconds {
+            format = "uint"
+            min = "0"
+            signal_type = "uint"
+            unit = "s"
+        }
+        [
+            position = 6328, 8184
+        ]
+
+        component "core/Probe" currentSeconds {
+        }
+        [
+            position = 7968, 8496
+        ]
+
+        component "core/Probe" chademoState {
+        }
+        [
+            position = 7104, 7992
+        ]
+
+        component "core/Probe" howLongCharge {
+        }
+        [
+            position = 7128, 7552
+        ]
+
+        component "core/Probe" howLongWeThink {
+        }
+        [
+            position = 7128, 7616
+        ]
+
+        component "core/Probe" insertionTime {
+        }
+        [
+            position = 7104, 8048
+        ]
+
+        component "core/Probe" bChademoMode {
+        }
+        [
+            position = 7104, 8112
+        ]
+
+        component "core/Probe" bChademoRequest {
+        }
+        [
+            position = 7104, 8176
+        ]
+
+        component "core/Probe" out1 {
+        }
+        [
+            position = 7288, 8216
+        ]
+
+        component "core/Probe" counter {
+        }
+        [
+            position = 7856, 8360
+        ]
+
+        component "core/Probe" bChademoSendRequests {
+        }
+        [
+            position = 7104, 8240
+        ]
+
+        component "core/SCADA Input" SIbChademoRequest {
+            format = "uint"
+            min = "0"
+            signal_type = "uint"
+            unit = ""
+        }
+        [
+            position = 6328, 8288
+        ]
+
+        component "core/Probe" out2 {
+        }
+        [
+            position = 7288, 8288
+        ]
+
+        component "core/Probe" out3 {
+        }
+        [
+            position = 7288, 8352
+        ]
+
+        component Subsystem Subsystem2 {
+            layout = dynamic
+            visible = "disable"
+            component "core/CAN Bus Receive" "EVSE PARAMS1" {
+                data_length = "6"
+                execution_rate = "1e-6"
+                file_label = "Import DBC file"
+                file_path = "Import DBC file"
+                identifier_type = "CAN 2.0 A (11 bit identifier)"
+                identifier_value = "108"
+                signals = "[{\'name\': \'EVSEweldCheck\', \'start_bit\': \'0\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'EVSEweldCheck\', \'name_changed\': \'False\'}, {\'name\': \'EVSEavailVoltage\', \'start_bit\': \'8\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'V\', \'name_old\': \'EVSEavailVoltage\', \'name_changed\': \'False\'}, {\'name\': \'EVSEavailCurrent\', \'start_bit\': \'24\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'A\', \'name_old\': \'EVSEavailCurrent\', \'name_changed\': \'False\'}, {\'name\': \'EVSEthresholdVoltage\', \'start_bit\': \'32\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'V\', \'name_old\': \'EVSEtresholdVoltage\', \'name_changed\': \'True\'}]"
+            }
+            [
+                position = 8064, 8096
+                size = 160, 120
+            ]
+
+            component "core/CAN Bus Receive" "EVSE STATUS1" {
+                data_length = "8"
+                execution_rate = "1e-6"
+                file_label = "Import DBC file"
+                file_path = "Import DBC file"
+                identifier_type = "CAN 2.0 A (11 bit identifier)"
+                identifier_value = "109"
+                signals = "[{\'name\': \'EVSEbChademo10Protocol\', \'start_bit\': \'0\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'EVSEbChademo10Protocol\', \'name_changed\': \'False\'}, {\'name\': \'EVSEpresentVoltage\', \'start_bit\': \'8\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'V\', \'name_old\': \'EVSEpresentVoltage\', \'name_changed\': \'False\'}, {\'name\': \'EVSEpresentCurrent\', \'start_bit\': \'24\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'A\', \'name_old\': \'EVSEpresentCurrent\', \'name_changed\': \'False\'}, {\'name\': \'EVSEstatus\', \'start_bit\': \'40\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'EVSEstatus\', \'name_changed\': \'False\'}, {\'name\': \'EVSEremainingChargeSeconds\', \'start_bit\': \'48\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'EVSEremainingChargeSeconds\', \'name_changed\': \'False\'}]"
+            }
+            [
+                position = 8064, 8368
+                size = 160, 120
+            ]
+
+            port In1 {
+                position = auto:auto
+                kind = sp
+                direction =  out
+                sp_type {
+                    default = auto
+                    readonly = True
+                }
+            }
+            [
+                position = 7496, 8176
+            ]
+
+            port Out1 {
+                position = auto:auto
+                kind = sp
+                direction =  in
+                sp_type {
+                    default = inherit
+                    readonly = True
+                }
+            }
+            [
+                position = 7624, 8216
+            ]
+
+            tag Goto28 {
+                value = "weldCheck"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8288, 8048
+                hide_name = True
+                size = 71, 20
+            ]
+
+            tag Goto29 {
+                value = "availVoltage"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8288, 8080
+                hide_name = True
+                size = 74, 20
+            ]
+
+            tag Goto30 {
+                value = "availCurrent"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8288, 8128
+                hide_name = True
+                size = 77, 20
+            ]
+
+            tag Goto31 {
+                value = "thresholdVoltage"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8304, 8160
+                hide_name = True
+                size = 93, 20
+            ]
+
+            tag Goto32 {
+                value = "bChademo10Protocol"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8304, 8304
+                hide_name = True
+                size = 117, 20
+            ]
+
+            tag Goto33 {
+                value = "presentVoltage"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8304, 8336
+                hide_name = True
+                size = 101, 20
+            ]
+
+            tag Goto34 {
+                value = "presentCurrent"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8304, 8368
+                hide_name = True
+                size = 97, 20
+            ]
+
+            tag Goto35 {
+                value = "evseStatus"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8288, 8400
+                hide_name = True
+                size = 68, 20
+            ]
+
+            tag Goto36 {
+                value = "remainingChargeSeconds"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8320, 8432
+                hide_name = True
+                size = 132, 20
+            ]
+
+            tag Goto37 {
+                value = "receiveParams"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8064, 7952
+                rotation = left
+                hide_name = True
+                size = 80, 20
+            ]
+
+            tag Goto38 {
+                value = "receiveStatus"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8064, 8224
+                rotation = left
+                hide_name = True
+                size = 73, 20
+            ]
+
+            connect "EVSE STATUS1.EVSEremainingChargeSeconds" Goto36 as Connection210
+            [
+                breakpoints = 8160, 8400; 8176, 8432
+            ]
+            connect "EVSE STATUS1.EVSEstatus" Goto35 as Connection211
+            [
+                breakpoints = 8176, 8384; 8192, 8400
+            ]
+            connect "EVSE STATUS1.EVSEpresentCurrent" Goto34 as Connection212
+            connect "EVSE STATUS1.EVSEpresentVoltage" Goto33 as Connection213
+            [
+                breakpoints = 8176, 8336
+            ]
+            connect "EVSE STATUS1.EVSEbChademo10Protocol" Goto32 as Connection214
+            [
+                breakpoints = 8160, 8320; 8160, 8304
+            ]
+            connect "EVSE PARAMS1.EVSEthresholdVoltage" Goto31 as Connection215
+            [
+                breakpoints = 8176, 8128; 8176, 8160
+            ]
+            connect "EVSE PARAMS1.EVSEavailCurrent" Goto30 as Connection216
+            [
+                breakpoints = 8192, 8128
+            ]
+            connect "EVSE PARAMS1.EVSEavailVoltage" Goto29 as Connection217
+            connect "EVSE PARAMS1.EVSEweldCheck" Goto28 as Connection218
+            [
+                breakpoints = 8192, 8064; 8192, 8048
+            ]
+            connect "EVSE PARAMS1.rcv_cnt" Goto37 as Connection219
+            connect "EVSE STATUS1.rcv_cnt" Goto38 as Connection220
+            connect In1 Out1 as Connection221
+
+            mask {
+                description = "<html><head><meta name=\"qrichtext\" content=\"1\"></meta><style type=\"text/css\">p, li { white-space: pre-wrap; }</style></head><body style=\"\"><p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br></br></p></body></html>"
+
+                CODE open
+                    from typhoon.apps.schematic_editor.dialogs.component_property_dialogs.general import RegularComponentPropertiesDialog
+                
+                    dialog = RegularComponentPropertiesDialog(
+                        component=component,
+                        property_container=component.masks[-1],
+                        current_diagram=current_diagram
+                    )
+                    dialog.exec_()
+                    
+                ENDCODE
+            }
+        }
+        [
+            position = 6032, 7504
+            size = 120, 56
+        ]
+
+        component Subsystem Subsystem3 {
+            layout = dynamic
+            component "core/CAN Bus Send" "EV - BATTERY SPECS" {
+                data_length = "7"
+                file_label = "Import DBC file"
+                file_path = "Import DBC file"
+                identifier_type = "CAN 2.0 A (11 bit identifier)"
+                signals = "[{\'name\': \'EVmaxChargeVoltage\', \'start_bit\': \'32\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'V\', \'name_old\': \'EVmaxChargeVoltage\', \'name_changed\': \'False\'}, {\'name\': \'EVpackSizeKWH\', \'start_bit\': \'48\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'%\', \'name_old\': \'EVpackSizeKWH\', \'name_changed\': \'False\'}]"
+                transmit_period = "100.0"
+                transmit_type = "{\'On event\': True, \'On timer\': False, \'On request\': False}"
+            }
+            [
+                position = 7888, 7912
+                size = 160, 120
+            ]
+
+            component "core/CAN Setup" "CAN Setup1" {
+                can1_cd = "1"
+                can1_er = "1e-3"
+                can1_ts1 = "1"
+                can1_ts2 = "1"
+                can2_cd = "1"
+                can2_er = "1e-3"
+                can2_ts1 = "1"
+                can2_ts2 = "1"
+                hil_device_id_combo_values = "[\'0\']"
+                saved_hil_device_config = "{\'0\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'1e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'1e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'1\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'2\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'3\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'4\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'5\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'6\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'7\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'8\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'9\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'10\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'11\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'12\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'13\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'14\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'15\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}}"
+            }
+            [
+                position = 8048, 7912
+            ]
+
+            port P1 {
+                position = left:auto
+                kind = pe
+            }
+            [
+                position = 7768, 8064
+            ]
+
+            port P2 {
+                position = right:auto
+                kind = pe
+            }
+            [
+                position = 8040, 8064
+                scale = -1, 1
+            ]
+
+            tag From15 {
+                value = "maxChargeVoltage"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7664, 7872
+                hide_name = True
+                size = 114, 20
+            ]
+
+            tag From16 {
+                value = "packSizeKWH"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7680, 7952
+                hide_name = True
+                size = 85, 20
+            ]
+
+            tag From17 {
+                value = "sendBatt"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7888, 7792
+                rotation = right
+                hide_name = True
+                size = 60, 20
+            ]
+
+            connect P2 P1 as Connection1
+            connect From15 "EV - BATTERY SPECS.EVmaxChargeVoltage" as Connection117
+            connect From16 "EV - BATTERY SPECS.EVpackSizeKWH" as Connection118
+            connect From17 "EV - BATTERY SPECS.event" as Connection119
+        }
+        [
+            position = 6032, 7392
+            size = 112, 56
+        ]
+
+        component "core/SCADA Input" SIvoltage {
+            unit = "V"
+        }
+        [
+            position = 6328, 8352
+        ]
+
+        component "core/SCADA Input" SIcurrent {
+            format = "uint"
+            min = "0"
+            signal_type = "uint"
+            unit = "A"
+        }
+        [
+            position = 6328, 8416
+        ]
+
+        component "core/SCADA Input" SIkwh {
+            format = "uint"
+            min = "0"
+            signal_type = "uint"
+            unit = "%"
+        }
+        [
+            position = 6328, 8472
+        ]
+
+        component "core/Probe" ERRORdoP {
+        }
+        [
+            position = 6944, 8432
+        ]
+
+        component "core/Probe" ERRORhandle {
+        }
+        [
+            position = 6944, 8496
+        ]
+
+        component "core/SCADA Input" "Charging cable" {
+            format = "int"
+            max = "1"
+            min = "0"
+            signal_type = "int"
+            unit = ""
+        }
+        [
+            position = 9424, 7880
+            rotation = right
+        ]
+
+        component "core/SCADA Input" "Connector latch" {
+            def_value = "1"
+            execution_rate = "Ts"
+            format = "int"
+            max = "1"
+            min = "0"
+            signal_type = "int"
+            unit = ""
+        }
+        [
+            position = 9064, 8264
+        ]
+
+        component "core/Signal switch" "Signal switch1" {
+            threshold = "CP_STATE_ERROR"
+        }
+        [
+            position = 10184, 8616
+            hide_name = True
+        ]
+
+        component "core/Constant" Constant1 {
+            execution_rate = "Ts"
+            signal_type = "int"
+            value = "0"
+        }
+        [
+            position = 10096, 8688
+            hide_name = True
+        ]
+
+        component "core/SR Flip Flop" "SR Flip Flop1" {
+        }
+        [
+            position = 10032, 8616
+            hide_name = True
+        ]
+
+        component "core/Relational operator" "Relational operator1" {
+        }
+        [
+            position = 9888, 8640
+            hide_name = True
+        ]
+
+        component "core/Constant" Constant2 {
+            execution_rate = "Ts"
+            signal_type = "int"
+            value = "PowerDelivery_stop"
+        }
+        [
+            position = 9824, 8680
+            hide_name = True
+        ]
+
+        component "core/Voltage Source" "PP supply" {
+            init_const_value = "5"
+        }
+        [
+            position = 10104, 8192
+            rotation = right
+        ]
+
+        component "core/Ground" gnd1 {
+        }
+        [
+            position = 8984, 8464
+            hide_name = True
+        ]
+
+        component "core/Resistor" R4 {
+            resistance = "330"
+        }
+        [
+            position = 9920, 8176
+            rotation = right
+        ]
+
+        component "core/Resistor" R5 {
+            resistance = "2700"
+        }
+        [
+            position = 9920, 8280
+            rotation = right
+        ]
+
+        component "core/Resistor" R6 {
+            resistance = "150"
+        }
+        [
+            position = 9208, 8176
+            rotation = right
+        ]
+
+        component "core/Resistor" R7 {
+            resistance = "330"
+        }
+        [
+            position = 9256, 8264
+            rotation = right
+        ]
+
+        component "core/Single Pole Single Throw Contactor" S3 {
+            ctrl_src = "Model"
+            initial_state = "on"
+        }
+        [
+            position = 9160, 8264
+            rotation = left
+            size = 64, 32
+        ]
+
+        component "core/Voltage Measurement" "PP level meas" {
+            execution_rate = "Ts"
+            sig_output = "True"
+        }
+        [
+            position = 10056, 8280
+            rotation = right
+            size = 64, 32
+        ]
+
+        component "core/Voltage Source" "CP supply" {
+            init_const_value = "12"
+        }
+        [
+            position = 8984, 8368
+            rotation = right
+        ]
+
+        component "core/Resistor" R3 {
+            resistance = "2740"
+        }
+        [
+            position = 10152, 8376
+            rotation = right
+        ]
+
+        component "core/Resistor" R2 {
+            resistance = "1300"
+        }
+        [
+            position = 10296, 8376
+            rotation = right
+        ]
+
+        component "core/Single Pole Single Throw Contactor" S2 {
+            ctrl_src = "Model"
+        }
+        [
+            position = 10232, 8424
+            rotation = down
+            size = 64, 32
+        ]
+
+        component "core/Voltage Measurement" "CP level meas" {
+            execution_rate = "Ts"
+            sig_output = "True"
+        }
+        [
+            position = 10000, 8376
+            rotation = right
+            size = 64, 32
+        ]
+
+        component "core/Resistor" R1 {
+            resistance = "1000"
+        }
+        [
+            position = 9088, 8328
+        ]
+
+        component "core/Multi Pole Single Throw Contactor" SW {
+            ctrl_src = "Model"
+            num_of_phases = "5"
+        }
+        [
+            position = 9424, 8112
+            size = 60, 256
+        ]
+
+        component "core/Battery" Battery {
+            Kdisc_I = "20.0"
+            Ke_exp = "103.0"
+            Ke_full = "116.0"
+            Kq_exp = "85.0"
+            Kq_nom = "93.5"
+            R_series = "0.20000000000000018"
+            battery_type = "Lithium-Ion"
+            capacity = "50"
+            execution_rate = "Ts"
+            initial_soc = "80.0"
+            nominal_voltage = "400.0"
+            sig_output = "True"
+        }
+        [
+            position = 10048, 7968
+            rotation = right
+            size = 64, 48
+        ]
+
+        component "core/Double Pole Single Throw Contactor" "Charge contactor" {
+            ctrl_src = "Model"
+        }
+        [
+            position = 9688, 7968
+            size = 64, 256
+        ]
+
+        component "core/Signal Controlled Current Source" Isp1 {
+        }
+        [
+            position = 9080, 7872
+            scale = -1, 1
+            size = 64, 32
+        ]
+
+        component "core/Voltage Measurement" "battery voltage" {
+            execution_rate = "Ts"
+            sig_output = "True"
+        }
+        [
+            position = 9912, 7968
+            rotation = right
+            size = 64, 32
+        ]
+
+        component "core/Current Measurement" "battery current" {
+            execution_rate = "Ts"
+        }
+        [
+            position = 9816, 7872
+            size = 64, 32
+        ]
+
+        component "core/Signal switch" "Signal switch3" {
+            criterion = "ctrl != threshold"
+            threshold = "EVSE_READY"
+        }
+        [
+            position = 8992, 7784
+            hide_name = True
+        ]
+
+        component "core/Constant" Constant4 {
+            execution_rate = "Ts"
+            signal_type = "int"
+            value = "0"
+        }
+        [
+            position = 8856, 7768
+            hide_name = True
+        ]
+
+        component "core/Resistor" R8 {
+            resistance = "1e4"
+        }
+        [
+            position = 9136, 7968
+            rotation = right
+        ]
+
+        component "core/Edge Detection" "Edge Detection1" {
+            edge = "rising"
+        }
+        [
+            position = 9952, 8600
+            hide_name = True
+            size = 32, 32
+        ]
+
+        component "core/Edge Detection" "Edge Detection2" {
+            edge = "rising"
+        }
+        [
+            position = 9952, 8640
+            hide_name = True
+            size = 32, 32
+        ]
+
+        component "core/Termination" Termination1 {
+        }
+        [
+            position = 10104, 8632
+            hide_name = True
+        ]
+
+        tag From3 {
+            value = "howLongCharge"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7640, 7872
+            hide_name = True
+            size = 100, 20
+        ]
+
+        tag From4 {
+            value = "howLongWeThink"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7640, 7952
+            hide_name = True
+            size = 100, 20
+        ]
+
+        tag From5 {
+            value = "talkingProtocol"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7640, 8112
+            hide_name = True
+            size = 92, 20
+        ]
+
+        tag From6 {
+            value = "targetVoltage"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7640, 8144
+            hide_name = True
+            size = 101, 20
+        ]
+
+        tag From7 {
+            value = "askingAmps"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7656, 8176
+            hide_name = True
+            size = 67, 20
+        ]
+
+        tag From8 {
+            value = "faults"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7656, 8216
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag From9 {
+            value = "status"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7656, 8248
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag From10 {
+            value = "kiloWattHours"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7648, 8280
+            hide_name = True
+            size = 83, 20
+        ]
+
+        tag Goto1 {
+            value = "weldCheck"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8392, 7816
+            hide_name = True
+            size = 71, 20
+        ]
+
+        tag Goto2 {
+            value = "availVoltage"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8392, 7856
+            hide_name = True
+            size = 74, 20
+        ]
+
+        tag Goto3 {
+            value = "availCurrent"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8392, 7896
+            hide_name = True
+            size = 77, 20
+        ]
+
+        tag Goto4 {
+            value = "thresholdVoltage"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8400, 7928
+            hide_name = True
+            size = 93, 20
+        ]
+
+        tag Goto5 {
+            value = "bChademo10Protocol"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8408, 8072
+            hide_name = True
+            size = 117, 20
+        ]
+
+        tag Goto6 {
+            value = "presentVoltage"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8400, 8104
+            hide_name = True
+            size = 101, 20
+        ]
+
+        tag Goto7 {
+            value = "presentCurrent"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8400, 8136
+            hide_name = True
+            size = 97, 20
+        ]
+
+        tag Goto8 {
+            value = "evseStatus"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8392, 8168
+            hide_name = True
+            size = 68, 20
+        ]
+
+        tag Goto9 {
+            value = "remainingChargeSeconds"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8416, 8200
+            hide_name = True
+            size = 132, 20
+        ]
+
+        tag From11 {
+            value = "currentMillis"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 6288, 7384
+            hide_name = True
+            size = 69, 20
+        ]
+
+        tag Goto11 {
+            value = "currentMillis"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8032, 8400
+            hide_name = True
+            size = 65, 20
+        ]
+
+        tag Goto12 {
+            value = "sendBatt"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 6872, 7360
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag Goto13 {
+            value = "sendStatus"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 6928, 7384
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag Goto14 {
+            value = "sendTime"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 6984, 7408
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag Goto15 {
+            value = "maxChargeVoltage"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 6912, 7472
+            hide_name = True
+            size = 100, 20
+        ]
+
+        tag Goto16 {
+            value = "packSizeKWH"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 6912, 7512
+            hide_name = True
+            size = 94, 20
+        ]
+
+        tag Goto17 {
+            value = "howLongCharge"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 7000, 7576
+            hide_name = True
+            size = 92, 20
+        ]
+
+        tag Goto18 {
+            value = "howLongWeThink"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 7000, 7640
+            hide_name = True
+            size = 89, 20
+        ]
+
+        tag From15 {
+            value = "maxChargeVoltage"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7632, 7608
+            hide_name = True
+            size = 114, 20
+        ]
+
+        tag From16 {
+            value = "packSizeKWH"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7648, 7688
+            hide_name = True
+            size = 85, 20
+        ]
+
+        tag From17 {
+            value = "sendBatt"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7856, 7528
+            rotation = right
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag From18 {
+            value = "sendTime"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7856, 7784
+            rotation = right
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag From19 {
+            value = "sendStatus"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7856, 8056
+            rotation = right
+            hide_name = True
+            size = 70, 20
+        ]
+
+        tag Goto19 {
+            value = "talkingProtocol"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 7088, 7696
+            hide_name = True
+            size = 89, 20
+        ]
+
+        tag Goto20 {
+            value = "targetVoltage"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 7088, 7744
+            hide_name = True
+            size = 96, 20
+        ]
+
+        tag Goto21 {
+            value = "askingAmps"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 7072, 7792
+            hide_name = True
+            size = 67, 20
+        ]
+
+        tag Goto22 {
+            value = "faults"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 7072, 7840
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag Goto23 {
+            value = "status"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 7072, 7888
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag Goto24 {
+            value = "kiloWattHours"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 7088, 7936
+            hide_name = True
+            size = 98, 20
+        ]
+
+        tag Goto25 {
+            value = "currentSeconds"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 7968, 8440
+            hide_name = True
+            size = 95, 20
+        ]
+
+        tag Goto26 {
+            value = "receiveParams"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8168, 7728
+            rotation = left
+            hide_name = True
+            size = 80, 20
+        ]
+
+        tag Goto27 {
+            value = "receiveStatus"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8168, 8000
+            rotation = left
+            hide_name = True
+            size = 73, 20
+        ]
+
+        tag From20 {
+            value = "currentSeconds"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 6320, 8248
+            hide_name = True
+            size = 108, 20
+        ]
+
+        tag Goto28 {
+            value = "PP voltage"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 10168, 8280
+            hide_name = True
+            size = 76, 20
+        ]
+
+        tag Goto29 {
+            value = "CP voltage"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 10032, 8480
+            rotation = right
+            hide_name = True
+            size = 78, 20
+        ]
+
+        tag From25 {
+            value = "disconnection status"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 9688, 7736
+            rotation = right
+            hide_name = True
+            size = 158, 20
+        ]
+
+        tag Goto30 {
+            value = "battery voltage"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 9952, 8048
+            rotation = right
+            hide_name = True
+            size = 113, 20
+        ]
+
+        tag Goto31 {
+            value = "battery soc"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 10176, 7968
+            hide_name = True
+            size = 113, 20
+        ]
+
+        tag From47 {
+            value = "disconnection status"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 8816, 7728
+            hide_name = True
+            size = 158, 20
+        ]
+
+        tag From48 {
+            value = "present current"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 8816, 7800
+            hide_name = True
+            size = 158, 20
+        ]
+
+        tag From49 {
+            value = "EV ready"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 9752, 8600
+            hide_name = True
+            size = 158, 20
+        ]
+
+        tag From50 {
+            value = "received message"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 9752, 8632
+            hide_name = True
+            size = 158, 20
+        ]
+
+        tag From51 {
+            value = "CP state"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 10056, 8560
+            hide_name = True
+            size = 158, 20
+        ]
+
+        junction Junction14 sp
+        [
+            position = 7904, 8440
+        ]
+
+        junction Junction19 sp
+        [
+            position = 7808, 8432
+        ]
+
+        junction Junction20 sp
+        [
+            position = 6880, 7576
+        ]
+
+        junction Junction21 sp
+        [
+            position = 6896, 7640
+        ]
+
+        junction Junction5 pe
+        [
+            position = 9208, 8216
+        ]
+
+        junction Junction38 pe
+        [
+            position = 8984, 8424
+        ]
+
+        junction Junction40 pe
+        [
+            position = 10000, 8424
+        ]
+
+        junction Junction41 pe
+        [
+            position = 10152, 8328
+        ]
+
+        junction Junction42 pe
+        [
+            position = 10152, 8424
+        ]
+
+        junction Junction45 pe
+        [
+            position = 9208, 8304
+        ]
+
+        junction Junction49 pe
+        [
+            position = 10056, 8424
+        ]
+
+        junction Junction50 pe
+        [
+            position = 9920, 8232
+        ]
+
+        junction Junction59 pe
+        [
+            position = 10104, 8424
+        ]
+
+        junction Junction61 pe
+        [
+            position = 9920, 8424
+        ]
+
+        junction Junction64 pe
+        [
+            position = 9208, 8424
+        ]
+
+        junction Junction65 pe
+        [
+            position = 10000, 8328
+        ]
+
+        junction Junction66 pe
+        [
+            position = 9920, 8232
+        ]
+
+        junction Junction67 pe
+        [
+            position = 9912, 7872
+        ]
+
+        junction Junction68 pe
+        [
+            position = 9912, 8064
+        ]
+
+        junction Junction72 pe
+        [
+            position = 9136, 7872
+        ]
+
+        junction Junction73 pe
+        [
+            position = 9136, 8064
+        ]
+
+        comment Comment1 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">EVSE side </p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">EVSE is designed as a simple signal controlled current source.</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">The source is controlled by the PresentCurrent value</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">comming from the EVSE messages.  </p></body></html> ENDCOMMENT 
+        [
+            position = 9128, 7720
+        ]
+
+        comment Comment2 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">EV side</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">EV is designed as a simple battery.</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">The Charge contactor is closed when the </p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">PreCharge process is finished.</p></body></html> ENDCOMMENT 
+        [
+            position = 9792, 7712
+        ]
+
+        comment Comment3 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">DC+</p></body></html> ENDCOMMENT 
+        [
+            position = 9344, 7984
+        ]
+
+        comment Comment4 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">DC-</p></body></html> ENDCOMMENT 
+        [
+            position = 9344, 8032
+        ]
+
+        comment Comment5 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">PP</p></body></html> ENDCOMMENT 
+        [
+            position = 9352, 8080
+        ]
+
+        comment Comment6 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">CP</p></body></html> ENDCOMMENT 
+        [
+            position = 9352, 8128
+        ]
+
+        comment Comment7 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">GND</p></body></html> ENDCOMMENT 
+        [
+            position = 9344, 8176
+        ]
+
+        comment Comment8 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">EV Ready contactor logic</p></body></html> ENDCOMMENT 
+        [
+            position = 9936, 8712
+        ]
+
+        comment Comment10 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Legend:<br />EV - Electric Vehicle</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">EVSE - Electric Vehicle Supply Equipment</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">EVCC - Electric Vehicle Charge Controller</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">PP - Proximity Pilot</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">CP - Control Pilot</p></body></html> ENDCOMMENT 
+        [
+            position = 9520, 7464
+        ]
+
+        connect From5 "EV STATUS.EVtalkingProtocol" as Connection2
+        connect From3 "CHARGING TIME.EVhowLongCharge" as Connection4
+        connect From4 "CHARGING TIME.EVhowLongWeThink" as Connection5
+        connect From6 "EV STATUS.EVtargetVoltage" as Connection6
+        [
+            breakpoints = 7744, 8160
+        ]
+        connect From7 "EV STATUS.EVaskingAmps" as Connection7
+        [
+            breakpoints = 7712, 8176
+        ]
+        connect From10 "EV STATUS.EVkiloWattHours" as Connection23
+        [
+            breakpoints = 7744, 8280; 7752, 8224
+        ]
+        connect "EVSE STATUS.EVSEremainingChargeSeconds" Goto9 as Connection25
+        [
+            breakpoints = 8264, 8168; 8280, 8200
+        ]
+        connect "EVSE STATUS.EVSEstatus" Goto8 as Connection26
+        [
+            breakpoints = 8280, 8160; 8288, 8168
+        ]
+        connect "EVSE STATUS.EVSEpresentCurrent" Goto7 as Connection27
+        connect "EVSE STATUS.EVSEpresentVoltage" Goto6 as Connection28
+        [
+            breakpoints = 8280, 8104
+        ]
+        connect "EVSE STATUS.EVSEbChademo10Protocol" Goto5 as Connection29
+        [
+            breakpoints = 8264, 8096; 8264, 8072
+        ]
+        connect "EVSE PARAMS.EVSEthresholdVoltage" Goto4 as Connection30
+        [
+            breakpoints = 8272, 7904; 8280, 7928
+        ]
+        connect "EVSE PARAMS.EVSEavailCurrent" Goto3 as Connection31
+        [
+            breakpoints = 8288, 7896
+        ]
+        connect "EVSE PARAMS.EVSEavailVoltage" Goto2 as Connection32
+        connect "EVSE PARAMS.EVSEweldCheck" Goto1 as Connection33
+        [
+            breakpoints = 8288, 7840; 8288, 7816
+        ]
+        connect "Unit Delay1.out" Counter1.reset as Connection50
+        connect Constant3.out Counter1.en as Connection53
+        connect "Advanced C function2.CurrentSeconds" CurrentSeconds.in as Connection76
+        connect From9 "EV STATUS.EVstatus" as Connection115
+        [
+            breakpoints = 7720, 8248; 7720, 8208
+        ]
+        connect From8 "EV STATUS.EVfaults" as Connection116
+        [
+            breakpoints = 7704, 8200; 7704, 8192
+        ]
+        connect From15 "EV - BATTERY SPECS.EVmaxChargeVoltage" as Connection117
+        connect From16 "EV - BATTERY SPECS.EVpackSizeKWH" as Connection118
+        connect From17 "EV - BATTERY SPECS.event" as Connection119
+        connect "Advanced C function2.maxChargeVoltage" Goto15 as Connection121
+        connect From18 "CHARGING TIME.event" as Connection129
+        connect From19 "EV STATUS.event" as Connection130
+        connect "Advanced C function2.packSizeKWH" Goto16 as Connection135
+        connect From11 "Advanced C function2.currentMillis" as Connection144
+        connect "EVSE PARAMS.rcv_cnt" Goto26 as Connection148
+        connect "EVSE STATUS.rcv_cnt" Goto27 as Connection149
+        connect SIreceiveParams.out "Advanced C function2.receiveParams" as Connection152
+        [
+            breakpoints = 6528, 7616; 6536, 7704
+        ]
+        connect SIreceiveStatus.out "Advanced C function2.receiveStatus" as Connection153
+        [
+            breakpoints = 6512, 7608; 6520, 7720
+        ]
+        connect SIweldCheck.out "Advanced C function2.weldCheck" as Connection154
+        [
+            breakpoints = 6496, 7688; 6496, 7728; 6496, 7736; 6584, 7736
+        ]
+        connect SIavailVoltage.out "Advanced C function2.availVoltage" as Connection157
+        connect SIavailCurrent.out "Advanced C function2.availCurrent" as Connection158
+        [
+            breakpoints = 6496, 7808; 6496, 7768
+        ]
+        connect SIthresholdVoltage.out "Advanced C function2.thresholdVoltage" as Connection159
+        [
+            breakpoints = 6504, 7856; 6528, 7784
+        ]
+        connect SIbChademo10Protocol.out "Advanced C function2.bChademo10Protocol" as Connection160
+        [
+            breakpoints = 6512, 7936; 6528, 7800
+        ]
+        connect SIpresentVoltage.out "Advanced C function2.presentVoltage" as Connection161
+        [
+            breakpoints = 6520, 8000; 6568, 7816
+        ]
+        connect SIpresentCurrent.out "Advanced C function2.presentCurrent" as Connection162
+        [
+            breakpoints = 6528, 8048; 6584, 7832
+        ]
+        connect SIremainingChargeSeconds.out "Advanced C function2.remainingChargeSeconds" as Connection163
+        [
+            breakpoints = 6552, 8168
+        ]
+        connect SIevseStatus.out "Advanced C function2.evseStatus" as Connection164
+        [
+            breakpoints = 6536, 8112; 6560, 7848
+        ]
+        connect "C function1.out_seconds" Junction14 as Connection165
+        connect Junction14 Goto25 as Connection166
+        connect currentSeconds.in Junction14 as Connection167
+        connect Counter1.out Junction19 as Connection192
+        connect Junction19 "C function1.in" as Connection193
+        connect counter.in Junction19 as Connection194
+        connect "C function1.rst" "Unit Delay1.in" as Connection196
+        connect "C function1.out_millis" Goto11 as Connection197
+        connect From20 "Advanced C function2.currentSeconds" as Connection205
+        [
+            breakpoints = 6560, 8240
+        ]
+        connect SIbChademoRequest.out "Advanced C function2.bChademoRequest" as Connection210
+        [
+            breakpoints = 6568, 8288
+        ]
+        connect SIvoltage.out "Advanced C function2.SIvoltage" as Connection211
+        [
+            breakpoints = 6576, 8320
+        ]
+        connect SIcurrent.out "Advanced C function2.SIcurrent" as Connection212
+        [
+            breakpoints = 6584, 8376
+        ]
+        connect SIkwh.out "Advanced C function2.SIkwh" as Connection213
+        [
+            breakpoints = 6592, 8448
+        ]
+        connect "Advanced C function2.sendBatt" Goto12 as Connection216
+        [
+            breakpoints = 6792, 7624
+        ]
+        connect "Advanced C function2.sendStatus" Goto13 as Connection217
+        [
+            breakpoints = 6808, 7640; 6888, 7384
+        ]
+        connect "Advanced C function2.sendTime" Goto14 as Connection218
+        [
+            breakpoints = 6824, 7640; 6896, 7408
+        ]
+        connect "Advanced C function2.howLongCharge" Junction20 as Connection221
+        [
+            breakpoints = 6880, 7616
+        ]
+        connect Junction20 Goto17 as Connection222
+        [
+            breakpoints = 6880, 7576
+        ]
+        connect howLongCharge.in Junction20 as Connection223
+        [
+            breakpoints = 6880, 7560
+        ]
+        connect "Advanced C function2.howLongWeThink" Junction21 as Connection224
+        [
+            breakpoints = 6896, 7688
+        ]
+        connect Junction21 Goto18 as Connection225
+        [
+            breakpoints = 6920, 7640
+        ]
+        connect howLongWeThink.in Junction21 as Connection226
+        [
+            breakpoints = 6896, 7616
+        ]
+        connect "Advanced C function2.talkingProtocol" Goto19 as Connection227
+        [
+            breakpoints = 6912, 7752; 6928, 7696
+        ]
+        connect "Advanced C function2.targetVoltage" Goto20 as Connection228
+        [
+            breakpoints = 6920, 7776; 6928, 7744
+        ]
+        connect "Advanced C function2.askingAmps" Goto21 as Connection229
+        connect "Advanced C function2.faults" Goto22 as Connection230
+        [
+            breakpoints = 7016, 7808; 7024, 7840
+        ]
+        connect "Advanced C function2.status" Goto23 as Connection231
+        [
+            breakpoints = 6992, 7824; 7008, 7888
+        ]
+        connect "Advanced C function2.kiloWattHours" Goto24 as Connection232
+        [
+            breakpoints = 6968, 7856; 6976, 7936
+        ]
+        connect "Advanced C function2.chademoState" chademoState.in as Connection233
+        [
+            breakpoints = 6952, 7864; 7056, 7992
+        ]
+        connect "Advanced C function2.insertionTime" insertionTime.in as Connection234
+        [
+            breakpoints = 6936, 7880; 6952, 8048
+        ]
+        connect "Advanced C function2.bChademoMode" bChademoMode.in as Connection235
+        [
+            breakpoints = 6920, 7896; 6944, 8112
+        ]
+        connect "Advanced C function2.bChademoRequestOutput" bChademoRequest.in as Connection237
+        [
+            breakpoints = 6896, 7904; 6904, 7904; 6928, 8176
+        ]
+        connect "Advanced C function2.bChademoSendRequestsOutput" bChademoSendRequests.in as Connection238
+        [
+            breakpoints = 6864, 7952; 6920, 8240
+        ]
+        connect "Advanced C function2.out1111" out1.in as Connection239
+        [
+            breakpoints = 6880, 7928; 6904, 8216; 7224, 8216
+        ]
+        connect "Advanced C function2.out2222" out2.in as Connection240
+        [
+            breakpoints = 6840, 7968; 7152, 8288
+        ]
+        connect "Advanced C function2.out3333" out3.in as Connection241
+        [
+            breakpoints = 6824, 7976; 6864, 8352
+        ]
+        connect "Advanced C function2.ERRORdoP" ERRORdoP.in as Connection242
+        [
+            breakpoints = 6800, 7984
+        ]
+        connect "Advanced C function2.ERRORhandle" ERRORhandle.in as Connection243
+        [
+            breakpoints = 6784, 8000
+        ]
+        connect Constant1.out "Signal switch1.in1" as Connection244
+        connect "SR Flip Flop1.out" "Signal switch1.in" as Connection265
+        connect Constant2.out "Relational operator1.in1" as Connection269
+        connect S3.a_out Junction5 as Connection43
+        connect Junction5 R6.n_node as Connection44
+        connect R7.p_node Junction5 as Connection45
+        connect R4.p_node "PP supply.p_node" as Connection93
+        [
+            breakpoints = 9920, 8112; 10008, 8112
+        ]
+        connect gnd1.node Junction38 as Connection304
+        connect "CP supply.n_node" Junction38 as Connection306
+        connect "CP supply.p_node" R1.p_node as Connection307
+        connect "CP level meas.n_node" Junction40 as Connection341
+        connect R3.p_node Junction41 as Connection344
+        connect R2.p_node Junction41 as Connection346
+        connect R3.n_node Junction42 as Connection347
+        connect S2.a_out Junction42 as Connection349
+        connect Junction45 R7.n_node as Connection357
+        [
+            breakpoints = 9256, 8304
+        ]
+        connect S3.a_in Junction45 as Connection362
+        [
+            breakpoints = 9160, 8304; 9208, 8304
+        ]
+        connect Junction49 Junction40 as Connection375
+        connect "PP level meas.n_node" Junction49 as Connection376
+        connect R4.n_node Junction50 as Connection377
+        connect "PP level meas.p_node" Junction50 as Connection379
+        connect R2.n_node S2.a_in as Connection413
+        [
+            breakpoints = 10296, 8424
+        ]
+        connect Junction59 Junction49 as Connection415
+        connect "PP supply.n_node" Junction59 as Connection416
+        connect Junction59 Junction42 as Connection435
+        [
+            breakpoints = 10104, 8424; 10152, 8424
+        ]
+        connect Junction40 Junction61 as Connection443
+        [
+            breakpoints = 10000, 8424; 10000, 8424
+        ]
+        connect Junction61 R5.n_node as Connection444
+        [
+            breakpoints = 9920, 8424; 9920, 8424; 9920, 8424; 9920, 8424
+        ]
+        connect SW.out_5 Junction61 as Connection445
+        [
+            breakpoints = 9496, 8208; 9496, 8424; 9920, 8424
+        ]
+        connect "Connector latch.out" S3.ctrl_in as Connection454
+        connect "Signal switch1.out" S2.ctrl_in as Connection455
+        connect "Charging cable.out" SW.ctrl_in as Connection456
+        connect "PP level meas.out" Goto28 as Connection457
+        connect "CP level meas.out" Goto29 as Connection458
+        connect SW.in_3 R6.p_node as Connection460
+        connect SW.in_4 R1.n_node as Connection461
+        [
+            breakpoints = 9320, 8160; 9320, 8328; 9192, 8328
+        ]
+        connect Junction45 Junction64 as Connection462
+        [
+            breakpoints = 9208, 8304; 9208, 8304
+        ]
+        connect Junction64 Junction38 as Connection463
+        [
+            breakpoints = 9208, 8424; 9208, 8424; 9208, 8424; 9208, 8424; 9208, 8424; 8984, 8424; 8984, 8424; 8984, 8424
+        ]
+        connect SW.in_5 Junction64 as Connection464
+        [
+            breakpoints = 9360, 8224; 9360, 8424
+        ]
+        connect "CP level meas.p_node" Junction65 as Connection466
+        connect Junction65 Junction41 as Connection467
+        [
+            breakpoints = 10000, 8328; 10000, 8328; 10000, 8328; 10000, 8328; 10000, 8328; 10000, 8328; 10000, 8328; 10152, 8328; 10152, 8328; 10152, 8328
+        ]
+        connect SW.out_4 Junction65 as Connection468
+        [
+            breakpoints = 9528, 8160; 9528, 8328
+        ]
+        connect R5.p_node Junction66 as Connection470
+        connect Junction66 Junction50 as Connection471
+        [
+            breakpoints = 9920, 8232; 9920, 8232; 9920, 8232; 9920, 8232; 9920, 8232
+        ]
+        connect SW.out_3 Junction66 as Connection472
+        [
+            breakpoints = 9568, 8112; 9568, 8232
+        ]
+        connect SW.out_2 "Charge contactor.b_in" as Connection487
+        connect From25 "Charge contactor.ctrl_in" as Connection490
+        connect "Charge contactor.a_out" "battery current.p_node" as Connection491
+        connect "battery current.n_node" Junction67 as Connection493
+        connect Junction67 Battery.p_node as Connection494
+        connect "battery voltage.p_node" Junction67 as Connection495
+        connect Battery.n_node Junction68 as Connection496
+        connect Junction68 "Charge contactor.b_out" as Connection497
+        connect "battery voltage.n_node" Junction68 as Connection498
+        connect "Charge contactor.a_in" SW.out_1 as Connection499
+        [
+            breakpoints = 9568, 7872; 9568, 8016
+        ]
+        connect Goto30 "battery voltage.out" as Connection500
+        connect Goto31 Battery.out as Connection503
+        connect "Signal switch3.out" Isp1.in as Connection528
+        connect Constant4.out "Signal switch3.in" as Connection530
+        connect Isp1.p_node Junction72 as Connection542
+        connect R8.p_node Junction72 as Connection544
+        connect Junction73 Isp1.n_node as Connection546
+        [
+            breakpoints = 9136, 8064; 9000, 8064; 9000, 7872
+        ]
+        connect R8.n_node Junction73 as Connection547
+        connect From47 "Signal switch3.in2" as Connection548
+        connect From48 "Signal switch3.in1" as Connection558
+        connect From51 "Signal switch1.in2" as Connection564
+        connect From50 "Relational operator1.in" as Connection566
+        connect "Edge Detection1.In1" From49 as Connection593
+        [
+            breakpoints = 9864, 8600; 9864, 8600; 9864, 8600
+        ]
+        connect "Edge Detection1.Out1" "SR Flip Flop1.s_in" as Connection594
+        connect "Edge Detection2.Out1" "SR Flip Flop1.r_in" as Connection595
+        connect "Relational operator1.out" "Edge Detection2.In1" as Connection596
+        connect SW.in_2 Junction73 as Connection597
+        [
+            breakpoints = 9216, 8064; 9216, 8064
+        ]
+        connect Junction72 SW.in_1 as Connection598
+        [
+            breakpoints = 9136, 7872; 9136, 7872; 9216, 7872; 9288, 7872; 9288, 8016
+        ]
+        connect Termination1.in "SR Flip Flop1.out_n" as Connection599
+    }
+
+    logically_deleted {
+        "Subsystem2"
+        "Subsystem3"
+        "Charging cable"
+        "Connector latch"
+        "Signal switch1"
+        "Constant1"
+        "SR Flip Flop1"
+        "Relational operator1"
+        "Constant2"
+        "PP supply"
+        "gnd1"
+        "R4"
+        "R5"
+        "R6"
+        "R7"
+        "S3"
+        "PP level meas"
+        "CP supply"
+        "R3"
+        "R2"
+        "S2"
+        "CP level meas"
+        "R1"
+        "SW"
+        "Battery"
+        "Charge contactor"
+        "Isp1"
+        "battery voltage"
+        "battery current"
+        "Signal switch3"
+        "Constant4"
+        "R8"
+        "Edge Detection1"
+        "Edge Detection2"
+        "Termination1"
+        "Goto28"
+        "Goto29"
+        "From25"
+        "Goto30"
+        "Goto31"
+        "From47"
+        "From48"
+        "From49"
+        "From50"
+        "From51"
+        "Junction5"
+        "Junction38"
+        "Junction40"
+        "Junction41"
+        "Junction42"
+        "Junction45"
+        "Junction49"
+        "Junction50"
+        "Junction59"
+        "Junction61"
+        "Junction64"
+        "Junction65"
+        "Junction66"
+        "Junction67"
+        "Junction68"
+        "Junction72"
+        "Junction73"
+        "Comment3"
+        "Comment4"
+        "Comment5"
+        "Comment6"
+        "Comment7"
+        "Comment8"
+        "Comment10"
+        "Connection244"
+        "Connection265"
+        "Connection269"
+        "Connection43"
+        "Connection44"
+        "Connection45"
+        "Connection93"
+        "Connection304"
+        "Connection306"
+        "Connection307"
+        "Connection341"
+        "Connection344"
+        "Connection346"
+        "Connection347"
+        "Connection349"
+        "Connection357"
+        "Connection362"
+        "Connection375"
+        "Connection376"
+        "Connection377"
+        "Connection379"
+        "Connection413"
+        "Connection415"
+        "Connection416"
+        "Connection435"
+        "Connection443"
+        "Connection444"
+        "Connection445"
+        "Connection454"
+        "Connection455"
+        "Connection456"
+        "Connection457"
+        "Connection458"
+        "Connection460"
+        "Connection461"
+        "Connection462"
+        "Connection463"
+        "Connection464"
+        "Connection466"
+        "Connection467"
+        "Connection468"
+        "Connection470"
+        "Connection471"
+        "Connection472"
+        "Connection487"
+        "Connection490"
+        "Connection491"
+        "Connection493"
+        "Connection494"
+        "Connection495"
+        "Connection496"
+        "Connection497"
+        "Connection498"
+        "Connection499"
+        "Connection500"
+        "Connection503"
+        "Connection528"
+        "Connection530"
+        "Connection542"
+        "Connection544"
+        "Connection546"
+        "Connection547"
+        "Connection548"
+        "Connection558"
+        "Connection564"
+        "Connection566"
+        "Connection593"
+        "Connection594"
+        "Connection595"
+        "Connection596"
+        "Connection597"
+        "Connection598"
+        "Connection599"
+    }
+
+    default {
+        "core/Advanced C function" {
+            input_terminals = "real in;"
+            input_terminals_show_labels = "False;"
+            input_terminals_feedthrough = "True;"
+            input_terminals_dimensions = "inherit;"
+            output_terminals = "real out;"
+            output_terminals_show_labels = "False;"
+            output_terminals_feedthrough = "True;"
+            output_terminals_dimensions = "inherit;"
+            output_fnc = ""
+            update_fnc = ""
+            init_fnc = ""
+            global_variables = ""
+            parameters = ""
+            library_load_type = "Compile-time load"
+            dll_file_path = ""
+            dll_file_path_full = ""
+            arm_a9_file_path = ""
+            arm_a9_file_path_full = ""
+            arm_a53_file_path = ""
+            arm_a53_file_path_full = ""
+            h_file_path = ""
+            h_file_path_full = ""
+            add_src_path = ""
+            add_src_path_full = ""
+            convert_to_relative_dll = "True"
+            convert_to_relative_a = "True"
+            convert_to_relative_src = "True"
+            arb_defs = ""
+            add_macros = ""
+            skip_pre_cmpl_check = "False"
+            generate_for_hil = "True"
+            execution_rate = "inherit"
+            _supported_platforms = "[\'generic\']"
+            refresh = "refresh"
+        }
+
+        "core/C function" {
+            input_terminals = "real in;"
+            input_terminals_show_labels = "False;"
+            input_terminals_feedthrough = "True;"
+            input_terminals_dimensions = "inherit;"
+            output_terminals = "real out;"
+            output_terminals_show_labels = "False;"
+            output_terminals_feedthrough = "True;"
+            output_terminals_dimensions = "inherit;"
+            output_fnc = ""
+            update_fnc = ""
+            init_fnc = ""
+            global_variables = ""
+            parameters = ""
+            execution_rate = "inherit"
+        }
+
+        "core/CAN Setup" {
+            can1_cofig_method = "Automatic"
+            can1_baud_rate = "50000"
+            can1_cd = "0"
+            can1_ts1 = "0"
+            can1_ts2 = "0"
+            can1_sjw = "1"
+            can1_er = "10e-3"
+            can2_cofig_method = "Automatic"
+            can2_baud_rate = "50000"
+            can2_cd = "0"
+            can2_ts1 = "0"
+            can2_ts2 = "0"
+            can2_sjw = "1"
+            can2_er = "10e-3"
+            hil_id = "0"
+            calc_values = "{\'CAN1\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, 
+            \'send_num\': 0,
+            \'send_buff_len\': 0,
+            \'receive_num\': 0,
+            \'receive_buff_len\': 0,}"
+            execution_rate = "100e-6"
+            hil_device_id_combo_values = "[]"
+            saved_hil_device_config = ""
+        }
+
+        "core/Constant" {
+            value = "1"
+            signal_type = "real"
+            execution_rate = "100e-6"
+            _tunable = "False"
+        }
+
+        "core/Probe" {
+            signal_access = "inherit"
+            addr = "0"
+            override_signal_name = "False"
+            signal_name = ""
+            signal_type = "generic"
+            streaming_en = "False"
+            streaming_er_idx = "0"
+            execution_rate = "inherit"
+        }
+
+        "core/Relational operator" {
+            relational_op = "=="
+            execution_rate = "inherit"
+        }
+
+        "core/Resistor" {
+            resistance = "1"
+            param_set = ""
+        }
+
+        "core/SCADA Input" {
+            addr = "0"
+            format = "real"
+            override_signal_name = "False"
+            signal_name = ""
+            signal_type = "real"
+            min = "-1e6"
+            max = "1e6"
+            def_value = "0"
+            unit = " "
+            execution_rate = "100e-6"
+        }
+
+        "core/SR Flip Flop" {
+            init_value = "0"
+            execution_rate = "inherit"
+        }
+
+        "core/Signal switch" {
+            criterion = "ctrl > threshold"
+            threshold = "0.5"
+            execution_rate = "inherit"
+        }
+
+        "core/Termination" {
+            execution_rate = "inherit"
+        }
+
+        "core/Unit Delay" {
+            init_value = "0"
+            signal_out_type = "inherit"
+            execution_rate = "inherit"
+        }
+
+        "core/Voltage Source" {
+            sig_input = "False"
+            type = "signal generator"
+            param_set = "1phase"
+            parent_label = ""
+            addr = "0"
+            spc_nb = "0"
+            execution_rate = "100e-6"
+            cpd_visible = "True"
+            enable_snb = "False"
+            snb_type = "R2"
+            R2 = "0.0"
+            L1 = "0.1"
+            override_signal_name = "False"
+            signal_name = ""
+            init_source_nature = "Constant"
+            init_const_value = "0.0"
+            init_rms_value = "0.0"
+            init_frequency = "50.0"
+            init_phase = "0.0"
+        }
+
+        "core/Battery" {
+            signal_access = "inherit"
+            sig_output = "False"
+            lut = "False"
+            battery_type = "Lead-Acid"
+            nominal_voltage = "12.0"
+            capacity = "1.2"
+            initial_soc = "100.0"
+            execution_rate = "100e-6"
+            Ke_full = "108.0"
+            Kdisc_I = "5.0"
+            R_series = "0.25"
+            Kq_nom = "50.0"
+            Kq_exp = "0.9"
+            Ke_exp = "102.5"
+            preview = "Preview SOC Curve"
+        }
+
+        "core/CAN Bus Receive" {
+            hil_id = "0"
+            db_messages = "[]"
+            name = "CAN message"
+            can_controller = "CAN1"
+            data_input = "Dialog window"
+            file_label = "Configuration file"
+            file_path = "Configuration file"
+            choose_message_values = "[]"
+            choose_message = ""
+            identifier_type = "11 bit"
+            identifier_value = "100"
+            data_length = "1"
+            signals = "[]"
+            signal_names_dict = "{}"
+            execution_rate = "100e-6"
+            _supported_platforms = "[\'hil\']"
+        }
+
+        "core/CAN Bus Send" {
+            hil_id = "0"
+            db_messages = "[]"
+            name = "CAN message"
+            can_controller = "CAN1"
+            data_input = "Dialog window"
+            file_label = "Configuration file"
+            file_path = "Configuration file"
+            choose_message_values = "[]"
+            choose_message = ""
+            identifier_type = "11 bit"
+            identifier_value = "100"
+            data_length = "1"
+            transmit_type = "{\'On event\': True, \'On timer\': False}"
+            transmit_period = "100"
+            signals = "[]"
+            signal_names_dict = "{}"
+            _supported_platforms = "[\'hil\']"
+        }
+
+        "core/Counter" {
+            ext_reset = "level"
+            init_val = "0"
+            state_type = "real"
+            execution_rate = "inherit"
+        }
+
+        "core/Current Measurement" {
+            signal_access = "inherit"
+            bw_limit = "False"
+            frequency = "10e3"
+            comparator_enable = "False"
+            operator = "greater"
+            threshold = "0"
+            cmp_abs_value = "False"
+            feed_forward = "false"
+            sig_output = "False"
+            sig_output_filt_and_full_bw = "False"
+            execution_rate = "100e-6"
+            addr = "0"
+            nd_msr_estimation = "false"
+            dev_cpl_msr = "false"
+            host_device = "0"
+            output_to_device = "0"
+            dev_cpl_index = "0"
+            dev_cpl_var_nb = "0"
+            visible = "True"
+            override_signal_name = "False"
+            signal_name = ""
+        }
+
+        "core/Double Pole Single Throw Contactor" {
+            signal_access = "inherit"
+            ctrl_src = "Digital input"
+            Sa = "1"
+            Sa_logic = "active high"
+            enable_fb_out = "False"
+            fb_out_type = "real"
+            execution_rate = "inherit"
+            initial_state = "off"
+            on_delay = "0"
+            off_delay = "0"
+        }
+
+        "core/Edge Detection" {
+            edge = "both"
+            execution_rate = "inherit"
+        }
+
+        "core/Multi Pole Single Throw Contactor" {
+            signal_access = "inherit"
+            ctrl_src = "Digital input"
+            Sa = "1"
+            Sa_logic = "active high"
+            enable_fb_out = "False"
+            fb_out_type = "real"
+            execution_rate = "inherit"
+            initial_state = "off"
+            on_delay = "0"
+            off_delay = "0"
+            num_of_phases = "4"
+        }
+
+        "core/Signal Controlled Current Source" {
+            execution_rate = "inherit"
+        }
+
+        "core/Single Pole Single Throw Contactor" {
+            signal_access = "inherit"
+            ctrl_src = "Digital input"
+            Sa = "1"
+            Sa_logic = "active high"
+            enable_fb_out = "False"
+            fb_out_type = "real"
+            execution_rate = "inherit"
+            initial_state = "off"
+            on_delay = "0"
+            off_delay = "0"
+            switching = "any current"
+            hide_int_meas = "False"
+        }
+
+        "core/Voltage Measurement" {
+            signal_access = "inherit"
+            bw_limit = "False"
+            frequency = "10e3"
+            comparator_enable = "False"
+            operator = "greater"
+            threshold = "0"
+            cmp_abs_value = "False"
+            feed_forward = "false"
+            sig_output = "False"
+            sig_output_filt_and_full_bw = "False"
+            execution_rate = "100e-6"
+            addr = "0"
+            nd_msr_estimation = "false"
+            dev_cpl_msr = "false"
+            host_device = "0"
+            output_to_device = "0"
+            dev_cpl_index = "0"
+            dev_cpl_var_nb = "0"
+            visible = "True"
+            override_signal_name = "False"
+            signal_name = ""
+        }
+    }
+
+    CODE model_init
+        # Numpy module is imported as 'np'
+        # Scipy module is imported as 'sp'
+        # The Schematic API is imported as 'mdl'
+        # To get the model file path, use 'mdl.get_model_file_path()'
+        # To print information to the console, use info()
+        
+        Ts = 100e-6;
+    ENDCODE
+}

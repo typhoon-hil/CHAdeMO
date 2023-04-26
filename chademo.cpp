@@ -10,16 +10,13 @@ using namespace std;
 CHADEMO chademo;
 bool in1, in2;
 bool out1, out2, out3;
-//unsigned long CurrentMillis;
 float Voltage;
 float Current;
 EESettings settings;
 int Count;
 
 unsigned short int errorDoProcessing;
-
 unsigned short int errorHandle;
-
 
 /*template<class T> inline Print& operator <<(Print& obj, T arg) {
   obj.print(arg);  //Sets up serial streaming Serial<<someshit;
@@ -399,7 +396,6 @@ void CHADEMO::handleCANFrame(unsigned long CurrentMillis, unsigned int receiveID
     // So we'll stay on amp less then it says it has. - TAM
     tempAvailCurr = evse_params.availCurrent > 0 ? evse_params.availCurrent - 1 : 0;
 
-
     //if charger cannot provide our requested voltage then GTFO
     if (evse_params.availVoltage < carStatus.targetVoltage && chademo.chademoState <= RUNNING)
     {
@@ -528,7 +524,7 @@ void CHADEMO::handleCANFrame(unsigned long CurrentMillis, unsigned int receiveID
         }
 
         //if there is no remaining time then gracefully shut down
-        if (evse_status.remainingChargeSeconds == 0)
+        if (evse_status.remainingChargeSeconds == 0 | evse_status.remainingChargeMinutes == 0)
         {
           chademo.chademoState = CEASE_CURRENT;
 
@@ -538,7 +534,7 @@ void CHADEMO::handleCANFrame(unsigned long CurrentMillis, unsigned int receiveID
       else
       {
         //if charger is not reporting being stopped and is reporting remaining time then enable the checks.
-        if ((evse_status.status & EVSE_STATUS_STOPPED) == 0 && evse_status.remainingChargeSeconds > 0) chademo.bListenEVSEStatus = 1;
+          if ((evse_status.status & EVSE_STATUS_STOPPED) == 0 && (evse_status.remainingChargeSeconds > 0 | evse_status.remainingChargeMinutes > 0)) chademo.bListenEVSEStatus = 1;
       }
     }
   }
@@ -597,10 +593,6 @@ void CHADEMO::handleCANFrame(unsigned long CurrentMillis, unsigned int receiveID
 
 void CHADEMO::sendCANStatus()
 {
-    //TEODORA: these two values are in .h, because of access
-    //unsigned char faults = 0;
-    //unsigned char status = 0;
-
   if (carStatus.battOverTemp) chademo.faults |= CARSIDE_FAULT_OVERT;
   if (carStatus.battOverVolt) chademo.faults |= CARSIDE_FAULT_OVERV;
   if (carStatus.battUnderVolt) chademo.faults |= CARSIDE_FAULT_UNDERV;
@@ -629,5 +621,4 @@ void CHADEMO::sendCANStatus()
   if (chademo.chademoState != RUNNING && chademo.askingAmps > 0) chademo.askingAmps--;
   if (chademo.askingAmps > carStatus.targetCurrent) chademo.askingAmps--;
   if (chademo.askingAmps > carStatus.targetCurrent) chademo.askingAmps--;
-
 }

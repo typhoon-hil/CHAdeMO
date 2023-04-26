@@ -35,7 +35,8 @@ typedef struct
   unsigned short int presentVoltage : 16;
   unsigned char presentCurrent;
   unsigned char status;
-  unsigned short int remainingChargeSeconds : 16;
+  unsigned short int remainingChargeSeconds;
+  unsigned short int remainingChargeMinutes;
 } EVSE_STATUS;
 
 typedef struct

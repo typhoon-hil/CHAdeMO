@@ -4,7 +4,7 @@ version = 4.2
 // Saved by sw version: 2023.2
 //
 
-model "chademo-typhoonhil" {
+model "CHAdeMO-TyphoonHIL" {
     configuration {
         hil_device = "HIL606"
         hil_configuration_id = 2
@@ -2307,7 +2307,6 @@ if(in == 10)
         }
         [
             position = 11136, 8128
-            hide_name = True
             size = 64, 352
         ]
 
@@ -2363,28 +2362,14 @@ if(in == 10)
             init_const_value = "12"
         }
         [
-            position = 10480, 8080
-            rotation = down
-        ]
-
-        component "core/Ground" gnd2 {
-        }
-        [
-            position = 10376, 8128
-            hide_name = True
+            position = 10488, 8016
+            rotation = right
         ]
 
         component "core/Resistor" R5 {
         }
         [
-            position = 11640, 8208
-        ]
-
-        component "core/Ground" gnd3 {
-        }
-        [
-            position = 11712, 8336
-            hide_name = True
+            position = 11704, 8208
         ]
 
         component "core/Resistor" R6 {
@@ -2407,13 +2392,6 @@ if(in == 10)
         [
             position = 10720, 8128
             size = 64, 32
-        ]
-
-        component "core/Ground" gnd4 {
-        }
-        [
-            position = 10480, 8376
-            hide_name = True
         ]
 
         component "core/Resistor" R1 {
@@ -2444,21 +2422,13 @@ if(in == 10)
             position = 11304, 8608
         ]
 
-        component "core/Voltage Source" "+V DC1" {
-            init_const_value = "12"
-        }
-        [
-            position = 10544, 8224
-            rotation = down
-        ]
-
         component "core/Current Measurement" "current of d1" {
             execution_rate = "Ts"
             sig_output = "True"
             signal_access = "Inherit"
         }
         [
-            position = 11712, 8264
+            position = 11776, 8264
             rotation = left
             scale = -1, 1
             size = 64, 32
@@ -2481,13 +2451,6 @@ if(in == 10)
         }
         [
             position = 11672, 8592
-        ]
-
-        component "core/Ground" gnd6 {
-        }
-        [
-            position = 11448, 9136
-            hide_name = True
         ]
 
         component "core/Constant" Constant4 {
@@ -2551,6 +2514,7 @@ if(in == 10)
         }
         [
             position = 10648, 8224
+            rotation = down
             scale = -1, 1
             size = 64, 32
         ]
@@ -2565,7 +2529,7 @@ if(in == 10)
 
         component "core/Signal switch" "Signal switch3" {
             criterion = "ctrl != threshold"
-            threshold = "EVSE_READY"
+            threshold = "1"
         }
         [
             position = 10568, 7776
@@ -2604,12 +2568,12 @@ if(in == 10)
 
         component "core/Single Pole Single Throw Contactor" S2 {
             enable_fb_out = "True"
+            execution_rate = "100e-6"
             signal_access = "Inherit"
         }
         [
             position = 11400, 8672
             rotation = right
-            hide_name = True
             size = 64, 32
         ]
 
@@ -2628,13 +2592,6 @@ if(in == 10)
         [
             position = 11520, 8128
             size = 64, 32
-        ]
-
-        component "core/Ground" gnd7 {
-        }
-        [
-            position = 12360, 8168
-            hide_name = True
         ]
 
         component "core/C function" "EV Ready logic" {
@@ -2758,6 +2715,27 @@ if (ev_ready) {
         }
         [
             position = 9752, 8296
+        ]
+
+        component "core/SCADA Input" "SCADA Input1" {
+            unit = ""
+        }
+        [
+            position = 9656, 8432
+        ]
+
+        component "core/Ground" gnd1 {
+        }
+        [
+            position = 11936, 9160
+        ]
+
+        component "core/Voltage Source" "+V DC3" {
+            init_const_value = "12"
+        }
+        [
+            position = 10360, 8008
+            rotation = right
         ]
 
         tag From25 {
@@ -3084,16 +3062,6 @@ if (ev_ready) {
             position = 10480, 8176
         ]
 
-        junction Junction77 pe
-        [
-            position = 10480, 8224
-        ]
-
-        junction Junction80 pe
-        [
-            position = 11448, 9048
-        ]
-
         junction Junction81 pe
         [
             position = 11576, 8208
@@ -3112,11 +3080,6 @@ if (ev_ready) {
         junction Junction84 pe
         [
             position = 10712, 8032
-        ]
-
-        junction Junction85 pe
-        [
-            position = 10480, 8272
         ]
 
         junction Junction86 pe
@@ -3154,11 +3117,6 @@ if (ev_ready) {
             position = 9632, 7904
         ]
 
-        junction Junction40 sp
-        [
-            position = 9648, 8360
-        ]
-
         junction Junction90 sp
         [
             position = 8000, 8064
@@ -3167,6 +3125,21 @@ if (ev_ready) {
         junction Junction91 sp
         [
             position = 7968, 8120
+        ]
+
+        junction Junction92 pe
+        [
+            position = 11448, 9048
+        ]
+
+        junction Junction93 pe
+        [
+            position = 11768, 9088
+        ]
+
+        junction Junction95 pe
+        [
+            position = 11928, 9088
         ]
 
         comment Comment3 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">DC+</p></body></html> ENDCOMMENT 
@@ -3284,11 +3257,6 @@ if (ev_ready) {
         connect Junction67 Battery.p_node as Connection494
         connect Goto35 "battery voltage.out" as Connection500
         connect Goto36 Battery.out as Connection503
-        connect "+V DC.n_node" gnd2.node as Connection676
-        connect "+V DC.p_node" d1.a_in as Connection690
-        [
-            breakpoints = 10536, 8080
-        ]
         connect "battery voltage.p_node" Junction67 as Connection697
         [
             breakpoints = 11624, 7960
@@ -3299,10 +3267,9 @@ if (ev_ready) {
         ]
         connect R1.p_node Junction71 as Connection703
         connect "current of d1.out" Goto37 as Connection707
-        connect gnd3.node "current of d1.p_node" as Connection709
         connect R5.n_node "current of d1.n_node" as Connection710
         [
-            breakpoints = 11712, 8216
+            breakpoints = 11776, 8216
         ]
         connect "current of d2.out" Goto38 as Connection712
         [
@@ -3314,20 +3281,15 @@ if (ev_ready) {
         ]
         connect Constant4.out "Signal switch1.in" as Connection732
         connect "Signal switch1.out" Goto39 as Connection734
-        connect Junction71 Junction77 as Connection759
-        connect "+V DC1.n_node" Junction77 as Connection761
         connect R3.n_node "(dis)connection.n_node" as Connection766
         connect "+V DC2.p_node" Battery1.p_node as Connection774
         [
             breakpoints = 11312, 8792
         ]
-        connect gnd6.node Junction80 as Connection775
         connect "Signal switch3.out" Isp1.in as Connection528
         connect Constant8.out "Signal switch3.in" as Connection530
         connect From47 "Signal switch3.in2" as Connection548
         connect From48 "Signal switch3.in1" as Connection558
-        connect "+V DC1.p_node" "(not)ready.n_node" as Connection789
-        connect "(not)ready.p_node" R2.p_node as Connection790
         connect "Charging cable.out" SW.ctrl_in as Connection796
         connect SW.out_1 "EV contactor.a_in" as Connection797
         [
@@ -3355,10 +3317,6 @@ if (ev_ready) {
             breakpoints = 11224, 8256; 11224, 8376; 11224, 8584
         ]
         connect Battery1.n_node Junction82 as Connection805
-        connect Junction82 Junction80 as Connection806
-        [
-            breakpoints = 11312, 9040; 11312, 9048; 11352, 9048
-        ]
         connect SW.out_7 Junction82 as Connection807
         [
             breakpoints = 11192, 8280
@@ -3388,22 +3346,9 @@ if (ev_ready) {
         connect d2.a_out SW.in_4 as Connection815
         connect R1.n_node SW.in_5 as Connection816
         connect R2.n_node SW.in_6 as Connection817
-        connect Junction77 Junction85 as Connection818
-        [
-            breakpoints = 10480, 8224
-        ]
-        connect Junction85 gnd4.node as Connection819
-        [
-            breakpoints = 10480, 8272
-        ]
-        connect SW.in_7 Junction85 as Connection820
         connect "+V DC2.n_node" Junction86 as Connection825
         connect S2.a_out Junction86 as Connection827
         connect Junction86 Junction87 as Connection828
-        connect Junction87 Junction80 as Connection829
-        [
-            breakpoints = 11448, 8800; 11448, 8808; 11448, 8936
-        ]
         connect "(dis)connection.p_node" Junction87 as Connection830
         connect S2.feedback_out Goto40 as Connection831
         connect R4.n_node S2.a_in as Connection832
@@ -3438,10 +3383,6 @@ if (ev_ready) {
             breakpoints = 11856, 8168; 11856, 8112; 11856, 8096
         ]
         connect "Logical operator1.out" S1.ctrl_in as Connection848
-        connect S1.a_out gnd7.node as Connection849
-        [
-            breakpoints = 12232, 8072; 12360, 8080
-        ]
         connect "(dis)connection.out" "Signal switch1.in2" as Connection850
         [
             breakpoints = 11488, 8480; 11488, 8520; 11520, 8544
@@ -3463,9 +3404,6 @@ if (ev_ready) {
         connect From64 "EV disconnection logic.present_voltage" as Connection322
         connect From63 "EV disconnection logic.battery_voltage" as Connection323
         connect From65 "EV disconnection logic.ev_ready" as Connection326
-        connect Goto42 Junction40 as Connection327
-        connect Junction40 "EV disconnection logic.out" as Connection328
-        connect disconection_status.in Junction40 as Connection329
         connect "EV Ready logic.charge_complete" From46 as Connection579
         connect "EV Ready logic.max_voltage" From44 as Connection580
         connect From43 "EV Ready logic.max_current" as Connection581
@@ -3491,6 +3429,41 @@ if (ev_ready) {
         ]
         connect S1.feedback_out Goto41 as Connection863
         connect "Signal switch1.in1" Constant5.out as Connection864
+        connect disconection_status.in "EV disconnection logic.out" as Connection865
+        [
+            breakpoints = 9648, 8360
+        ]
+        connect "SCADA Input1.out" Goto42 as Connection866
+        connect Junction82 Junction92 as Connection868
+        [
+            breakpoints = 11312, 9048; 11312, 9040; 11312, 9048; 11352, 9048
+        ]
+        connect Junction92 Junction87 as Connection869
+        [
+            breakpoints = 11448, 9048; 11448, 8936; 11448, 8808; 11448, 8800
+        ]
+        connect Junction93 Junction92 as Connection872
+        connect "current of d1.p_node" Junction93 as Connection873
+        connect "(not)ready.n_node" R2.p_node as Connection883
+        connect SW.in_7 Junction71 as Connection887
+        [
+            breakpoints = 10480, 8272; 10480, 8272; 10480, 8224; 10480, 8224
+        ]
+        connect S1.a_out Junction95 as Connection888
+        [
+            breakpoints = 12312, 8128; 12320, 9088
+        ]
+        connect Junction95 Junction93 as Connection889
+        connect gnd1.node Junction95 as Connection890
+        connect "+V DC3.p_node" "+V DC.p_node" as Connection891
+        connect "+V DC.n_node" d1.a_in as Connection892
+        [
+            breakpoints = 10528, 8080; 10528, 8080; 10536, 8080; 10536, 8080
+        ]
+        connect "(not)ready.p_node" "+V DC3.n_node" as Connection893
+        [
+            breakpoints = 10360, 8216
+        ]
     }
 
     logically_deleted {
@@ -3511,12 +3484,12 @@ if (ev_ready) {
         "From50"
         "From63"
         "From64"
-        "Goto42"
         "From65"
+        "Goto43"
+        "Goto44"
         "Junction29"
         "Junction30"
         "Junction38"
-        "Junction40"
         "Comment11"
         "Comment8"
         "Comment12"
@@ -3534,21 +3507,12 @@ if (ev_ready) {
         "Connection322"
         "Connection323"
         "Connection326"
-        "Connection327"
-        "Connection328"
-        "Connection329"
         "Connection579"
         "Connection580"
         "Connection581"
-        "Goto43"
-        "Goto44"
         "Connection851"
         "Connection852"
-        "Goto45"
-        "Connection855"
-        "Goto46"
-        "Connection862"
-        "Connection831"
+        "Connection865"
     }
 
     default {

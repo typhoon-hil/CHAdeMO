@@ -1,7 +1,7 @@
 version = 4.2
 
 //
-// Saved by sw version: 2023.2
+// Saved by sw version: 2023.3 DEV
 //
 
 model "CHAdeMO-TyphoonHIL" {
@@ -89,6 +89,11 @@ model "CHAdeMO-TyphoonHIL" {
             ]
 
             component "core/CAN Setup" "CAN Setup1" {
+                calc_values = "{\'CAN1\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, 
+            \'send_num\': 0,
+            \'send_buff_len\': 0,
+            \'receive_num\': 0,
+            \'receive_buff_len\': 0,}"
                 can1_cd = "1"
                 can1_er = "1e-3"
                 can1_ts1 = "1"
@@ -150,7 +155,7 @@ model "CHAdeMO-TyphoonHIL" {
 
             component "core/Advanced C function" "Advanced C function2" {
                 add_src_path = "chademo.cpp;chademo.h;globals.h"
-                add_src_path_full = "C:\Users\Teodora Mijovic\Desktop\CHAdeMO\chademo.cpp;C:\Users\Teodora Mijovic\Desktop\CHAdeMO\chademo.h;C:\Users\Teodora Mijovic\Desktop\CHAdeMO\globals.h"
+                add_src_path_full = "D:\work\git\CHAdeMO\chademo.cpp;D:\work\git\CHAdeMO\chademo.h;D:\work\git\CHAdeMO\globals.h"
                 arb_defs = "/*Begin code section*/
 
 /*End code section*/"
@@ -204,8 +209,8 @@ settings.targetChargeVoltage = 160; //targetVoltage
 settings.maxChargeAmperage = 130; //targetCurrent
 chademo.updateTargetAV();
 
-maximum_current = 130;
-maximum_voltage = 158;
+//maximum_current = 130;
+//maximum_voltage = 158;
 
 Count = 0;
 PreviousMillis = 0;
@@ -3586,10 +3591,10 @@ if (ev_ready) {
             can2_sjw = "1"
             can2_er = "10e-3"
             hil_id = "0"
-            calc_values = "{\'CAN1\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, 
-            \'send_num\': 0,
-            \'send_buff_len\': 0,
-            \'receive_num\': 0,
+            calc_values = "{\'CAN1\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, 
+            \'send_num\': 0,
+            \'send_buff_len\': 0,
+            \'receive_num\': 0,
             \'receive_buff_len\': 0,}"
             execution_rate = "100e-6"
             hil_device_id_combo_values = "[]"

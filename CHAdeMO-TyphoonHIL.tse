@@ -219,14 +219,16 @@ Current  = 0;
 in1 = IN1;
 in2 = IN2;
 
-out1= OUT1;
-out2 = OUT2;
+out1 = 0;
+out2 = 0;
 out3 = 0;
+OUT1 = out1;
+OUT2 = out2;
 /*End code section*/"
-                input_terminals = "inherit currentMillis;inherit receiveParams;inherit receiveStatus;inherit weldCheck;inherit availVoltage;inherit availCurrent;inherit thresholdVoltage;inherit bChademo10Protocol;uint presentVoltage;inherit presentCurrent;inherit evseStatus;uint remainingChargeSeconds;inherit currentSeconds;inherit bChademoRequest;inherit SIvoltage;inherit SIcurrent;inherit SIkwh;inherit remainingChargeMinutes;inherit IN1;inherit IN2;inherit OUT1;inherit OUT2;"
-                input_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit"
-                input_terminals_feedthrough = "True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True"
-                input_terminals_show_labels = "False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False"
+                input_terminals = "inherit currentMillis;inherit receiveParams;inherit receiveStatus;inherit weldCheck;inherit availVoltage;inherit availCurrent;inherit thresholdVoltage;inherit bChademo10Protocol;uint presentVoltage;inherit presentCurrent;inherit evseStatus;uint remainingChargeSeconds;inherit currentSeconds;inherit bChademoRequest;inherit SIvoltage;inherit SIcurrent;inherit SIkwh;inherit remainingChargeMinutes;inherit IN1;inherit IN2;"
+                input_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit"
+                input_terminals_feedthrough = "True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True"
+                input_terminals_show_labels = "False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False"
                 output_fnc = "/*Begin code section*/
 chademo.bChademoRequest = bChademoRequest;
 CurrentSeconds = currentSeconds;
@@ -243,13 +245,8 @@ bChademoSendRequestsOutput = chademo.bChademoSendRequests;
 in1 = IN1;
 in2 = IN2;
 
-
-out1= OUT1;
-out2 = OUT2;
-
-out1111 = out1;
-out2222 = out2;
-out3333 = out3;
+OUT1 = out1;
+OUT2 = out2;
 
 chademo.CurrentMillis = currentMillis;  
 
@@ -361,10 +358,10 @@ if (currentMillis - 100 == receiveMillis)  //I\'m checking every 100ms if there 
     }
 }
 /*End code section*/"
-                output_terminals = "inherit CurrentSeconds;uint sendBatt;uint sendStatus;uint sendTime;inherit maxChargeVoltage;inherit packSizeKWH;inherit howLongCharge;inherit howLongWeThink;inherit talkingProtocol;inherit targetVoltage;inherit askingAmps;inherit faults;inherit status;inherit kiloWattHours;uint chademoState;inherit insertionTime;inherit bChademoMode;inherit bChademoRequestOutput;inherit out1111;inherit bChademoSendRequestsOutput;inherit out2222;inherit out3333;inherit ERRORdoP;inherit ERRORhandle;"
-                output_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit"
-                output_terminals_feedthrough = "True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True"
-                output_terminals_show_labels = "False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False"
+                output_terminals = "inherit CurrentSeconds;uint sendBatt;uint sendStatus;uint sendTime;inherit maxChargeVoltage;inherit packSizeKWH;inherit howLongCharge;inherit howLongWeThink;inherit talkingProtocol;inherit targetVoltage;inherit askingAmps;inherit faults;inherit status;inherit kiloWattHours;uint chademoState;inherit insertionTime;inherit bChademoMode;inherit bChademoRequestOutput;inherit bChademoSendRequestsOutput;inherit ERRORdoP;inherit ERRORhandle;inherit OUT1;inherit OUT2;"
+                output_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit"
+                output_terminals_feedthrough = "True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True"
+                output_terminals_show_labels = "False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False"
             }
             [
                 position = 7024, 8016
@@ -487,12 +484,6 @@ if(in == 10)
                 position = 7440, 8376
             ]
 
-            component "core/Probe" out1 {
-            }
-            [
-                position = 7624, 8416
-            ]
-
             component "core/Probe" counter {
             }
             [
@@ -505,28 +496,16 @@ if(in == 10)
                 position = 7440, 8440
             ]
 
-            component "core/Probe" out2 {
-            }
-            [
-                position = 7624, 8488
-            ]
-
-            component "core/Probe" out3 {
-            }
-            [
-                position = 7624, 8552
-            ]
-
             component "core/Probe" ERRORdoP {
             }
             [
-                position = 7280, 8632
+                position = 7304, 8512
             ]
 
             component "core/Probe" ERRORhandle {
             }
             [
-                position = 7280, 8696
+                position = 7304, 8576
             ]
 
             component "core/Probe" maxChargeVoltage {
@@ -869,29 +848,29 @@ if(in == 10)
             ]
 
             port OUT1 {
-                position = auto:auto
+                position = right:4
                 kind = sp
-                direction =  out
+                direction =  in
                 sp_type {
-                    default = auto
+                    default = inherit
                     readonly = True
                 }
             }
             [
-                position = 5840, 8720
+                position = 9040, 8032
             ]
 
             port OUT2 {
-                position = auto:auto
+                position = right:5
                 kind = sp
-                direction =  out
+                direction =  in
                 sp_type {
-                    default = auto
+                    default = inherit
                     readonly = True
                 }
             }
             [
-                position = 5840, 8784
+                position = 9040, 8088
             ]
 
             tag Goto33 {
@@ -1410,7 +1389,7 @@ if(in == 10)
                 direction = out
             }
             [
-                position = 6408, 8144
+                position = 6376, 8136
                 hide_name = True
                 size = 108, 20
             ]
@@ -1434,7 +1413,7 @@ if(in == 10)
                 direction = out
             }
             [
-                position = 6616, 7776
+                position = 6608, 7672
                 hide_name = True
                 size = 98, 20
             ]
@@ -1446,7 +1425,7 @@ if(in == 10)
                 direction = out
             }
             [
-                position = 6616, 7808
+                position = 6608, 7704
                 hide_name = True
                 size = 102, 20
             ]
@@ -1626,7 +1605,7 @@ if(in == 10)
                 direction = out
             }
             [
-                position = 6584, 7856
+                position = 6496, 7776
                 hide_name = True
                 size = 98, 20
             ]
@@ -1638,7 +1617,7 @@ if(in == 10)
                 direction = out
             }
             [
-                position = 6584, 7888
+                position = 6496, 7808
                 hide_name = True
                 size = 102, 20
             ]
@@ -1650,7 +1629,7 @@ if(in == 10)
                 direction = out
             }
             [
-                position = 6584, 7920
+                position = 6496, 7840
                 hide_name = True
                 size = 98, 20
             ]
@@ -1662,7 +1641,7 @@ if(in == 10)
                 direction = out
             }
             [
-                position = 6584, 7952
+                position = 6496, 7872
                 hide_name = True
                 size = 102, 20
             ]
@@ -1674,7 +1653,7 @@ if(in == 10)
                 direction = out
             }
             [
-                position = 6632, 7984
+                position = 6568, 7936
                 hide_name = True
                 size = 115, 20
             ]
@@ -1686,7 +1665,7 @@ if(in == 10)
                 direction = out
             }
             [
-                position = 6640, 8016
+                position = 6576, 7968
                 hide_name = True
                 size = 102, 20
             ]
@@ -1698,7 +1677,7 @@ if(in == 10)
                 direction = out
             }
             [
-                position = 6640, 8048
+                position = 6576, 8000
                 hide_name = True
                 size = 98, 20
             ]
@@ -1710,7 +1689,7 @@ if(in == 10)
                 direction = out
             }
             [
-                position = 6640, 8080
+                position = 6576, 8032
                 hide_name = True
                 size = 102, 20
             ]
@@ -1722,7 +1701,7 @@ if(in == 10)
                 direction = out
             }
             [
-                position = 6616, 8112
+                position = 6552, 8064
                 hide_name = True
                 size = 149, 20
             ]
@@ -1871,52 +1850,52 @@ if(in == 10)
                 size = 102, 20
             ]
 
-            tag From68 {
-                value = "OUT1"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 6720, 8472
-                hide_name = True
-                size = 71, 20
-            ]
-
-            tag From69 {
-                value = "OUT2"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 6720, 8520
-                hide_name = True
-                size = 71, 20
-            ]
-
-            tag Goto51 {
+            tag Goto53 {
                 value = "OUT1"
                 scope = local
                 kind = sp
                 direction = in
             }
             [
-                position = 5944, 8720
+                position = 7208, 8648
                 hide_name = True
                 size = 55, 20
             ]
 
-            tag Goto52 {
+            tag Goto54 {
                 value = "OUT2"
                 scope = local
                 kind = sp
                 direction = in
             }
             [
-                position = 5944, 8784
+                position = 7208, 8712
                 hide_name = True
                 size = 54, 20
+            ]
+
+            tag From70 {
+                value = "OUT1"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8928, 8032
+                hide_name = True
+                size = 71, 20
+            ]
+
+            tag From71 {
+                value = "OUT2"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8928, 8088
+                hide_name = True
+                size = 71, 20
             ]
 
             junction Junction14 sp
@@ -1964,16 +1943,6 @@ if(in == 10)
                 position = 7280, 7992
             ]
 
-            junction Junction27 sp
-            [
-                position = 7352, 8040
-            ]
-
-            junction Junction28 sp
-            [
-                position = 7328, 8088
-            ]
-
             junction Junction29 sp
             [
                 position = 7304, 8136
@@ -1992,6 +1961,16 @@ if(in == 10)
             junction Junction32 sp
             [
                 position = 7128, 7560
+            ]
+
+            junction Junction33 sp
+            [
+                position = 7352, 8032
+            ]
+
+            junction Junction34 sp
+            [
+                position = 7328, 8088
             ]
 
             connect From5 "EV STATUS.EVtalkingProtocol" as Connection2
@@ -2094,29 +2073,17 @@ if(in == 10)
             [
                 breakpoints = 7256, 8096; 7280, 8312
             ]
-            connect "Advanced C function2.bChademoRequestOutput" bChademoRequest.in as Connection237
-            [
-                breakpoints = 7232, 8104; 7240, 8104; 7264, 8376; 7424, 8376; 7424, 8376
-            ]
             connect "Advanced C function2.bChademoSendRequestsOutput" bChademoSendRequests.in as Connection238
             [
-                breakpoints = 7200, 8152; 7256, 8440
-            ]
-            connect "Advanced C function2.out2222" out2.in as Connection240
-            [
-                breakpoints = 7176, 8168; 7488, 8488
-            ]
-            connect "Advanced C function2.out3333" out3.in as Connection241
-            [
-                breakpoints = 7160, 8176; 7200, 8552
+                breakpoints = 7224, 8152; 7224, 8440; 7256, 8440
             ]
             connect "Advanced C function2.ERRORdoP" ERRORdoP.in as Connection242
             [
-                breakpoints = 7136, 8184
+                breakpoints = 7208, 8184; 7208, 8512
             ]
             connect "Advanced C function2.ERRORhandle" ERRORhandle.in as Connection243
             [
-                breakpoints = 7120, 8200
+                breakpoints = 7192, 8200; 7192, 8576
             ]
             connect "EVSE STATUS.EVSEstatus" Goto8 as Connection628
             [
@@ -2129,14 +2096,6 @@ if(in == 10)
             connect "EVSE STATUS.EVSEremaningChargeMinutes" Goto32 as Connection630
             [
                 breakpoints = 8600, 8384; 8608, 8440; 8680, 8440
-            ]
-            connect From28 "Advanced C function2.presentVoltage" as Connection655
-            [
-                breakpoints = 6800, 8008; 6800, 7976; 6944, 7976
-            ]
-            connect From29 "Advanced C function2.presentCurrent" as Connection656
-            [
-                breakpoints = 6808, 8048; 6808, 7992; 6840, 7992
             ]
             connect From20 "Advanced C function2.currentSeconds" as Connection659
             [
@@ -2207,27 +2166,6 @@ if(in == 10)
             connect "Advanced C function2.askingAmps" Junction26 as Connection694
             connect Junction26 Goto21 as Connection695
             connect askingAmps.in Junction26 as Connection696
-            connect "Advanced C function2.faults" Junction27 as Connection697
-            [
-                breakpoints = 7352, 8008
-            ]
-            connect Junction27 Goto22 as Connection698
-            [
-                breakpoints = 7360, 8040
-            ]
-            connect faultss.in Junction27 as Connection699
-            connect "Advanced C function2.status" Junction28 as Connection700
-            [
-                breakpoints = 7328, 8024
-            ]
-            connect Junction28 Goto23 as Connection701
-            [
-                breakpoints = 7328, 8088; 7344, 8088; 7344, 8088
-            ]
-            connect status.in Junction28 as Connection702
-            [
-                breakpoints = 7328, 8096
-            ]
             connect "Advanced C function2.kiloWattHours" Junction29 as Connection703
             [
                 breakpoints = 7304, 8056
@@ -2266,74 +2204,103 @@ if(in == 10)
             ]
             connect From37 availVoltage as Connection717
             connect From38 availCurrent as Connection718
-            connect "Advanced C function2.out1111" out1.in as Connection719
-            [
-                breakpoints = 7216, 8120; 7256, 8416
-            ]
             connect From39 faults as Connection720
             connect in1 Goto49 as Connection721
             connect in2 Goto50 as Connection722
-            connect From26 "Advanced C function2.thresholdVoltage" as Connection724
-            [
-                breakpoints = 6656, 7944; 6944, 7944
-            ]
-            connect From27 "Advanced C function2.bChademo10Protocol" as Connection725
-            [
-                breakpoints = 6688, 7984; 6704, 7984; 6688, 7984; 6704, 7984; 6704, 7960; 6944, 7960
-            ]
             connect From40 "Advanced C function2.IN1" as Connection726
             [
-                breakpoints = 6880, 8336; 6880, 8136; 6928, 8136
+                breakpoints = 6880, 8336; 6880, 8152; 6928, 8152
             ]
             connect From41 "Advanced C function2.IN2" as Connection727
             [
-                breakpoints = 6888, 8424; 6888, 8152; 6920, 8152
-            ]
-            connect OUT1 Goto51 as Connection728
-            connect OUT2 Goto52 as Connection729
-            connect From35 "Advanced C function2.SIkwh" as Connection730
-            [
-                breakpoints = 6856, 8272; 6864, 8272; 6880, 8104
-            ]
-            connect From30 "Advanced C function2.evseStatus" as Connection731
-            [
-                breakpoints = 6816, 8072; 6824, 8008
-            ]
-            connect From31 "Advanced C function2.remainingChargeSeconds" as Connection732
-            [
-                breakpoints = 6824, 8024
-            ]
-            connect From25 "Advanced C function2.availCurrent" as Connection733
-            [
-                breakpoints = 6648, 7928; 6944, 7928
-            ]
-            connect From24 "Advanced C function2.availVoltage" as Connection734
-            [
-                breakpoints = 6848, 7912
-            ]
-            connect From23 "Advanced C function2.weldCheck" as Connection735
-            [
-                breakpoints = 6856, 7880; 6864, 7896
+                breakpoints = 6888, 8424; 6888, 8168; 6920, 8168
             ]
             connect From22 "Advanced C function2.receiveStatus" as Connection736
             [
-                breakpoints = 6864, 7840; 6872, 7880
+                breakpoints = 6872, 7808; 6872, 7840; 6872, 7880
             ]
             connect From21 "Advanced C function2.receiveParams" as Connection737
             [
-                breakpoints = 6872, 7808; 6888, 7864
+                breakpoints = 6888, 7776; 6888, 7808; 6888, 7864
             ]
-            connect From68 "Advanced C function2.OUT1" as Connection738
+            connect From23 "Advanced C function2.weldCheck" as Connection738
             [
-                breakpoints = 6896, 8464; 6928, 8168
+                breakpoints = 6856, 7824
             ]
-            connect From69 "Advanced C function2.OUT2" as Connection739
+            connect From24 "Advanced C function2.availVoltage" as Connection739
             [
-                breakpoints = 6904, 8512; 6936, 8184
+                breakpoints = 6840, 7832; 6920, 7928
             ]
+            connect From25 "Advanced C function2.availCurrent" as Connection740
+            [
+                breakpoints = 6824, 7864; 6840, 7944
+            ]
+            connect From26 "Advanced C function2.thresholdVoltage" as Connection741
+            [
+                breakpoints = 6808, 7920; 6840, 7960
+            ]
+            connect From27 "Advanced C function2.bChademo10Protocol" as Connection742
+            [
+                breakpoints = 6792, 7968; 6800, 7976
+            ]
+            connect From28 "Advanced C function2.presentVoltage" as Connection743
+            [
+                breakpoints = 6776, 7968; 6784, 7992
+            ]
+            connect From29 "Advanced C function2.presentCurrent" as Connection744
+            [
+                breakpoints = 6752, 8000; 6760, 8008
+            ]
+            connect From30 "Advanced C function2.evseStatus" as Connection745
+            [
+                breakpoints = 6752, 8024
+            ]
+            connect From31 "Advanced C function2.remainingChargeSeconds" as Connection746
+            [
+                breakpoints = 6776, 8056; 6784, 8040
+            ]
+            connect From35 "Advanced C function2.SIkwh" as Connection747
+            [
+                breakpoints = 6864, 8264; 6880, 8120
+            ]
+            connect faultss.in Junction33 as Connection749
+            connect Junction33 Goto22 as Connection750
+            [
+                breakpoints = 7352, 8040; 7360, 8040
+            ]
+            connect "Advanced C function2.faults" Junction33 as Connection751
+            [
+                breakpoints = 7352, 8016
+            ]
+            connect status.in Junction34 as Connection753
+            [
+                breakpoints = 7328, 8096
+            ]
+            connect Junction34 Goto23 as Connection754
+            [
+                breakpoints = 7328, 8088; 7328, 8088; 7344, 8088; 7344, 8088
+            ]
+            connect "Advanced C function2.status" Junction34 as Connection755
+            [
+                breakpoints = 7328, 8048
+            ]
+            connect "Advanced C function2.bChademoRequestOutput" bChademoRequest.in as Connection756
+            [
+                breakpoints = 7240, 8128; 7280, 8376
+            ]
+            connect "Advanced C function2.OUT1" Goto53 as Connection757
+            [
+                breakpoints = 7160, 8184; 7160, 8648
+            ]
+            connect "Advanced C function2.OUT2" Goto54 as Connection758
+            [
+                breakpoints = 7144, 8224
+            ]
+            connect From71 OUT2 as Connection759
+            connect From70 OUT1 as Connection760
         }
         [
-            position = 8512, 8144
+            position = 8576, 8160
             size = 416, 584
         ]
 
@@ -2591,7 +2558,6 @@ if(in == 10)
 
         component "core/Single Pole Single Throw Contactor" d2 {
             ctrl_src = "Model"
-            initial_state = "on"
             signal_access = "Inherit"
         }
         [
@@ -2759,16 +2725,14 @@ if(in == 10)
             rotation = right
         ]
 
-        component "core/Single Pole Single Throw Contactor" S2 {
+        component "core/Single Pole Single Throw Contactor" k {
             ctrl_src = "Model"
-            enable_fb_out = "True"
             execution_rate = "Ts"
             signal_access = "Inherit"
         }
         [
             position = 11408, 8584
             rotation = right
-            hide_name = True
             size = 64, 32
         ]
 
@@ -2930,14 +2894,6 @@ if (ev_ready)
             position = 10608, 8016
         ]
 
-        component "core/SCADA Input" SIk {
-            unit = ""
-        }
-        [
-            position = 11568, 8568
-            rotation = down
-        ]
-
         component "core/Probe" IN1 {
         }
         [
@@ -2950,10 +2906,11 @@ if (ev_ready)
             position = 11768, 8248
         ]
 
-        component "core/Probe" OUT1 {
+        component "core/Logical operator" "Logical operator1" {
         }
         [
-            position = 11568, 8664
+            position = 11344, 7744
+            hide_name = True
         ]
 
         tag From25 {
@@ -2963,8 +2920,7 @@ if (ev_ready)
             direction = out
         }
         [
-            position = 11400, 7784
-            rotation = right
+            position = 11192, 7704
             hide_name = True
             size = 141, 20
         ]
@@ -3025,17 +2981,6 @@ if (ev_ready)
         }
         [
             position = 11768, 8448
-            size = 60, 20
-        ]
-
-        tag k {
-            value = "OUT1"
-            scope = local
-            kind = sp
-            direction = in
-        }
-        [
-            position = 11568, 8600
             size = 60, 20
         ]
 
@@ -3214,7 +3159,7 @@ if (ev_ready)
             direction = in
         }
         [
-            position = 8872, 7872
+            position = 8896, 7888
             hide_name = True
             size = 150, 20
         ]
@@ -3226,7 +3171,7 @@ if (ev_ready)
             direction = in
         }
         [
-            position = 8872, 8144
+            position = 8896, 8024
             hide_name = True
             size = 153, 20
         ]
@@ -3262,7 +3207,7 @@ if (ev_ready)
             direction = in
         }
         [
-            position = 8864, 8416
+            position = 8896, 8160
             hide_name = True
             size = 153, 20
         ]
@@ -3291,40 +3236,55 @@ if (ev_ready)
             size = 71, 20
         ]
 
-        tag Goto48 {
-            value = "OUT2"
-            scope = local
-            kind = sp
-            direction = in
-        }
-        [
-            position = 11488, 7880
-            hide_name = True
-            size = 60, 20
-        ]
-
-        tag From68 {
+        tag From70 {
             value = "OUT1"
             scope = local
             kind = sp
             direction = out
         }
         [
-            position = 8088, 8760
+            position = 11504, 8584
             hide_name = True
-            size = 71, 20
+            scale = -1, 1
+            size = 60, 20
         ]
 
-        tag From69 {
+        tag Goto49 {
+            value = "OUT1"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8856, 8296
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag Goto50 {
+            value = "OUT2"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8856, 8432
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag From71 {
             value = "OUT2"
             scope = local
             kind = sp
             direction = out
         }
         [
-            position = 8088, 8808
+            position = 11232, 7768
+            rotation = down
             hide_name = True
-            size = 71, 20
+            scale = -1, 1
+            size = 60, 20
         ]
 
         junction Junction67 pe
@@ -3397,11 +3357,6 @@ if (ev_ready)
             position = 11568, 8208
         ]
 
-        junction Junction103 sp
-        [
-            position = 11400, 7880
-        ]
-
         junction Junction104 pe
         [
             position = 11304, 8816
@@ -3425,11 +3380,6 @@ if (ev_ready)
         junction Junction111 sp
         [
             position = 11880, 8352
-        ]
-
-        junction Junction112 sp
-        [
-            position = 11480, 8600
         ]
 
         comment Comment3 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">DC+</p></body></html> ENDCOMMENT 
@@ -3496,19 +3446,15 @@ if (ev_ready)
         ]
         connect SIvoltage.out Subsystem.voltage as Connection659
         [
-            breakpoints = 8072, 8384; 8080, 8384; 8080, 8288; 8080, 8256
+            breakpoints = 8072, 8384; 8080, 8384; 8080, 8288; 8080, 8256; 8080, 8256; 8352, 8256
         ]
         connect SIcurrent.out Subsystem.current as Connection660
         [
-            breakpoints = 8096, 8448; 8096, 8320; 8096, 8288
+            breakpoints = 8096, 8448; 8096, 8320; 8096, 8288; 8096, 8288; 8352, 8288
         ]
         connect SIkwh.out Subsystem.kwh as Connection661
         [
-            breakpoints = 8120, 8504; 8120, 8352; 8120, 8320
-        ]
-        connect SIremainingChargeMinutes.out Subsystem.SIremainingChargeMinutes as Connection662
-        [
-            breakpoints = 8144, 8576; 8144, 8352; 8144, 8352; 8144, 8272
+            breakpoints = 8120, 8504; 8120, 8352; 8120, 8320; 8120, 8320; 8352, 8320
         ]
         connect "battery current.n_node" Junction67 as Connection493
         connect Junction67 Battery.p_node as Connection494
@@ -3556,7 +3502,7 @@ if (ev_ready)
         connect d2.a_out SW.in_4 as Connection815
         connect R1.n_node SW.in_5 as Connection816
         connect R2.n_node SW.in_6 as Connection817
-        connect R4.n_node S2.a_in as Connection832
+        connect R4.n_node k.a_in as Connection832
         [
             breakpoints = 11400, 8520
         ]
@@ -3585,7 +3531,7 @@ if (ev_ready)
         connect SIpresentVoltage.out Junction90 as Connection853
         connect Junction90 Subsystem.SIpresentVoltage as Connection854
         [
-            breakpoints = 8000, 8096; 8112, 8096; 8112, 8096
+            breakpoints = 8000, 8096; 8112, 8096; 8112, 8096; 8112, 8112; 8352, 8112
         ]
         connect Goto45 Junction90 as Connection855
         [
@@ -3631,15 +3577,11 @@ if (ev_ready)
         ]
         connect SIevseStatus.out Subsystem.SIevseStatus as Connection901
         [
-            breakpoints = 7936, 8176; 7936, 8152; 7936, 8152; 8288, 8152
-        ]
-        connect SIbChademo10Protocol.out Subsystem.SIbChademo10Protocol as Connection902
-        [
-            breakpoints = 8008, 8016; 8032, 8064
+            breakpoints = 7936, 8176; 7936, 8152; 7936, 8160; 8288, 8160
         ]
         connect SIthresholdVoltage.out Subsystem.SIthresholdVoltage as Connection903
         [
-            breakpoints = 8144, 7936; 8192, 8032
+            breakpoints = 8144, 7936; 8144, 8048; 8192, 8048
         ]
         connect SIavailVoltage.out Subsystem.SIavailVoltage as Connection904
         [
@@ -3647,19 +3589,11 @@ if (ev_ready)
         ]
         connect SIweldCheck.out Subsystem.SIweldCheck as Connection905
         [
-            breakpoints = 8216, 7800; 8216, 7968; 8256, 7968
-        ]
-        connect SIreceiveStatus.out Subsystem.SIreceiveStatus as Connection906
-        [
-            breakpoints = 8248, 7688; 8304, 7936; 8304, 7936
+            breakpoints = 8216, 7800; 8216, 7952; 8256, 7952
         ]
         connect From66 Subsystem.in1 as Connection907
         [
-            breakpoints = 8168, 8624; 8168, 8304; 8208, 8304
-        ]
-        connect From67 Subsystem.in2 as Connection908
-        [
-            breakpoints = 8184, 8704; 8184, 8416; 8184, 8320
+            breakpoints = 8168, 8624; 8168, 8400; 8208, 8400
         ]
         connect Junction97 SW.in_7 as Connection918
         [
@@ -3695,9 +3629,6 @@ if (ev_ready)
         ]
         connect g.n_node Junction101 as Connection949
         connect R3.n_node "(dis)connection.p_node" as Connection951
-        connect From25 Junction103 as Connection956
-        connect Junction103 "EV contactor.ctrl_in" as Connection957
-        connect Goto48 Junction103 as Connection958
         connect "(dis)connection.out" "Signal switch1.in2" as Connection959
         [
             breakpoints = 11672, 8392; 11672, 8480; 11672, 8480
@@ -3710,7 +3641,7 @@ if (ev_ready)
         [
             breakpoints = 11208, 8224; 11224, 8224
         ]
-        connect "+V DC2.n_node" S2.a_out as Connection968
+        connect "+V DC2.n_node" k.a_out as Connection968
         [
             breakpoints = 11408, 8648
         ]
@@ -3732,7 +3663,6 @@ if (ev_ready)
         [
             breakpoints = 10656, 8016; 10680, 8096
         ]
-        connect SIk.out S2.ctrl_in as Connection983
         connect g.out Junction109 as Connection990
         [
             breakpoints = 11624, 8272; 11624, 8280
@@ -3765,16 +3695,33 @@ if (ev_ready)
         [
             breakpoints = 11880, 8296
         ]
-        connect S2.feedback_out Junction112 as Connection1008
-        connect Junction112 k as Connection1009
-        connect OUT1.in Junction112 as Connection1010
-        connect From68 Subsystem.OUT1 as Connection1011
+        connect From70 k.ctrl_in as Connection1013
+        connect From67 Subsystem.in2 as Connection1014
         [
-            breakpoints = 8208, 8680; 8248, 8352
+            breakpoints = 8192, 8704; 8208, 8432
         ]
-        connect From69 Subsystem.OUT2 as Connection1012
+        connect SIremainingChargeMinutes.out Subsystem.SIremainingChargeMinutes as Connection1015
         [
-            breakpoints = 8224, 8800; 8264, 8368
+            breakpoints = 8136, 8560; 8176, 8368
+        ]
+        connect SIbChademo10Protocol.out Subsystem.SIbChademo10Protocol as Connection1016
+        [
+            breakpoints = 8120, 8040; 8128, 8080
+        ]
+        connect SIreceiveStatus.out Subsystem.SIreceiveStatus as Connection1017
+        [
+            breakpoints = 8248, 7696; 8296, 7920
+        ]
+        connect Subsystem.OUT1 Goto49 as Connection1018
+        connect Subsystem.OUT2 Goto50 as Connection1020
+        connect From25 "Logical operator1.in" as Connection1021
+        connect From71 "Logical operator1.in1" as Connection1022
+        [
+            breakpoints = 11304, 7760; 11312, 7752
+        ]
+        connect "Logical operator1.out" "EV contactor.ctrl_in" as Connection1023
+        [
+            breakpoints = 11392, 7744
         ]
     }
 
@@ -3873,6 +3820,12 @@ if (ev_ready)
             streaming_en = "False"
             addr = "0"
             streaming_er_idx = "0"
+            execution_rate = "inherit"
+        }
+
+        "core/Logical operator" {
+            operator = "AND"
+            inputs = "2"
             execution_rate = "inherit"
         }
 

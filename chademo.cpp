@@ -215,7 +215,7 @@ void CHADEMO::loop(unsigned long CurrentMillis)
 
       case WAIT_FOR_BEGIN_CONFIRMATION:
       {
-      if (!in2) //inverse logic from how IN1 works.Be careful!
+      if (in2) //inverse logic from how IN1 works.Be careful!
       {
           setDelayedState(CLOSE_CONTACTORS, 100, CurrentMillis);
       }

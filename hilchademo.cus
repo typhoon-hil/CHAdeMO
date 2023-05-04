@@ -1020,7 +1020,7 @@ widgetValue = hil.model_read('SIreceiveStatus')
                 <inputValueType>int</inputValueType>
                 <unit><![CDATA[]]></unit>
                 <widget_settings>
-                    <x>16</x>
+                    <x>8</x>
                     <y>384</y>
                     <width>176</width>
                     <height>32</height>
@@ -2020,6 +2020,522 @@ displayValue = 0.0
                     <orange_range>(0, 0, 0, 0)</orange_range>
                     <red_range>(0, 0, 0, 0)</red_range>
                 </advance_widget_settings>
+            </component_data>
+        <component_data>
+                <id>4ccd0917e98511ed9a6fd43d7ef890c6</id>
+                <name><![CDATA[Charging cable]]></name>
+                <type>SliderMacro</type>
+                <description><![CDATA[]]></description>
+                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+# NOTE: entered value is available through variable 'inputValue'
+
+hil.model_write('Charging cable', inputValue)]]></on_use_code>
+                <on_start_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
+# NOTE: Variables specified here will be available in other handlers.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
+# widget value won't be changed.
+widgetValue = None
+]]></on_start_code>
+                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
+# widget value won't be changed.
+widgetValue = None
+]]></on_stop_code>
+                <on_timer_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed periodically each 1000ms.
+# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change the widget value by setting this variable.
+# NOTE: If you do not specify a 'widgetValue' variable or assign 'None' to it, 
+# the widget value will not be changed.
+widgetValue = hil.model_read('Charging cable')
+]]></on_timer_code>
+                <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
+                <inputValue><![CDATA[0]]></inputValue>
+                <min>0.0</min>
+                <max>1.0</max>
+                <step>1.0</step>
+                <widget_settings>
+                    <x>480</x>
+                    <y>632</y>
+                    <width>88</width>
+                    <height>48</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>3ca238d3e98611ed95c6d43d7ef890c6</id>
+                <name><![CDATA[disconection_status]]></name>
+                <type>TextDisplay</type>
+                <description><![CDATA[]]></description>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# specify Text Display options ('text' part is mandatory)
+textDisplayData = {
+
+    # label text
+    "text": str(hil.model_read('disconection_status')),
+
+    # text color: 'red', 'green', 'blue', 'orange', 'black'
+    "text_color": 'black',
+}
+
+# mandatory variable used for storing value that will be displayed
+displayValue = textDisplayData
+]]></code>
+                <updateRate>500</updateRate>
+                <widget_settings>
+                    <x>376</x>
+                    <y>472</y>
+                    <width>104</width>
+                    <height>40</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>1137dd96e99011eda911d43d7ef890c6</id>
+                <name><![CDATA[SId1]]></name>
+                <type>SliderMacro</type>
+                <description><![CDATA[]]></description>
+                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+# NOTE: entered value is available through variable 'inputValue'
+
+hil.model_write('SId1', inputValue)]]></on_use_code>
+                <on_start_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
+# NOTE: Variables specified here will be available in other handlers.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
+# widget value won't be changed.
+widgetValue = None
+]]></on_start_code>
+                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
+# widget value won't be changed.
+widgetValue = None
+]]></on_stop_code>
+                <on_timer_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed periodically each 1000ms.
+# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change the widget value by setting this variable.
+# NOTE: If you do not specify a 'widgetValue' variable or assign 'None' to it, 
+# the widget value will not be changed.
+widgetValue = hil.model_read('SId1')
+]]></on_timer_code>
+                <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
+                <inputValue><![CDATA[0]]></inputValue>
+                <min>0.0</min>
+                <max>1.0</max>
+                <step>1.0</step>
+                <widget_settings>
+                    <x>480</x>
+                    <y>536</y>
+                    <width>80</width>
+                    <height>48</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>21548f0ee99011eda47fd43d7ef890c6</id>
+                <name><![CDATA[SId2]]></name>
+                <type>SliderMacro</type>
+                <description><![CDATA[]]></description>
+                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+# NOTE: entered value is available through variable 'inputValue'
+
+hil.model_write('SId2', inputValue)]]></on_use_code>
+                <on_start_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
+# NOTE: Variables specified here will be available in other handlers.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
+# widget value won't be changed.
+widgetValue = None
+]]></on_start_code>
+                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
+# widget value won't be changed.
+widgetValue = None
+]]></on_stop_code>
+                <on_timer_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed periodically each 1000ms.
+# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change the widget value by setting this variable.
+# NOTE: If you do not specify a 'widgetValue' variable or assign 'None' to it, 
+# the widget value will not be changed.
+widgetValue = hil.model_read('SId2')
+]]></on_timer_code>
+                <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
+                <inputValue><![CDATA[1.0]]></inputValue>
+                <min>0.0</min>
+                <max>1.0</max>
+                <step>1.0</step>
+                <widget_settings>
+                    <x>480</x>
+                    <y>584</y>
+                    <width>80</width>
+                    <height>48</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>ebd2f23de99211ed92f3d43d7ef890c6</id>
+                <name><![CDATA[EVReady]]></name>
+                <type>TextDisplay</type>
+                <description><![CDATA[]]></description>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# specify Text Display options ('text' part is mandatory)
+textDisplayData = {
+
+    # label text
+    "text": str(hil.model_read('EVReady')),
+
+    # text color: 'red', 'green', 'blue', 'orange', 'black'
+    "text_color": 'black',
+}
+
+# mandatory variable used for storing value that will be displayed
+displayValue = textDisplayData
+]]></code>
+                <updateRate>500</updateRate>
+                <widget_settings>
+                    <x>584</x>
+                    <y>536</y>
+                    <width>72</width>
+                    <height>48</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>1e0c2242e99311eda797d43d7ef890c6</id>
+                <name><![CDATA[charge_complete]]></name>
+                <type>TextDisplay</type>
+                <description><![CDATA[]]></description>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# specify Text Display options ('text' part is mandatory)
+textDisplayData = {
+
+    # label text
+    "text": str(hil.model_read('charge_complete')),
+
+    # text color: 'red', 'green', 'blue', 'orange', 'black'
+    "text_color": 'black',
+}
+
+# mandatory variable used for storing value that will be displayed
+displayValue = textDisplayData
+]]></code>
+                <updateRate>500</updateRate>
+                <widget_settings>
+                    <x>568</x>
+                    <y>584</y>
+                    <width>88</width>
+                    <height>48</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>6ad0a383e99411eda683d43d7ef890c6</id>
+                <name><![CDATA[IN1]]></name>
+                <type>TextDisplay</type>
+                <description><![CDATA[]]></description>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# specify Text Display options ('text' part is mandatory)
+textDisplayData = {
+
+    # label text
+    "text": str(hil.model_read('IN1')),
+
+    # text color: 'red', 'green', 'blue', 'orange', 'black'
+    "text_color": 'black',
+}
+
+# mandatory variable used for storing value that will be displayed
+displayValue = textDisplayData
+]]></code>
+                <updateRate>500</updateRate>
+                <widget_settings>
+                    <x>616</x>
+                    <y>416</y>
+                    <width>64</width>
+                    <height>48</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>798427bee99411eda4c0d43d7ef890c6</id>
+                <name><![CDATA[IN2]]></name>
+                <type>TextDisplay</type>
+                <description><![CDATA[]]></description>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# specify Text Display options ('text' part is mandatory)
+textDisplayData = {
+
+    # label text
+    "text": str(hil.model_read('IN2')),
+
+    # text color: 'red', 'green', 'blue', 'orange', 'black'
+    "text_color": 'black',
+}
+
+# mandatory variable used for storing value that will be displayed
+displayValue = textDisplayData
+]]></code>
+                <updateRate>500</updateRate>
+                <widget_settings>
+                    <x>616</x>
+                    <y>464</y>
+                    <width>64</width>
+                    <height>48</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>f7bab267e99411edbcc6d43d7ef890c6</id>
+                <name><![CDATA[SW_feedback]]></name>
+                <type>TextDisplay</type>
+                <description><![CDATA[]]></description>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# specify Text Display options ('text' part is mandatory)
+textDisplayData = {
+
+    # label text
+    "text": str(hil.model_read('SW.feedback')),
+
+    # text color: 'red', 'green', 'blue', 'orange', 'black'
+    "text_color": 'black',
+}
+
+# mandatory variable used for storing value that will be displayed
+displayValue = textDisplayData
+]]></code>
+                <updateRate>500</updateRate>
+                <widget_settings>
+                    <x>272</x>
+                    <y>632</y>
+                    <width>80</width>
+                    <height>56</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>e75a307fe99711ed8c7bd43d7ef890c6</id>
+                <name><![CDATA[+V DC]]></name>
+                <type>TextDisplay</type>
+                <description><![CDATA[]]></description>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# specify Text Display options ('text' part is mandatory)
+textDisplayData = {
+
+    # label text
+    "text": str(hil.model_read('+V DC')),
+
+    # text color: 'red', 'green', 'blue', 'orange', 'black'
+    "text_color": 'black',
+}
+
+# mandatory variable used for storing value that will be displayed
+displayValue = textDisplayData
+]]></code>
+                <updateRate>500</updateRate>
+                <widget_settings>
+                    <x>576</x>
+                    <y>640</y>
+                    <width>64</width>
+                    <height>56</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>726415aeea4d11eda0bfd43d7ef890c6</id>
+                <name><![CDATA[OUT1]]></name>
+                <type>TextDisplay</type>
+                <description><![CDATA[]]></description>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# specify Text Display options ('text' part is mandatory)
+textDisplayData = {
+
+    # label text
+    "text": str(hil.model_read('OUT1')),
+
+    # text color: 'red', 'green', 'blue', 'orange', 'black'
+    "text_color": 'black',
+}
+
+# mandatory variable used for storing value that will be displayed
+displayValue = textDisplayData
+]]></code>
+                <updateRate>500</updateRate>
+                <widget_settings>
+                    <x>616</x>
+                    <y>360</y>
+                    <width>64</width>
+                    <height>48</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
             </component_data>
         </components>
 </ui_settings>

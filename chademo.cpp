@@ -18,11 +18,6 @@ int Count;
 unsigned short int errorDoProcessing;
 unsigned short int errorHandle;
 
-/*template<class T> inline Print& operator <<(Print& obj, T arg) {
-  obj.print(arg);  //Sets up serial streaming Serial<<someshit;
-  return obj;
-}*/
-//void timestamp();
 
 CHADEMO::CHADEMO()
 {
@@ -64,7 +59,6 @@ void CHADEMO::setDelayedState(int newstate, unsigned short int delayTime, unsign
 {
   chademo.chademoState = LIMBO;
   chademo.stateHolder = (CHADEMOSTATE)newstate;
-  //stateMilli = millis();
   chademo.stateMilli = CurrentMillis;
   chademo.stateDelay = delayTime;
 }
@@ -97,26 +91,26 @@ void CHADEMO::setBattOverTemp()
 //stuff that should be frequently run (as fast as possible)
 void CHADEMO::loop(unsigned long CurrentMillis)
 {
-  //static byte frameRotate;
     static unsigned char frameRotate;
 
   if (in1 == 1) //IN1 goes HIGH if we have been plugged into the chademo port
   {
     if (chademo.insertionTime == 0)
     {
-      //TM - Set the outputs LOW in case they have been set
-      //     outside of Chademo Mode.
+      //Set the outputs LOW in case they have been set
+      //outside of Chademo Mode.
       out1 = 0;
       out2 = 0;
-      //insertionTime = millis();
+
       chademo.insertionTime = CurrentMillis;
     }
-    else if (CurrentMillis > (unsigned int)(chademo.insertionTime + 500))  //teodora: instead of millis() -> CurrentMillis
+    else if (CurrentMillis > (unsigned int)(chademo.insertionTime + 500)) 
     {
       if (chademo.bChademoMode == 0)
       {
         chademo.bChademoMode = 1;
-        if (chademo.chademoState == STOPPED && !chademo.bStartedCharge) {
+        if (chademo.chademoState == STOPPED && !chademo.bStartedCharge) 
+        {
           chademo.chademoState = STARTUP;
           carStatus.battOverTemp = 0;
           carStatus.battOverVolt = 0;
@@ -145,7 +139,7 @@ void CHADEMO::loop(unsigned long CurrentMillis)
       //maybe it would be a good idea to try to see if EVSE is still transmitting to us and providing current
       //as it is not a good idea to open the contactors under load. But, IN1 shouldn't trigger
       //until the EVSE is ready. Also, the EVSE should have us locked so the only way the plug should come out under
-      //load is if the idiot driver took off in the car. Bad move moron.
+      //load is if the driver took off in the car. 
       out2 = 0;
       out1 = 0;
     }
@@ -179,13 +173,11 @@ void CHADEMO::loop(unsigned long CurrentMillis)
         break; }
 
         case 1:
-          //sendCANBattSpecs();
         {
         chademo.sendBatt = 1;
         break; }
 
         case 2:
-          //sendCANChargingTime();
         {
         chademo.sendTime = 1;
         break; }
@@ -236,9 +228,8 @@ void CHADEMO::loop(unsigned long CurrentMillis)
 
       setDelayedState(RUNNING, 50, CurrentMillis);
       chademo.carStatus.contactorOpen = 0; //its closed now
-      chademo.carStatus.chargingEnabled = 1; //please sir, I'd like some charge
+      chademo.carStatus.chargingEnabled = 1; //charge
       chademo.bStartedCharge = 1;
-        //mismatchStart = millis();
       chademo.mismatchStart = CurrentMillis;;
       break; }
 
@@ -349,7 +340,7 @@ void CHADEMO::doProcessing()
     }
   }
 }
- //Teodora added next 3 functions
+
 void CHADEMO::checkChargingState()
 {
     unsigned long CurrentSecs = chademo.CurrentMillis / 1000;
@@ -382,11 +373,10 @@ void CHADEMO::updateTargetAV()
 void CHADEMO::handleCANFrame(unsigned long CurrentMillis, unsigned int receiveID)
 {
     unsigned char tempCurrVal;
-    unsigned char tempAvailCurr; //uint8_t???? teodora changed from uint16_t
+    unsigned char tempAvailCurr; //uint8_t???? changed from uint16_t
 
   if (receiveID == EVSE_PARAMS_ID)
   {
-    //lastCommTime = millis();
     chademo.lastCommTime = CurrentMillis;
 
     if (chademo.chademoState == WAIT_FOR_EVSE_PARAMS) setDelayedState(SET_CHARGE_BEGIN, 100, CurrentMillis);
@@ -423,7 +413,6 @@ void CHADEMO::handleCANFrame(unsigned long CurrentMillis, unsigned int receiveID
 
   if (receiveID == EVSE_STATUS_ID)
   {
-    //lastCommTime = millis();
       chademo.lastCommTime = CurrentMillis;
 
     if (chademo.chademoState == RUNNING && chademo.bDoMismatchChecks)
@@ -523,7 +512,7 @@ void CHADEMO::handleCANFrame(unsigned long CurrentMillis, unsigned int receiveID
           errorHandle = 6;
         }
 
-        //if there is no remaining time then gracefully shut down
+        //if there is no remaining time then shut down
         if (evse_status.remainingChargeSeconds == 0 | evse_status.remainingChargeMinutes == 0)
         {
           chademo.chademoState = CEASE_CURRENT;
@@ -539,57 +528,6 @@ void CHADEMO::handleCANFrame(unsigned long CurrentMillis, unsigned int receiveID
     }
   }
 }
-
-/*void CHADEMO::sendCANBattSpecs()
-{
-  CAN_FRAME outFrame;
-  outFrame.id = CARSIDE_BATT_ID;
-  outFrame.length = 8;
-
-  outFrame.data.byte[0] = 0x00; // Not Used
-  outFrame.data.byte[1] = 0x00; // Not Used
-  outFrame.data.byte[2] = 0x00; // Not Used
-  outFrame.data.byte[3] = 0x00; // Not Used
-  outFrame.data.byte[4] = lowByte(settings.maxChargeVoltage);
-  outFrame.data.byte[5] = highByte(settings.maxChargeVoltage);
-  outFrame.data.byte[6] = (uint8_t)settings.packSizeKWH;
-  outFrame.data.byte[7] = 0; //not used
-  //CAN.EnqueueTX(outFrame);
-  //Can1.sendFrame(outFrame);
-  if (settings.debuggingLevel > 1)
-  {
-    SerialUSB.print(F("CAR: Absolute MAX Voltage:"));
-    SerialUSB.print(settings.maxChargeVoltage);
-    SerialUSB.print(F(" Pack size: "));
-    SerialUSB.print(settings.packSizeKWH);
-    timestamp();
-  }
-
-}*/
-
-/*void CHADEMO::sendCANChargingTime()
-{
-  CAN_FRAME outFrame;
-  outFrame.id = CARSIDE_CHARGETIME_ID;
-  outFrame.length = 8;
-
-  outFrame.data.byte[0] = 0x00; // Not Used
-  outFrame.data.byte[1] = 0xFF; //not using 10 second increment mode
-  outFrame.data.byte[2] = 90; //ask for how long of a charge? It will be forceably stopped if we hit this time
-  outFrame.data.byte[3] = 60; //how long we think the charge will actually take
-  outFrame.data.byte[4] = 0; //not used
-  outFrame.data.byte[5] = 0; //not used
-  outFrame.data.byte[6] = 0; //not used
-  outFrame.data.byte[7] = 0; //not used
-  //CAN.EnqueueTX(outFrame);
-  //Can1.sendFrame(outFrame);
-  if (settings.debuggingLevel > 1)
-  {
-    //SerialUSB.print(F("CAR: Charging Time"));
-    timestamp();
-  }
-
-}*/
 
 void CHADEMO::sendCANStatus()
 {

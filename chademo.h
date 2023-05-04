@@ -1,9 +1,7 @@
 #ifndef CHADEMO_H_
 #define CHADEMO_H_
-//#include <Arduino.h>
 #include "globals.h"
-//#include <due_can.h>
-//#include <cstdint>
+
 
 enum CHADEMOSTATE
 {
@@ -98,7 +96,6 @@ class CHADEMO
     void setChargingFault();
     void setBattOverTemp();
 
-    //Teodora added
     void checkChargingState();
     unsigned long ChargeTimeRefSecs;
     void ResetChargeState();
@@ -107,8 +104,8 @@ class CHADEMO
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     unsigned long CurrentMillis;
 
-    unsigned char bChademo10Protocol; //can we use 1.0 protocol?
-    unsigned char askingAmps;
+    unsigned char bChademo10Protocol;
+    unsigned char askingAmps;  //how many amps to ask for. Trends toward targetAmperage
 
     unsigned int insertionTime;
 
@@ -132,10 +129,7 @@ class CHADEMO
   protected:
   private:
       unsigned char bStartedCharge; //we have started a charge since the plug was inserted. Prevents attempts to restart charging if it stopped previously
-      //unsigned char bChademo10Protocol; //can we use 1.0 protocol?
     //target values are what we send with periodic frames and can be changed.
-    //TEODORA: i need this askingAmps so it could not be private
-      //unsigned char askingAmps; //how many amps to ask for. Trends toward targetAmperage
       unsigned char bListenEVSEStatus; //should we pay attention to stop requests and such yet?
       unsigned char bDoMismatchChecks; //should we be checking for voltage and current mismatches?
       unsigned char vMismatchCount; //count # of consecutive voltage mismatches. Don't trigger until we get enough
@@ -147,22 +141,12 @@ class CHADEMO
     unsigned short int mismatchDelay; //don't start mismatch checks for 10 seconds
     unsigned int stateMilli;
     unsigned short int stateDelay;
-    //Teodora deleted const before and value after mismatchDelay and lastCommTimeout
-    //unsigned int insertionTime;
     unsigned int lastCommTime;
     unsigned short int lastCommTimeout; //allow up to 1 second of comm fault before getting angry
 
-    //Teodora need access to chademoState
-    //CHADEMOSTATE chademoState = LIMBO;
     CHADEMOSTATE stateHolder;
-    //TEODORA: i need to set some values so it could not be private
-    //EVSE_PARAMS evse_params;
-    //EVSE_STATUS evse_status;
-    //CARSIDE_STATUS carStatus;
 
     void sendCANStatus();
-    //void sendCANBattSpecs();
-    //void sendCANChargingTime();
 };
 
 extern CHADEMO chademo;

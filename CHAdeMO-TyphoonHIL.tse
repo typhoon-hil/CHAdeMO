@@ -250,11 +250,6 @@ OUT2 = out2;
 
 chademo.CurrentMillis = currentMillis;  
 
-/*if (debugTick == 1) 
-{
-    debugTick = 0;
-}*/
-
 chademo.loop(currentMillis);
 insertionTime = chademo.insertionTime;
 
@@ -2484,13 +2479,14 @@ if(in == 10)
             Ke_full = "116.0"
             Kq_exp = "85.0"
             Kq_nom = "93.5"
-            R_series = "0.20000000000000018"
+            R_series = "0.1250000000000001"
             battery_type = "Lithium-Ion"
-            capacity = "50"
+            capacity = "80"
             execution_rate = "Ts"
-            initial_soc = "80.0"
+            initial_soc = "50.0"
             nominal_voltage = "400.0"
             sig_output = "True"
+            signal_access = "Inherit"
         }
         [
             position = 11760, 8032
@@ -2913,6 +2909,12 @@ if (ev_ready)
             hide_name = True
         ]
 
+        component "core/Probe" "BATTERY SOC" {
+        }
+        [
+            position = 12000, 7984
+        ]
+
         tag From25 {
             value = "disconnection status"
             scope = local
@@ -3183,7 +3185,8 @@ if (ev_ready)
             direction = in
         }
         [
-            position = 7744, 8176
+            position = 7704, 8088
+            rotation = down
             hide_name = True
             size = 153, 20
         ]
@@ -3195,7 +3198,8 @@ if (ev_ready)
             direction = in
         }
         [
-            position = 7744, 8232
+            position = 7704, 8144
+            rotation = down
             hide_name = True
             size = 153, 20
         ]
@@ -3317,11 +3321,6 @@ if (ev_ready)
             position = 9648, 8360
         ]
 
-        junction Junction90 sp
-        [
-            position = 8000, 8064
-        ]
-
         junction Junction92 sp
         [
             position = 9656, 8104
@@ -3330,11 +3329,6 @@ if (ev_ready)
         junction Junction95 pe
         [
             position = 10480, 8176
-        ]
-
-        junction Junction96 sp
-        [
-            position = 7968, 8128
         ]
 
         junction Junction97 pe
@@ -3380,6 +3374,21 @@ if (ev_ready)
         junction Junction111 sp
         [
             position = 11880, 8352
+        ]
+
+        junction Junction112 sp
+        [
+            position = 7960, 8064
+        ]
+
+        junction Junction113 sp
+        [
+            position = 7960, 8120
+        ]
+
+        junction Junction114 sp
+        [
+            position = 11808, 8032
         ]
 
         comment Comment3 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">DC+</p></body></html> ENDCOMMENT 
@@ -3458,7 +3467,6 @@ if (ev_ready)
         ]
         connect "battery current.n_node" Junction67 as Connection493
         connect Junction67 Battery.p_node as Connection494
-        connect Goto36 Battery.out as Connection503
         connect "battery voltage.p_node" Junction67 as Connection697
         [
             breakpoints = 11624, 7960
@@ -3528,15 +3536,6 @@ if (ev_ready)
         connect From43 "EV Ready logic.max_current" as Connection581
         connect Subsystem.availVoltage Goto43 as Connection851
         connect Subsystem.availCurrent Goto44 as Connection852
-        connect SIpresentVoltage.out Junction90 as Connection853
-        connect Junction90 Subsystem.SIpresentVoltage as Connection854
-        [
-            breakpoints = 8000, 8096; 8112, 8096; 8112, 8096; 8112, 8112; 8352, 8112
-        ]
-        connect Goto45 Junction90 as Connection855
-        [
-            breakpoints = 7648, 8176; 7648, 8088; 7696, 8088
-        ]
         connect "Signal switch1.in1" Constant5.out as Connection864
         connect "EV contactor.a_out" "battery current.p_node" as Connection868
         connect SW.out_1 "EV contactor.a_in" as Connection869
@@ -3562,30 +3561,13 @@ if (ev_ready)
         [
             breakpoints = 10480, 8176
         ]
-        connect Goto46 Junction96 as Connection897
-        [
-            breakpoints = 7744, 8232; 7648, 8232; 7648, 8208; 7840, 8208; 7840, 8144
-        ]
-        connect Junction96 SIpresentCurrent.out as Connection898
-        [
-            breakpoints = 7968, 8136; 7968, 8120
-        ]
-        connect Subsystem.SIpresentCurrent Junction96 as Connection899
-        connect SIremainingChargeSeconds.out Subsystem.SIremainingChargeSeconds as Connection900
-        [
-            breakpoints = 8032, 8232; 8032, 8192; 8032, 8192; 8032, 8160
-        ]
-        connect SIevseStatus.out Subsystem.SIevseStatus as Connection901
-        [
-            breakpoints = 7936, 8176; 7936, 8152; 7936, 8160; 8288, 8160
-        ]
         connect SIthresholdVoltage.out Subsystem.SIthresholdVoltage as Connection903
         [
-            breakpoints = 8144, 7936; 8144, 8048; 8192, 8048
+            breakpoints = 8152, 7936; 8152, 8048; 8192, 8048
         ]
         connect SIavailVoltage.out Subsystem.SIavailVoltage as Connection904
         [
-            breakpoints = 8208, 7832; 8208, 7984; 8240, 7984
+            breakpoints = 8200, 7832; 8200, 7984; 8240, 7984
         ]
         connect SIweldCheck.out Subsystem.SIweldCheck as Connection905
         [
@@ -3706,7 +3688,7 @@ if (ev_ready)
         ]
         connect SIbChademo10Protocol.out Subsystem.SIbChademo10Protocol as Connection1016
         [
-            breakpoints = 8120, 8040; 8128, 8080
+            breakpoints = 8128, 8040; 8128, 8080; 8128, 8080
         ]
         connect SIreceiveStatus.out Subsystem.SIreceiveStatus as Connection1017
         [
@@ -3722,6 +3704,38 @@ if (ev_ready)
         connect "Logical operator1.out" "EV contactor.ctrl_in" as Connection1023
         [
             breakpoints = 11392, 7744
+        ]
+        connect SIevseStatus.out Subsystem.SIevseStatus as Connection1024
+        connect SIremainingChargeSeconds.out Subsystem.SIremainingChargeSeconds as Connection1025
+        [
+            breakpoints = 8048, 8208
+        ]
+        connect Subsystem.SIpresentVoltage Junction112 as Connection1028
+        [
+            breakpoints = 8352, 8112; 8112, 8112; 8112, 8096; 8112, 8064; 8000, 8064
+        ]
+        connect Junction112 SIpresentVoltage.out as Connection1029
+        [
+            breakpoints = 7960, 8064
+        ]
+        connect Goto45 Junction112 as Connection1030
+        [
+            breakpoints = 7960, 8088
+        ]
+        connect SIpresentCurrent.out Junction113 as Connection1031
+        connect Junction113 Subsystem.SIpresentCurrent as Connection1032
+        [
+            breakpoints = 8096, 8144
+        ]
+        connect Goto46 Junction113 as Connection1033
+        [
+            breakpoints = 7960, 8136
+        ]
+        connect Goto36 Junction114 as Connection1034
+        connect Junction114 Battery.out as Connection1035
+        connect "BATTERY SOC.in" Junction114 as Connection1036
+        [
+            breakpoints = 11808, 8016
         ]
     }
 

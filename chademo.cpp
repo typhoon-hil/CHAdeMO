@@ -97,8 +97,7 @@ void CHADEMO::loop(unsigned long CurrentMillis)
   {
     if (chademo.insertionTime == 0)
     {
-      //Set the outputs LOW in case they have been set
-      //outside of Chademo Mode.
+      //Set the outputs LOW in case they have been set outside of Chademo Mode.
       out1 = 0;
       out2 = 0;
 
@@ -209,13 +208,13 @@ void CHADEMO::loop(unsigned long CurrentMillis)
       case SET_CHARGE_BEGIN:
       { 
       out1 = 1; //signal that we're ready to charge
-      chademo.carStatus.chargingEnabled = 1; //should this be enabled here???
+      chademo.carStatus.chargingEnabled = 1; //should this be enabled here?
       setDelayedState(WAIT_FOR_BEGIN_CONFIRMATION, 50, CurrentMillis);
       break; }
 
       case WAIT_FOR_BEGIN_CONFIRMATION:
       {
-      if (in2) //inverse logic from how IN1 works.Be careful!
+      if (in2) 
       {
           setDelayedState(CLOSE_CONTACTORS, 100, CurrentMillis);
       }
@@ -227,7 +226,7 @@ void CHADEMO::loop(unsigned long CurrentMillis)
       out3 = 1;
 
       setDelayedState(RUNNING, 50, CurrentMillis);
-      chademo.carStatus.contactorOpen = 0; //its closed now
+      chademo.carStatus.contactorOpen = 0;   //its closed now
       chademo.carStatus.chargingEnabled = 1; //charge
       chademo.bStartedCharge = 1;
       chademo.mismatchStart = CurrentMillis;;
@@ -278,7 +277,7 @@ void CHADEMO::loop(unsigned long CurrentMillis)
           out3 = 0;
 
           chademo.bChademoSendRequests = 0; //don't need to keep sending anymore.
-          chademo.bListenEVSEStatus = 0; //don't want to pay attention to EVSE status when we're stopped
+          chademo.bListenEVSEStatus = 0;    //don't want to pay attention to EVSE status when we're stopped
       }
       break; }
     }
@@ -296,7 +295,7 @@ void CHADEMO::doProcessing()
     //yes, this isn't ideal - this will open the contactor and send the shutdown signal. It's better than letting the EVSE
     //potentially run out of control.
 
-      errorDoProcessing = 1;
+      errorDoProcessing = 1;  //flag to see what is the reason of stopping
 
     chademo.chademoState = OPEN_CONTACTOR;
   }
@@ -316,18 +315,19 @@ void CHADEMO::doProcessing()
     }
     else chademo.vOverFault = 0;
 
-    //Constant Current/Constant Voltage Taper checks.  If minimum current is set to zero, we terminate once target voltage is reached.
+    //Constant Current/Constant Voltage Taper checks. If minimum current is set to zero, we terminate once target voltage is reached.
     //If not zero, we will adjust current up or down as needed to maintain voltage until current decreases to the minimum entered
 
     if (Count == 20)
     {
       if (evse_status.presentVoltage > settings.targetChargeVoltage - 1) //All initializations complete and we're running.We've reached charging target
       {
-        if (settings.minChargeAmperage == 0 || carStatus.targetCurrent < settings.minChargeAmperage) {
-          //putt SOC, ampHours and kiloWattHours reset in here once we actually reach the termination point.
-          settings.ampHours = 0; // Amp hours count up as used
-          settings.kiloWattHours = settings.packSizeKWH; // Kilowatt Hours count down as used.
-          chademo.chademoState = CEASE_CURRENT;  //Terminate charging
+        if (settings.minChargeAmperage == 0 || carStatus.targetCurrent < settings.minChargeAmperage) 
+        {
+          //put SOC, ampHours and kiloWattHours reset in here once we actually reach the termination point.
+          settings.ampHours = 0;                         // Amp hours count up as used
+          settings.kiloWattHours = settings.packSizeKWH; // Kilowatt Hours count down as used
+          chademo.chademoState = CEASE_CURRENT;          //Terminate charging
 
           errorDoProcessing = 3;
         } else
@@ -373,20 +373,24 @@ void CHADEMO::updateTargetAV()
 void CHADEMO::handleCANFrame(unsigned long CurrentMillis, unsigned int receiveID)
 {
     unsigned char tempCurrVal;
-    unsigned char tempAvailCurr; //uint8_t???? changed from uint16_t
+    unsigned char tempAvailCurr; //uint8_t? changed from uint16_t
 
-  if (receiveID == EVSE_PARAMS_ID)
-  {
-    chademo.lastCommTime = CurrentMillis;
+    if (receiveID == EVSE_PARAMS_ID)
+    {
+        chademo.lastCommTime = CurrentMillis;
 
-    if (chademo.chademoState == WAIT_FOR_EVSE_PARAMS) setDelayedState(SET_CHARGE_BEGIN, 100, CurrentMillis);
+        if (chademo.chademoState == WAIT_FOR_EVSE_PARAMS)
+        {
+            setDelayedState(SET_CHARGE_BEGIN, 100, CurrentMillis);
+        }
+    }
 
     // Workaround for dunedin charger. If we ask for exactly what it
     // Says is available then it packs a sad.
     // So we'll stay on amp less then it says it has. - TAM
     tempAvailCurr = evse_params.availCurrent > 0 ? evse_params.availCurrent - 1 : 0;
 
-    //if charger cannot provide our requested voltage then GTFO
+    //if charger cannot provide our requested voltage then:
     if (evse_params.availVoltage < carStatus.targetVoltage && chademo.chademoState <= RUNNING)
     {
       chademo.vCapCount++;
@@ -400,7 +404,10 @@ void CHADEMO::handleCANFrame(unsigned long CurrentMillis, unsigned int receiveID
     else chademo.vCapCount = 0;
 
     //if we want more current then it can provide then revise our request to match max output
-    if (tempAvailCurr < carStatus.targetCurrent) carStatus.targetCurrent = tempAvailCurr;
+    if (tempAvailCurr < carStatus.targetCurrent)
+    {
+        carStatus.targetCurrent = tempAvailCurr;
+    }
 
     //If not in running then also change our target current up to the minimum between the
     //available current reported and the max charge amperage. This should fix an issue where
@@ -409,7 +416,6 @@ void CHADEMO::handleCANFrame(unsigned long CurrentMillis, unsigned int receiveID
     {
       carStatus.targetCurrent = min(tempAvailCurr, settings.maxChargeAmperage);
     }
-  }
 
   if (receiveID == EVSE_STATUS_ID)
   {

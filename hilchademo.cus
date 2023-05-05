@@ -2498,5 +2498,44 @@ displayValue = textDisplayData
                     <use_label>False</use_label>
                 </widget_settings>
             </component_data>
+        <component_data>
+                <id>a4d4b8f5eb3a11edaa8dd43d7ef890c6</id>
+                <name><![CDATA[BATTERY SOC]]></name>
+                <type>TextDisplay</type>
+                <description><![CDATA[]]></description>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# specify Text Display options ('text' part is mandatory)
+textDisplayData = {
+
+    # label text
+    "text": str(hil.model_read('BATTERY SOC')),
+
+    # text color: 'red', 'green', 'blue', 'orange', 'black'
+    "text_color": 'black',
+}
+
+# mandatory variable used for storing value that will be displayed
+displayValue = textDisplayData
+]]></code>
+                <updateRate>500</updateRate>
+                <widget_settings>
+                    <x>208</x>
+                    <y>288</y>
+                    <width>88</width>
+                    <height>56</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
         </components>
 </ui_settings>

@@ -32,6 +32,5 @@ extern float Current;
 extern int Count;
 
 extern unsigned short int errorDoProcessing;
-
 extern unsigned short int errorHandle;
 #endif

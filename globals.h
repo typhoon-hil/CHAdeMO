@@ -28,6 +28,7 @@ typedef struct
 extern EESettings settings;
 extern float Voltage;
 extern float Current;
+extern float Power;
 //extern unsigned long CurrentMillis;
 extern int Count;
 

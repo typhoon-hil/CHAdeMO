@@ -12,6 +12,7 @@ bool in1, in2;
 bool out1, out2, out3;
 float Voltage;
 float Current;
+float Power;
 EESettings settings;
 int Count;
 

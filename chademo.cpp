@@ -328,7 +328,7 @@ void CHADEMO::doProcessing()
           //put SOC, ampHours and kiloWattHours reset in here once we actually reach the termination point.
           settings.ampHours = 0;                         // Amp hours count up as used
           settings.kiloWattHours = settings.packSizeKWH; // Kilowatt Hours count down as used
-          chademo.chademoState = CEASE_CURRENT;          //Terminate charging
+          chademo.chademoState = CEASE_CURRENT;          // Terminate charging
 
           errorDoProcessing = 3;
         } else
@@ -392,7 +392,7 @@ void CHADEMO::handleCANFrame(unsigned long CurrentMillis, unsigned int receiveID
     tempAvailCurr = evse_params.availCurrent > 0 ? evse_params.availCurrent - 1 : 0;
 
     //if charger cannot provide our requested voltage then:
-    if (evse_params.availVoltage < carStatus.targetVoltage && chademo.chademoState <= RUNNING)
+    if ((evse_params.availVoltage < carStatus.targetVoltage) && (chademo.chademoState <= RUNNING))
     {
       chademo.vCapCount++;
       if (chademo.vCapCount > 9)
@@ -504,6 +504,8 @@ void CHADEMO::handleCANFrame(unsigned long CurrentMillis, unsigned int receiveID
       if (chademo.faultCount > 3)
       {
         if (chademo.chademoState == RUNNING) chademo.chademoState = CEASE_CURRENT;
+
+        errorHandle = 9;
       }
     }
     else chademo.faultCount = 0;
@@ -520,7 +522,7 @@ void CHADEMO::handleCANFrame(unsigned long CurrentMillis, unsigned int receiveID
         }
 
         //if there is no remaining time then shut down
-        if (evse_status.remainingChargeSeconds == 0 | evse_status.remainingChargeMinutes == 0)
+        if ((evse_status.remainingChargeSeconds == 0) | (evse_status.remainingChargeMinutes == 0))
         {
           chademo.chademoState = CEASE_CURRENT;
 

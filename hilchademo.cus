@@ -77,7 +77,7 @@ widgetValue = None
 widgetValue = hil.model_read('SIavailCurrent')
 ]]></on_timer_code>
                 <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
-                <inputValue><![CDATA[60]]></inputValue>
+                <inputValue><![CDATA[50]]></inputValue>
                 <inputValueType>int</inputValueType>
                 <unit><![CDATA[]]></unit>
                 <widget_settings>
@@ -144,7 +144,7 @@ widgetValue = None
 widgetValue = hil.model_read('SIavailVoltage')
 ]]></on_timer_code>
                 <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
-                <inputValue><![CDATA[450]]></inputValue>
+                <inputValue><![CDATA[400]]></inputValue>
                 <inputValueType>int</inputValueType>
                 <unit><![CDATA[]]></unit>
                 <widget_settings>
@@ -278,12 +278,12 @@ widgetValue = None
 widgetValue = hil.model_read('SIevseStatus')
 ]]></on_timer_code>
                 <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
-                <inputValue><![CDATA[15]]></inputValue>
+                <inputValue><![CDATA[0]]></inputValue>
                 <inputValueType>int</inputValueType>
                 <unit><![CDATA[]]></unit>
                 <widget_settings>
                     <x>296</x>
-                    <y>88</y>
+                    <y>152</y>
                     <width>168</width>
                     <height>32</height>
                     <inputWidgetWidth>80</inputWidgetWidth>
@@ -412,7 +412,7 @@ widgetValue = None
 widgetValue = hil.model_read('SIthresholdVoltage')
 ]]></on_timer_code>
                 <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
-                <inputValue><![CDATA[16]]></inputValue>
+                <inputValue><![CDATA[420]]></inputValue>
                 <inputValueType>int</inputValueType>
                 <unit><![CDATA[]]></unit>
                 <widget_settings>
@@ -546,7 +546,7 @@ widgetValue = None
 widgetValue = hil.model_read('SIpresentVoltage')
 ]]></on_timer_code>
                 <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
-                <inputValue><![CDATA[440.0]]></inputValue>
+                <inputValue><![CDATA[420.0]]></inputValue>
                 <inputValueType>float</inputValueType>
                 <unit><![CDATA[]]></unit>
                 <widget_settings>
@@ -618,7 +618,7 @@ widgetValue = hil.model_read('SIremainingChargeSeconds')
                 <unit><![CDATA[]]></unit>
                 <widget_settings>
                     <x>224</x>
-                    <y>120</y>
+                    <y>88</y>
                     <width>240</width>
                     <height>32</height>
                     <inputWidgetWidth>80</inputWidgetWidth>
@@ -680,7 +680,7 @@ widgetValue = None
 widgetValue = hil.model_read('SIkwh')
 ]]></on_timer_code>
                 <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
-                <inputValue><![CDATA[75]]></inputValue>
+                <inputValue><![CDATA[45]]></inputValue>
                 <inputValueType>int</inputValueType>
                 <unit><![CDATA[]]></unit>
                 <widget_settings>
@@ -752,7 +752,7 @@ widgetValue = hil.model_read('SIbChademoRequest')
                 <max>1.0</max>
                 <step>1.0</step>
                 <widget_settings>
-                    <x>208</x>
+                    <x>216</x>
                     <y>360</y>
                     <width>112</width>
                     <height>48</height>
@@ -819,7 +819,7 @@ widgetValue = hil.model_read('SIreceiveStatus')
                 <inputValueType>int</inputValueType>
                 <unit><![CDATA[]]></unit>
                 <widget_settings>
-                    <x>8</x>
+                    <x>0</x>
                     <y>384</y>
                     <width>176</width>
                     <height>32</height>
@@ -2268,7 +2268,7 @@ widgetValue = None
 widgetValue = hil.model_read('SIaskingAmps')
 ]]></on_timer_code>
                 <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
-                <inputValue><![CDATA[120]]></inputValue>
+                <inputValue><![CDATA[50]]></inputValue>
                 <inputValueType>int</inputValueType>
                 <unit><![CDATA[]]></unit>
                 <widget_settings>
@@ -2351,48 +2351,6 @@ widgetValue = hil.model_read('SItargetVoltage')
                 </widget_settings>
             </component_data>
         <component_data>
-                <id>4b6bee43f0bc11edb84dd43d7ef890c6</id>
-                <name><![CDATA[BATTERY SOC]]></name>
-                <type>DigitalDisplay</type>
-                <description><![CDATA[]]></description>
-                <data_type>Analog signal</data_type>
-                <code><![CDATA[# HIL API is imported as 'hil'
-# NOTE: Only read functions are available from the HIL API
-
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# mandatory variable used for storing value that will be displayed
-displayValue = 0.0
-
-]]></code>
-                <signal_name><![CDATA[BATTERY SOC]]></signal_name>
-                <unit><![CDATA[]]></unit>
-                <automatic_unit>True</automatic_unit>
-                <decimals><![CDATA[2]]></decimals>
-                <updateRate>500</updateRate>
-                <scaling_factor>1.0</scaling_factor>
-                <widget_settings>
-                    <x>232</x>
-                    <y>296</y>
-                    <width>96</width>
-                    <height>56</height>
-                    <appearance><![CDATA[Flat]]></appearance>
-                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
-                    <is_background><![CDATA[False]]></is_background>
-                    <label><![CDATA[]]></label>
-                    <use_label>False</use_label>
-                </widget_settings>
-                <advance_widget_settings>
-                    <color_range>False</color_range>
-                    <green_range>(0, 0, 0, 0)</green_range>
-                    <orange_range>(0, 0, 0, 0)</orange_range>
-                    <red_range>(0, 0, 0, 0)</red_range>
-                </advance_widget_settings>
-            </component_data>
-        <component_data>
                 <id>7a50cd66f0bc11ed8f0bd43d7ef890c6</id>
                 <name><![CDATA[SIreceiveParams]]></name>
                 <type>TextBoxMacro</type>
@@ -2448,7 +2406,7 @@ widgetValue = hil.model_read('SIreceiveParams')
                 <inputValueType>int</inputValueType>
                 <unit><![CDATA[]]></unit>
                 <widget_settings>
-                    <x>8</x>
+                    <x>0</x>
                     <y>352</y>
                     <width>168</width>
                     <height>32</height>
@@ -2487,6 +2445,241 @@ displayValue = 0.0
                     <x>616</x>
                     <y>352</y>
                     <width>64</width>
+                    <height>56</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+                <advance_widget_settings>
+                    <color_range>False</color_range>
+                    <green_range>(0, 0, 0, 0)</green_range>
+                    <orange_range>(0, 0, 0, 0)</orange_range>
+                    <red_range>(0, 0, 0, 0)</red_range>
+                </advance_widget_settings>
+            </component_data>
+        <component_data>
+                <id>c43b6527f0c611eda55cd43d7ef890c6</id>
+                <name><![CDATA[SIremainingChargeMinutes]]></name>
+                <type>TextBoxMacro</type>
+                <description><![CDATA[]]></description>
+                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+# NOTE: entered value is available through variable 'inputValue'
+
+hil.model_write('SIremainingChargeMinutes', inputValue)]]></on_use_code>
+                <on_start_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
+# NOTE: Variables specified here will be available in other handlers.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
+# widget value won't be changed.
+widgetValue = None
+]]></on_start_code>
+                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
+# widget value won't be changed.
+widgetValue = None
+]]></on_stop_code>
+                <on_timer_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed periodically each 1000ms.
+# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change the widget value by setting this variable.
+# NOTE: If you do not specify a 'widgetValue' variable or assign 'None' to it, 
+# the widget value will not be changed.
+widgetValue = hil.model_read('SIremainingChargeMinutes')
+]]></on_timer_code>
+                <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
+                <inputValue><![CDATA[3]]></inputValue>
+                <inputValueType>int</inputValueType>
+                <unit><![CDATA[]]></unit>
+                <widget_settings>
+                    <x>232</x>
+                    <y>120</y>
+                    <width>232</width>
+                    <height>32</height>
+                    <inputWidgetWidth>80</inputWidgetWidth>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position>1</hierarchy_position>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>4df39284f0d511eda8a0d43d7ef890c6</id>
+                <name><![CDATA[Subsystem_targetVoltage]]></name>
+                <type>DigitalDisplay</type>
+                <description><![CDATA[]]></description>
+                <data_type>Analog signal</data_type>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# mandatory variable used for storing value that will be displayed
+displayValue = 0.0
+
+]]></code>
+                <signal_name><![CDATA[Subsystem.targetVoltage]]></signal_name>
+                <unit><![CDATA[]]></unit>
+                <automatic_unit>True</automatic_unit>
+                <decimals><![CDATA[2]]></decimals>
+                <updateRate>500</updateRate>
+                <scaling_factor>1.0</scaling_factor>
+                <widget_settings>
+                    <x>192</x>
+                    <y>224</y>
+                    <width>136</width>
+                    <height>48</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+                <advance_widget_settings>
+                    <color_range>False</color_range>
+                    <green_range>(0, 0, 0, 0)</green_range>
+                    <orange_range>(0, 0, 0, 0)</orange_range>
+                    <red_range>(0, 0, 0, 0)</red_range>
+                </advance_widget_settings>
+            </component_data>
+        <component_data>
+                <id>a615efb9f0d611ed92bdd43d7ef890c6</id>
+                <name><![CDATA[Subsystem_AVAILABLE VOLTAGE]]></name>
+                <type>DigitalDisplay</type>
+                <description><![CDATA[]]></description>
+                <data_type>Analog signal</data_type>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# mandatory variable used for storing value that will be displayed
+displayValue = 0.0
+
+]]></code>
+                <signal_name><![CDATA[Subsystem.AVAILABLE VOLTAGE]]></signal_name>
+                <unit><![CDATA[]]></unit>
+                <automatic_unit>True</automatic_unit>
+                <decimals><![CDATA[2]]></decimals>
+                <updateRate>500</updateRate>
+                <scaling_factor>1.0</scaling_factor>
+                <widget_settings>
+                    <x>200</x>
+                    <y>176</y>
+                    <width>168</width>
+                    <height>48</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+                <advance_widget_settings>
+                    <color_range>False</color_range>
+                    <green_range>(0, 0, 0, 0)</green_range>
+                    <orange_range>(0, 0, 0, 0)</orange_range>
+                    <red_range>(0, 0, 0, 0)</red_range>
+                </advance_widget_settings>
+            </component_data>
+        <component_data>
+                <id>1548b8d2f31011edb3d9d43d7ef890c6</id>
+                <name><![CDATA[Subsystem_KWH]]></name>
+                <type>DigitalDisplay</type>
+                <description><![CDATA[]]></description>
+                <data_type>Analog signal</data_type>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# mandatory variable used for storing value that will be displayed
+displayValue = 0.0
+
+]]></code>
+                <signal_name><![CDATA[Subsystem.KWH]]></signal_name>
+                <unit><![CDATA[]]></unit>
+                <automatic_unit>True</automatic_unit>
+                <decimals><![CDATA[2]]></decimals>
+                <updateRate>500</updateRate>
+                <scaling_factor>1.0</scaling_factor>
+                <widget_settings>
+                    <x>464</x>
+                    <y>296</y>
+                    <width>144</width>
+                    <height>56</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+                <advance_widget_settings>
+                    <color_range>False</color_range>
+                    <green_range>(0, 0, 0, 0)</green_range>
+                    <orange_range>(0, 0, 0, 0)</orange_range>
+                    <red_range>(0, 0, 0, 0)</red_range>
+                </advance_widget_settings>
+            </component_data>
+        <component_data>
+                <id>ba182cbdf31111eda76cd43d7ef890c6</id>
+                <name><![CDATA[BATTERY SOC]]></name>
+                <type>DigitalDisplay</type>
+                <description><![CDATA[]]></description>
+                <data_type>Analog signal</data_type>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# mandatory variable used for storing value that will be displayed
+displayValue = 0.0
+
+]]></code>
+                <signal_name><![CDATA[BATTERY SOC]]></signal_name>
+                <unit><![CDATA[]]></unit>
+                <automatic_unit>True</automatic_unit>
+                <decimals><![CDATA[2]]></decimals>
+                <updateRate>500</updateRate>
+                <scaling_factor>1.0</scaling_factor>
+                <widget_settings>
+                    <x>248</x>
+                    <y>296</y>
+                    <width>80</width>
                     <height>56</height>
                     <appearance><![CDATA[Flat]]></appearance>
                     <hierarchy_position><![CDATA[1]]></hierarchy_position>

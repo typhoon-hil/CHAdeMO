@@ -175,11 +175,11 @@ chademo.bChademo10Protocol = 0;
 chademo.evse_status.presentVoltage = 0;
 chademo.evse_status.presentCurrent = 0;
 chademo.evse_status.status = 0; 
-chademo.evse_status.remainingChargeSeconds = 180;
+chademo.evse_status.remainingChargeSeconds = 18;
 chademo.evse_status.remainingChargeMinutes = 3;
 
 maxChargeVoltage = 0;
-packSizeKWH = 45;
+packSizeKWH = 100;
 
 howLongCharge = 0;
 howLongWeThink = 0;
@@ -191,10 +191,10 @@ faults = 0;
 status = 0;
 kiloWattHours = 0;
 
-settings.packSizeKWH = 45.0; //just a random guess. Maybe it should default to zero though?
+settings.packSizeKWH = 100; //just a random guess. Maybe it should default to zero though?
 settings.ampHours = 0.0;
 settings.kiloWattHours = 0.0; // Is empty kiloWattHours count up
-settings.maxChargeVoltage = 400;  //how much this should be?
+settings.maxChargeVoltage = 475;  //how much this should be?
 settings.minChargeAmperage = 20;
 settings.capacity = 180;
 //settings.debuggingLevel = 1;
@@ -301,8 +301,6 @@ if (chademo.CurrentMillis - PreviousMillis >= Interval)
     Power = Voltage*Current/1000;          //KW
     settings.kiloWattHours = batterySOC;   //%
     settings.ampHours = settings.capacity*batterySOC/100;  
-    //settings.ampHours = settings.kiloWattHours/Voltage*1000;   //is this working?
-    //settings.kiloWattHours = settings.ampHours*Voltage/1000;  
     kwh = settings.ampHours*Voltage/1000;  
     
     chademo.doProcessing();
@@ -570,13 +568,6 @@ if(in == 10)
                 position = 7424, 7552
             ]
 
-            component "core/Single Phase Power Meter" "Single Phase Power Meter1" {
-            }
-            [
-                position = 5840, 7448
-                size = 48, 48
-            ]
-
             component "core/Probe" "AVAILABLE VOLTAGE" {
             }
             [
@@ -797,34 +788,8 @@ if(in == 10)
                 position = 5840, 8528
             ]
 
-            port availVoltage {
-                position = right:1
-                kind = sp
-                direction =  in
-                sp_type {
-                    default = inherit
-                    readonly = True
-                }
-            }
-            [
-                position = 9040, 7848
-            ]
-
-            port availCurrent {
-                position = right:2
-                kind = sp
-                direction =  in
-                sp_type {
-                    default = inherit
-                    readonly = True
-                }
-            }
-            [
-                position = 9040, 7904
-            ]
-
             port faults {
-                position = right:3
+                position = right:1
                 kind = sp
                 direction =  in
                 sp_type {
@@ -863,7 +828,7 @@ if(in == 10)
             ]
 
             port OUT1 {
-                position = right:4
+                position = right:2
                 kind = sp
                 direction =  in
                 sp_type {
@@ -876,7 +841,7 @@ if(in == 10)
             ]
 
             port OUT2 {
-                position = right:5
+                position = right:3
                 kind = sp
                 direction =  in
                 sp_type {
@@ -938,6 +903,19 @@ if(in == 10)
             }
             [
                 position = 5840, 8896
+            ]
+
+            port packSize {
+                position = right:4
+                kind = sp
+                direction =  in
+                sp_type {
+                    default = inherit
+                    readonly = True
+                }
+            }
+            [
+                position = 9040, 8152
             ]
 
             tag Goto33 {
@@ -1049,7 +1027,7 @@ if(in == 10)
             ]
 
             tag From10 {
-                value = "battery soc"
+                value = "kiloWattHours"
                 scope = local
                 kind = sp
                 direction = out
@@ -1833,30 +1811,6 @@ if(in == 10)
                 size = 131, 20
             ]
 
-            tag From37 {
-                value = "availVoltage"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8904, 7848
-                hide_name = True
-                size = 114, 20
-            ]
-
-            tag From38 {
-                value = "availCurrent"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8912, 7904
-                hide_name = True
-                size = 85, 20
-            ]
-
             tag From39 {
                 value = "faults"
                 scope = local
@@ -2037,18 +1991,6 @@ if(in == 10)
                 size = 95, 20
             ]
 
-            tag From75 {
-                value = "kiloWattHours"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 7832, 8968
-                hide_name = True
-                size = 83, 20
-            ]
-
             tag From76 {
                 value = "SItargetCurrent"
                 scope = local
@@ -2071,6 +2013,18 @@ if(in == 10)
                 position = 5960, 8896
                 hide_name = True
                 size = 95, 20
+            ]
+
+            tag From77 {
+                value = "packSizeKWH"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8920, 8152
+                hide_name = True
+                size = 85, 20
             ]
 
             junction Junction14 sp
@@ -2371,8 +2325,6 @@ if(in == 10)
             [
                 breakpoints = 7144, 7496; 7144, 7584
             ]
-            connect From37 availVoltage as Connection717
-            connect From38 availCurrent as Connection718
             connect From39 faults as Connection720
             connect in1 Goto49 as Connection721
             connect in2 Goto50 as Connection722
@@ -2507,6 +2459,7 @@ if(in == 10)
             [
                 breakpoints = 7112, 8216; 7168, 8856
             ]
+            connect From77 packSize as Connection781
         }
         [
             position = 8576, 8160
@@ -2577,14 +2530,14 @@ if(in == 10)
             unit = ""
         }
         [
-            position = 7904, 8008
+            position = 7904, 7984
         ]
 
         component "core/SCADA Input" SIpresentVoltage {
             unit = "V"
         }
         [
-            position = 7904, 8064
+            position = 7904, 8048
         ]
 
         component "core/SCADA Input" SIpresentCurrent {
@@ -2680,7 +2633,7 @@ if(in == 10)
             battery_type = "Lithium-Ion"
             capacity = "80"
             execution_rate = "Ts"
-            initial_soc = "80"
+            initial_soc = "95"
             nominal_voltage = "400"
             sig_output = "True"
             signal_access = "Inherit"
@@ -2966,10 +2919,10 @@ if ((charge_complete == 1) || (ev_error > 0)) {
         ]
 
         component "core/C function" "Charge complete logic" {
-            input_terminals = "int in;"
-            input_terminals_dimensions = "1"
-            input_terminals_feedthrough = "True"
-            input_terminals_show_labels = "False"
+            input_terminals = "int batterySOC;inherit packSizeKWH;"
+            input_terminals_dimensions = "1;inherit"
+            input_terminals_feedthrough = "True;True"
+            input_terminals_show_labels = "False;False"
             output_fnc = "/*Begin code section*/
 // bulk_charge_complete will be True when the battery SoC is greater than the defined threashold (bulk_charge_value)
 // charge_complete will be True when the battery SoC is greater than the defined threashold (complete_charge_value)
@@ -2977,10 +2930,10 @@ if ((charge_complete == 1) || (ev_error > 0)) {
 //complete_charge_value = 95  #%
 //bulk_charge_value = 80  #%
 
-if (in >= complete_charge_value) {
+if (batterySOC >= packSizeKWH) {
     bulk_charge_complete = 1;
     charge_complete = 1;
-} else if (in >= bulk_charge_value) {
+} else if (batterySOC >= bulk_charge_value) {
     bulk_charge_complete = 1;
     charge_complete = 0;
 } else {
@@ -3145,7 +3098,7 @@ if (ev_ready)
         component "core/Probe" out2 {
         }
         [
-            position = 8920, 8376
+            position = 8872, 8192
         ]
 
         component "core/SCADA Input" SItargetCurrent {
@@ -3287,7 +3240,7 @@ if (ev_ready)
         ]
 
         tag From43 {
-            value = "availCurrent1"
+            value = "availCurrent"
             scope = local
             kind = sp
             direction = out
@@ -3299,7 +3252,7 @@ if (ev_ready)
         ]
 
         tag From44 {
-            value = "availVoltage1"
+            value = "availVoltage"
             scope = local
             kind = sp
             direction = out
@@ -3341,7 +3294,7 @@ if (ev_ready)
             direction = out
         }
         [
-            position = 9368, 8136
+            position = 9368, 8104
             hide_name = True
             size = 151, 20
         ]
@@ -3394,30 +3347,6 @@ if (ev_ready)
             size = 151, 20
         ]
 
-        tag Goto43 {
-            value = "availVoltage"
-            scope = local
-            kind = sp
-            direction = in
-        }
-        [
-            position = 8896, 7888
-            hide_name = True
-            size = 150, 20
-        ]
-
-        tag Goto44 {
-            value = "availCurrent"
-            scope = local
-            kind = sp
-            direction = in
-        }
-        [
-            position = 8896, 8024
-            hide_name = True
-            size = 153, 20
-        ]
-
         tag Goto45 {
             value = "present voltage"
             scope = local
@@ -3451,7 +3380,7 @@ if (ev_ready)
             direction = in
         }
         [
-            position = 8896, 8160
+            position = 8912, 7896
             hide_name = True
             size = 153, 20
         ]
@@ -3500,7 +3429,7 @@ if (ev_ready)
             direction = in
         }
         [
-            position = 8856, 8296
+            position = 8864, 8072
             hide_name = True
             size = 60, 20
         ]
@@ -3512,7 +3441,7 @@ if (ev_ready)
             direction = in
         }
         [
-            position = 8856, 8432
+            position = 8864, 8248
             hide_name = True
             size = 60, 20
         ]
@@ -3544,7 +3473,7 @@ if (ev_ready)
         ]
 
         tag Goto2 {
-            value = "availVoltage1"
+            value = "availVoltage"
             scope = local
             kind = sp
             direction = in
@@ -3557,7 +3486,7 @@ if (ev_ready)
         ]
 
         tag Goto3 {
-            value = "availCurrent1"
+            value = "availCurrent"
             scope = local
             kind = sp
             direction = in
@@ -3603,6 +3532,30 @@ if (ev_ready)
             position = 8088, 8760
             hide_name = True
             size = 71, 20
+        ]
+
+        tag Goto52 {
+            value = "packSizeKWH"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8912, 8424
+            hide_name = True
+            size = 153, 20
+        ]
+
+        tag From75 {
+            value = "packSizeKWH"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 9368, 8168
+            hide_name = True
+            size = 151, 20
         ]
 
         junction Junction67 pe
@@ -3720,14 +3673,14 @@ if (ev_ready)
             position = 7960, 8120
         ]
 
-        junction Junction120 sp
+        junction Junction122 sp
         [
-            position = 8808, 8432
+            position = 8808, 8248
         ]
 
-        junction Junction121 sp
+        junction Junction123 sp
         [
-            position = 7960, 8064
+            position = 7960, 8080
         ]
 
         comment Comment3 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">DC+</p></body></html> ENDCOMMENT 
@@ -3851,7 +3804,7 @@ if (ev_ready)
         ]
         connect Goto4 Junction38 as Connection248
         connect From49 "EV Ready logic.ev_error" as Connection303
-        connect From50 "Charge complete logic.in" as Connection307
+        connect From50 "Charge complete logic.batterySOC" as Connection307
         connect From64 "EV disconnection logic.present_voltage" as Connection322
         connect From63 "EV disconnection logic.battery_voltage" as Connection323
         connect From65 "EV disconnection logic.ev_ready" as Connection326
@@ -3861,8 +3814,6 @@ if (ev_ready)
         connect "EV Ready logic.charge_complete" From46 as Connection579
         connect "EV Ready logic.max_voltage" From44 as Connection580
         connect From43 "EV Ready logic.max_current" as Connection581
-        connect Subsystem.availVoltage Goto43 as Connection851
-        connect Subsystem.availCurrent Goto44 as Connection852
         connect "Signal switch1.in1" Constant5.out as Connection864
         connect "EV contactor.a_out" "battery current.p_node" as Connection868
         connect SW.out_1 "EV contactor.a_in" as Connection869
@@ -4098,12 +4049,6 @@ if (ev_ready)
         [
             breakpoints = 8032, 8176; 8032, 8144; 8032, 8136
         ]
-        connect Subsystem.OUT2 Junction120 as Connection1060
-        connect Junction120 Goto50 as Connection1061
-        connect out2.in Junction120 as Connection1062
-        [
-            breakpoints = 8808, 8392
-        ]
         connect SItargetCurrent.out Subsystem.SItargetCurrent as Connection1063
         [
             breakpoints = 8352, 8928
@@ -4112,30 +4057,23 @@ if (ev_ready)
         [
             breakpoints = 8128, 8032; 8144, 8048
         ]
-        connect Goto45 Junction121 as Connection1066
+        connect Subsystem.OUT2 Junction122 as Connection1070
+        connect Junction122 Goto50 as Connection1071
         [
-            breakpoints = 7704, 8088; 7960, 8088
+            breakpoints = 8832, 8248
         ]
-        connect Junction121 SIpresentVoltage.out as Connection1067
+        connect out2.in Junction122 as Connection1072
         [
-            breakpoints = 7960, 8064; 7960, 8064
+            breakpoints = 8816, 8192
         ]
-        connect Subsystem.SIpresentVoltage Junction121 as Connection1068
-    }
-
-    logically_deleted {
-        "Subsystem.Single Phase Power Meter1"
-        "Subsystem.availVoltage"
-        "Subsystem.availCurrent"
-        "Subsystem.From37"
-        "Subsystem.From38"
-        "Subsystem.From75"
-        "Subsystem.Connection717"
-        "Subsystem.Connection718"
-        "Goto43"
-        "Goto44"
-        "Connection851"
-        "Connection852"
+        connect Subsystem.packSize Goto52 as Connection1073
+        connect From75 "Charge complete logic.packSizeKWH" as Connection1074
+        connect SIpresentVoltage.out Junction123 as Connection1076
+        [
+            breakpoints = 7960, 8064; 7960, 8064; 7960, 8064
+        ]
+        connect Junction123 Subsystem.SIpresentVoltage as Connection1077
+        connect Goto45 Junction123 as Connection1078
     }
 
     default {
@@ -4421,14 +4359,6 @@ if (ev_ready)
         }
 
         "core/Signal Controlled Current Source" {
-            execution_rate = "inherit"
-        }
-
-        "core/Single Phase Power Meter" {
-            op_mode = "Fixed frequency"
-            frequency = "50.0"
-            period_timeout = "0.5"
-            zero_crossing_calc_filter = "500.0"
             execution_rate = "inherit"
         }
 

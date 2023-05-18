@@ -194,7 +194,7 @@ void CHADEMO::loop(unsigned long CurrentMillis)
 
       case SEND_INITIAL_PARAMS:  
         //we could do calculations to see how long the charge should take based on SOC and
-        //also set a more realistic starting amperage. Options for the future.
+        //also set a more realistic starting amperage.
         //One problem with that is that we don't yet know the EVSE parameters so we can't know
         //the max allowable amperage just yet.
       {
@@ -209,7 +209,7 @@ void CHADEMO::loop(unsigned long CurrentMillis)
       case SET_CHARGE_BEGIN:
       { 
       out1 = 1; //signal that we're ready to charge
-      chademo.carStatus.chargingEnabled = 1; //should this be enabled here?
+      //chademo.carStatus.chargingEnabled = 1; //should this be enabled here?
       setDelayedState(WAIT_FOR_BEGIN_CONFIRMATION, 50, CurrentMillis);
       break; }
 
@@ -224,7 +224,7 @@ void CHADEMO::loop(unsigned long CurrentMillis)
       case CLOSE_CONTACTORS:
       {   
       out2 = 1;
-      out3 = 1;
+      //out3 = 1;
 
       setDelayedState(RUNNING, 50, CurrentMillis);
       chademo.carStatus.contactorOpen = 0;   //its closed now
@@ -256,7 +256,7 @@ void CHADEMO::loop(unsigned long CurrentMillis)
       case OPEN_CONTACTOR: 
       {
       out2 = 0;
-      out3 = 0;
+      //out3 = 0;
 
       chademo.carStatus.contactorOpen = 1;
       chademo.carStatus.chargingEnabled = 0;
@@ -275,7 +275,7 @@ void CHADEMO::loop(unsigned long CurrentMillis)
       {
           out1 = 0;
           out2 = 0;
-          out3 = 0;
+          //out3 = 0;
 
           chademo.bChademoSendRequests = 0; //don't need to keep sending anymore.
           chademo.bListenEVSEStatus = 0;    //don't want to pay attention to EVSE status when we're stopped
@@ -463,9 +463,9 @@ void CHADEMO::handleCANFrame(unsigned long CurrentMillis, unsigned int receiveID
         tempCurrVal = evse_status.presentCurrent >> 3;
         if (tempCurrVal < 3) tempCurrVal = 3;
 
-        if ((Current * -1.0) - evse_status.presentCurrent < 0)  //instead of abs((Current * -1.0) - evse_status.presentCurrent)
+        if (Current - evse_status.presentCurrent < 0)  //instead of abs(Current - evse_status.presentCurrent)
         {
-            CurrentMinusPresentCurrent += 2 * (-((Current * -1.0) - evse_status.presentCurrent));
+            CurrentMinusPresentCurrent += 2 * (-(Current  - evse_status.presentCurrent));
 
           if (CurrentMinusPresentCurrent > tempCurrVal && !carStatus.currDeviation)  
           {
@@ -482,7 +482,7 @@ void CHADEMO::handleCANFrame(unsigned long CurrentMillis, unsigned int receiveID
         }
         else
         {
-          if ((Current * -1.0) - evse_status.presentCurrent > tempCurrVal && !carStatus.currDeviation)
+          if (Current - evse_status.presentCurrent > tempCurrVal && !carStatus.currDeviation)
           {
               chademo.cMismatchCount++;
               if (chademo.cMismatchCount > 4)

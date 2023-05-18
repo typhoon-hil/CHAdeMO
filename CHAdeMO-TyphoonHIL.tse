@@ -166,6 +166,8 @@ errorDoProcessing = 0;
 ERRORhandle = 0;
 errorHandle = 0;
 
+AV, PV = 0;
+
 CHADEMO();
 
 chademo.evse_params.availVoltage = 0;
@@ -194,7 +196,7 @@ kiloWattHours = 0;
 settings.packSizeKWH = 100; //just a random guess. Maybe it should default to zero though?
 settings.ampHours = 0.0;
 settings.kiloWattHours = 0.0; // Is empty kiloWattHours count up
-settings.maxChargeVoltage = 490;  //how much this should be?
+settings.maxChargeVoltage = 485;  //how much this should be?
 settings.minChargeAmperage = 20;
 settings.capacity = 180;
 //settings.debuggingLevel = 1;
@@ -235,6 +237,7 @@ ERRORdoP = errorDoProcessing;
 ERRORhandle = errorHandle;
 
 AV = chademo.evse_params.availVoltage;
+PV = chademo.evse_status.presentVoltage;
 
 settings.targetChargeVoltage = SItargetVoltage; //targetVoltage
 settings.maxChargeAmperage = SItargetCurrent; //targetCurrent
@@ -337,7 +340,8 @@ if (currentMillis - 100 == receiveMillis)  //I\'m checking every 100ms if there 
         //chademo.evse_params.availVoltage =  (availVoltage & 0xFF) + 256*(availVoltage & 0xFF00);
         chademo.evse_params.availVoltage = availVoltage;
         chademo.evse_params.availCurrent = availCurrent;
-        chademo.evse_params.thresholdVoltage = (thresholdVoltage & 0xFF) + 256*(thresholdVoltage & 0xFF00);
+        //chademo.evse_params.thresholdVoltage = (thresholdVoltage & 0xFF) + 256*(thresholdVoltage & 0xFF00);
+        chademo.evse_params.thresholdVoltage = thresholdVoltage;
         
         chademo.handleCANFrame(currentMillis, receiveID);
     }
@@ -348,7 +352,8 @@ if (currentMillis - 100 == receiveMillis)  //I\'m checking every 100ms if there 
         receiveID = 0x109;
        
         if (bChademo10Protocol > 1) chademo.bChademo10Protocol = 1;
-        chademo.evse_status.presentVoltage = (presentVoltage & 0xFF) + 256*(presentVoltage & 0xFF00); //?? evse_status.presentVoltage = frame.data.byte[1] + 256 * frame.data.byte[2];
+        //chademo.evse_status.presentVoltage = (presentVoltage & 0xFF) + 256*(presentVoltage & 0xFF00); //?? evse_status.presentVoltage = frame.data.byte[1] + 256 * frame.data.byte[2];
+        chademo.evse_status.presentVoltage = presentVoltage;
         chademo.evse_status.presentCurrent = presentCurrent;
         chademo.evse_status.status = evseStatus;
         
@@ -360,7 +365,7 @@ if (currentMillis - 100 == receiveMillis)  //I\'m checking every 100ms if there 
     }
 }
 /*End code section*/"
-                output_terminals = "inherit CurrentSeconds;uint sendBatt;uint sendStatus;uint sendTime;inherit maxChargeVoltage;inherit packSizeKWH;inherit howLongCharge;inherit howLongWeThink;inherit talkingProtocol;inherit targetVoltage;inherit askingAmps;inherit faults;inherit status;inherit kiloWattHours;uint chademoState;inherit insertionTime;inherit bChademoMode;inherit bChademoRequestOutput;inherit bChademoSendRequestsOutput;inherit ERRORdoP;inherit ERRORhandle;inherit OUT1;inherit OUT2;inherit AV;inherit kwh;inherit stateText;"
+                output_terminals = "inherit CurrentSeconds;uint sendBatt;uint sendStatus;uint sendTime;inherit maxChargeVoltage;inherit packSizeKWH;inherit howLongCharge;inherit howLongWeThink;inherit talkingProtocol;inherit targetVoltage;inherit askingAmps;inherit faults;inherit status;inherit kiloWattHours;uint chademoState;inherit insertionTime;inherit bChademoMode;inherit bChademoRequestOutput;inherit bChademoSendRequestsOutput;inherit ERRORdoP;inherit ERRORhandle;inherit OUT1;inherit OUT2;inherit AV;inherit kwh;inherit PV;"
                 output_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit"
                 output_terminals_feedthrough = "True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True"
                 output_terminals_show_labels = "False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False"
@@ -676,7 +681,7 @@ if(in == 10)
                 position = 5928, 8480
             ]
 
-            component "core/Probe" stateText {
+            component "core/Probe" PV {
             }
             [
                 position = 7232, 8952
@@ -2535,7 +2540,7 @@ if(in == 10)
             connect From81 presentVoltage as Connection796
             connect From82 presentCurrent as Connection797
             connect SIaskingAmps.out Goto60 as Connection798
-            connect "Advanced C function2.stateText" stateText.in as Connection799
+            connect "Advanced C function2.PV" PV.in as Connection799
             [
                 breakpoints = 7112, 8224; 7112, 8952
             ]
@@ -2544,11 +2549,11 @@ if(in == 10)
             SIavailCurrent = "120"
             SIavailVoltage = "480"
             SIbChademo10Protocol = "1"
-            SIpresentCurrent = "100"
+            SIpresentCurrent = "120"
             SIpresentVoltage = "435"
             SIremainingChargeMinutes = "3"
             SIremainingChargeSeconds = "180"
-            SIthresholdVoltage = "500"
+            SIthresholdVoltage = "485"
             SIweldCheck = "1"
 
             mask {

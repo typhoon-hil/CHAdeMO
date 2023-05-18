@@ -242,9 +242,9 @@ chademo.updateTargetAV();
 
 chademoState = chademo.chademoState;
 
-bChademoMode = chademo.bChademoMode;
+//bChademoMode = chademo.bChademoMode;
 bChademoRequestOutput = chademo.bChademoRequest;
-bChademoSendRequestsOutput = chademo.bChademoSendRequests;
+//bChademoSendRequestsOutput = chademo.bChademoSendRequests;
 
 in1 = IN1;
 in2 = IN2;
@@ -257,7 +257,6 @@ if (complete != 0)
     chademo.chademoState = OPEN_CONTACTOR;
 }
 
-//chademo.askingAmps = SIaskingAmps;
 chademo.CurrentMillis = currentMillis;  
 
 chademo.loop(currentMillis);
@@ -361,10 +360,10 @@ if (currentMillis - 100 == receiveMillis)  //I\'m checking every 100ms if there 
     }
 }
 /*End code section*/"
-                output_terminals = "inherit CurrentSeconds;uint sendBatt;uint sendStatus;uint sendTime;inherit maxChargeVoltage;inherit packSizeKWH;inherit howLongCharge;inherit howLongWeThink;inherit talkingProtocol;inherit targetVoltage;inherit askingAmps;inherit faults;inherit status;inherit kiloWattHours;uint chademoState;inherit insertionTime;inherit bChademoMode;inherit bChademoRequestOutput;inherit bChademoSendRequestsOutput;inherit ERRORdoP;inherit ERRORhandle;inherit OUT1;inherit OUT2;inherit AV;inherit kwh;"
-                output_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit"
-                output_terminals_feedthrough = "True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True"
-                output_terminals_show_labels = "False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False"
+                output_terminals = "inherit CurrentSeconds;uint sendBatt;uint sendStatus;uint sendTime;inherit maxChargeVoltage;inherit packSizeKWH;inherit howLongCharge;inherit howLongWeThink;inherit talkingProtocol;inherit targetVoltage;inherit askingAmps;inherit faults;inherit status;inherit kiloWattHours;uint chademoState;inherit insertionTime;inherit bChademoMode;inherit bChademoRequestOutput;inherit bChademoSendRequestsOutput;inherit ERRORdoP;inherit ERRORhandle;inherit OUT1;inherit OUT2;inherit AV;inherit kwh;inherit stateText;"
+                output_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit"
+                output_terminals_feedthrough = "True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True"
+                output_terminals_show_labels = "False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False"
             }
             [
                 position = 7040, 8024
@@ -442,7 +441,7 @@ if(in == 10)
             component "core/Probe" CurrentSeconds {
             }
             [
-                position = 7144, 7496
+                position = 7336, 7504
             ]
 
             component "core/Probe" currentSeconds {
@@ -454,37 +453,37 @@ if(in == 10)
             component "core/Probe" chademoState {
             }
             [
-                position = 7440, 8192
+                position = 7632, 8200
             ]
 
             component "core/Probe" howLongCharge {
             }
             [
-                position = 7464, 7752
+                position = 7656, 7760
             ]
 
             component "core/Probe" howLongWeThink {
             }
             [
-                position = 7464, 7816
+                position = 7656, 7824
             ]
 
             component "core/Probe" insertionTime {
             }
             [
-                position = 7440, 8248
+                position = 7632, 8256
             ]
 
             component "core/Probe" bChademoMode {
             }
             [
-                position = 7440, 8312
+                position = 7632, 8320
             ]
 
             component "core/Probe" bChademoRequest {
             }
             [
-                position = 7440, 8376
+                position = 7632, 8384
             ]
 
             component "core/Probe" counter {
@@ -496,97 +495,97 @@ if(in == 10)
             component "core/Probe" bChademoSendRequests {
             }
             [
-                position = 7440, 8440
+                position = 7632, 8448
             ]
 
             component "core/Probe" ERRORdoP {
             }
             [
-                position = 7304, 8512
+                position = 7496, 8520
             ]
 
             component "core/Probe" ERRORhandle {
             }
             [
-                position = 7304, 8576
+                position = 7496, 8584
             ]
 
             component "core/Probe" maxChargeVoltage {
             }
             [
-                position = 7424, 7632
+                position = 7616, 7640
             ]
 
             component "core/Probe" packSizeKWH {
             }
             [
-                position = 7424, 7688
+                position = 7616, 7696
             ]
 
             component "core/Probe" askingAmps {
             }
             [
-                position = 7544, 7976
+                position = 7736, 7984
             ]
 
             component "core/Probe" faultss {
             }
             [
-                position = 7544, 8056
+                position = 7736, 8064
             ]
 
             component "core/Probe" talkingProtocol {
             }
             [
-                position = 7544, 7864
+                position = 7736, 7872
             ]
 
             component "core/Probe" targetVoltage {
             }
             [
-                position = 7544, 7920
+                position = 7736, 7928
             ]
 
             component "core/Probe" status {
             }
             [
-                position = 7544, 8112
+                position = 7736, 8120
             ]
 
             component "core/Probe" kiloWattHours {
             }
             [
-                position = 7544, 8168
+                position = 7736, 8176
             ]
 
             component "core/Probe" sendBatt {
             }
             [
-                position = 7424, 7440
+                position = 7616, 7448
             ]
 
             component "core/Probe" sendStatus {
             }
             [
-                position = 7424, 7496
+                position = 7616, 7504
             ]
 
             component "core/Probe" sendTime {
             }
             [
-                position = 7424, 7552
+                position = 7616, 7560
             ]
 
             component "core/Probe" "AVAILABLE VOLTAGE" {
             }
             [
-                position = 7200, 8784
+                position = 7392, 8792
             ]
 
             component "core/Probe" KWH {
             }
             [
-                position = 7200, 8856
+                position = 7392, 8864
             ]
 
             component "core/Constant" weldCheck {
@@ -675,6 +674,12 @@ if(in == 10)
             }
             [
                 position = 5928, 8480
+            ]
+
+            component "core/Probe" stateText {
+            }
+            [
+                position = 7232, 8952
             ]
 
             port SIreceiveParams {
@@ -1183,7 +1188,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 7208, 7560
+                position = 7400, 7568
                 hide_name = True
                 size = 60, 20
             ]
@@ -1195,7 +1200,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 7264, 7584
+                position = 7456, 7592
                 hide_name = True
                 size = 60, 20
             ]
@@ -1207,7 +1212,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 7320, 7608
+                position = 7512, 7616
                 hide_name = True
                 size = 60, 20
             ]
@@ -1219,7 +1224,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 7264, 7664
+                position = 7456, 7672
                 hide_name = True
                 size = 94, 20
             ]
@@ -1231,7 +1236,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 7264, 7704
+                position = 7456, 7712
                 hide_name = True
                 size = 94, 20
             ]
@@ -1243,7 +1248,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 7336, 7776
+                position = 7528, 7784
                 hide_name = True
                 size = 92, 20
             ]
@@ -1255,7 +1260,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 7336, 7840
+                position = 7528, 7848
                 hide_name = True
                 size = 89, 20
             ]
@@ -1330,7 +1335,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 7424, 7896
+                position = 7616, 7904
                 hide_name = True
                 size = 89, 20
             ]
@@ -1342,7 +1347,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 7424, 7944
+                position = 7616, 7952
                 hide_name = True
                 size = 96, 20
             ]
@@ -1354,7 +1359,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 7408, 7992
+                position = 7600, 8000
                 hide_name = True
                 size = 67, 20
             ]
@@ -1366,7 +1371,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 7408, 8040
+                position = 7600, 8048
                 hide_name = True
                 size = 60, 20
             ]
@@ -1378,7 +1383,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 7408, 8088
+                position = 7600, 8096
                 hide_name = True
                 size = 60, 20
             ]
@@ -1390,7 +1395,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 7424, 8136
+                position = 7616, 8144
                 hide_name = True
                 size = 98, 20
             ]
@@ -1860,7 +1865,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 7208, 8648
+                position = 7400, 8656
                 hide_name = True
                 size = 55, 20
             ]
@@ -1872,7 +1877,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 7208, 8712
+                position = 7400, 8720
                 hide_name = True
                 size = 54, 20
             ]
@@ -2093,67 +2098,67 @@ if(in == 10)
 
             junction Junction20 sp
             [
-                position = 7216, 7776
+                position = 7408, 7784
             ]
 
             junction Junction21 sp
             [
-                position = 7232, 7840
+                position = 7424, 7848
             ]
 
             junction Junction22 sp
             [
-                position = 7200, 7704
+                position = 7392, 7712
             ]
 
             junction Junction23 sp
             [
-                position = 7192, 7664
+                position = 7384, 7672
             ]
 
             junction Junction24 sp
             [
-                position = 7248, 7896
+                position = 7440, 7904
             ]
 
             junction Junction25 sp
             [
-                position = 7256, 7944
+                position = 7448, 7952
             ]
 
             junction Junction26 sp
             [
-                position = 7280, 7992
+                position = 7472, 8000
             ]
 
             junction Junction29 sp
             [
-                position = 7304, 8136
+                position = 7496, 8144
             ]
 
             junction Junction30 sp
             [
-                position = 7160, 7608
+                position = 7352, 7616
             ]
 
             junction Junction31 sp
             [
-                position = 7144, 7584
+                position = 7336, 7592
             ]
 
             junction Junction33 sp
             [
-                position = 7352, 8032
+                position = 7544, 8040
             ]
 
             junction Junction34 sp
             [
-                position = 7328, 8088
+                position = 7520, 8096
             ]
 
             junction Junction35 sp
             [
-                position = 7128, 7560
+                position = 7320, 7568
             ]
 
             connect From5 "EV STATUS.EVtalkingProtocol" as Connection2
@@ -2196,6 +2201,9 @@ if(in == 10)
             connect "Unit Delay1.out" Counter1.reset as Connection50
             connect Constant3.out Counter1.en as Connection53
             connect "Advanced C function2.CurrentSeconds" CurrentSeconds.in as Connection76
+            [
+                breakpoints = 7112, 7824; 7112, 7504
+            ]
             connect From9 "EV STATUS.EVstatus" as Connection115
             [
                 breakpoints = 8056, 8448; 8056, 8408
@@ -2226,39 +2234,39 @@ if(in == 10)
             ]
             connect Junction20 Goto17 as Connection222
             [
-                breakpoints = 7216, 7776
+                breakpoints = 7408, 7784
             ]
             connect howLongCharge.in Junction20 as Connection223
             [
-                breakpoints = 7216, 7760
+                breakpoints = 7408, 7768
             ]
             connect "Advanced C function2.howLongWeThink" Junction21 as Connection224
             [
-                breakpoints = 7232, 7888
+                breakpoints = 7232, 7832; 7424, 7832
             ]
             connect Junction21 Goto18 as Connection225
             [
-                breakpoints = 7256, 7840
+                breakpoints = 7448, 7848
             ]
             connect howLongWeThink.in Junction21 as Connection226
             [
-                breakpoints = 7232, 7816
+                breakpoints = 7424, 7824
             ]
             connect "Advanced C function2.chademoState" chademoState.in as Connection233
             [
-                breakpoints = 7288, 8064; 7392, 8192
+                breakpoints = 7288, 8064; 7288, 8096; 7472, 8096; 7472, 8200
             ]
             connect "Advanced C function2.insertionTime" insertionTime.in as Connection234
             [
-                breakpoints = 7272, 8080; 7288, 8248
+                breakpoints = 7272, 8080; 7272, 8256; 7288, 8256; 7288, 8256; 7600, 8256
             ]
             connect "Advanced C function2.bChademoMode" bChademoMode.in as Connection235
             [
-                breakpoints = 7256, 8096; 7280, 8312
+                breakpoints = 7256, 8096; 7256, 8320; 7280, 8320
             ]
             connect "Advanced C function2.bChademoSendRequestsOutput" bChademoSendRequests.in as Connection238
             [
-                breakpoints = 7224, 8152; 7224, 8440; 7256, 8440
+                breakpoints = 7224, 8152; 7224, 8448; 7256, 8448
             ]
             connect "Advanced C function2.ERRORdoP" ERRORdoP.in as Connection242
             [
@@ -2306,6 +2314,9 @@ if(in == 10)
             connect voltage Goto45 as Connection678
             connect Goto46 current as Connection679
             connect "Advanced C function2.packSizeKWH" Junction22 as Connection682
+            [
+                breakpoints = 7208, 7904; 7208, 7712
+            ]
             connect Junction22 Goto16 as Connection683
             connect packSizeKWH.in Junction22 as Connection684
             connect "Advanced C function2.maxChargeVoltage" Junction23 as Connection685
@@ -2314,25 +2325,25 @@ if(in == 10)
             ]
             connect Junction23 Goto15 as Connection686
             [
-                breakpoints = 7192, 7664
+                breakpoints = 7384, 7672
             ]
             connect maxChargeVoltage.in Junction23 as Connection687
             connect "Advanced C function2.talkingProtocol" Junction24 as Connection688
             [
-                breakpoints = 7248, 7952
+                breakpoints = 7248, 7872; 7440, 7872
             ]
             connect Junction24 Goto19 as Connection689
             [
-                breakpoints = 7264, 7896
+                breakpoints = 7456, 7904
             ]
             connect talkingProtocol.in Junction24 as Connection690
             connect "Advanced C function2.targetVoltage" Junction25 as Connection691
             [
-                breakpoints = 7256, 7976
+                breakpoints = 7256, 7928; 7448, 7928
             ]
             connect Junction25 Goto20 as Connection692
             [
-                breakpoints = 7264, 7944
+                breakpoints = 7456, 7952
             ]
             connect targetVoltage.in Junction25 as Connection693
             connect "Advanced C function2.askingAmps" Junction26 as Connection694
@@ -2340,11 +2351,11 @@ if(in == 10)
             connect askingAmps.in Junction26 as Connection696
             connect "Advanced C function2.kiloWattHours" Junction29 as Connection703
             [
-                breakpoints = 7304, 8056
+                breakpoints = 7304, 8056; 7304, 8072; 7496, 8072
             ]
             connect Junction29 Goto24 as Connection704
             [
-                breakpoints = 7312, 8136
+                breakpoints = 7504, 8144
             ]
             connect kiloWattHours.in Junction29 as Connection705
             connect "Advanced C function2.sendTime" Junction30 as Connection706
@@ -2353,7 +2364,7 @@ if(in == 10)
             ]
             connect Junction30 Goto14 as Connection707
             [
-                breakpoints = 7232, 7608
+                breakpoints = 7424, 7616
             ]
             connect sendTime.in Junction30 as Connection708
             connect "Advanced C function2.sendStatus" Junction31 as Connection709
@@ -2362,11 +2373,11 @@ if(in == 10)
             ]
             connect Junction31 Goto13 as Connection710
             [
-                breakpoints = 7224, 7584
+                breakpoints = 7416, 7592
             ]
             connect sendStatus.in Junction31 as Connection711
             [
-                breakpoints = 7144, 7496; 7144, 7584
+                breakpoints = 7336, 7504; 7336, 7592
             ]
             connect From39 faults as Connection720
             connect in1 Goto49 as Connection721
@@ -2410,7 +2421,7 @@ if(in == 10)
             connect faultss.in Junction33 as Connection749
             connect Junction33 Goto22 as Connection750
             [
-                breakpoints = 7352, 8040; 7360, 8040
+                breakpoints = 7544, 8048; 7552, 8048
             ]
             connect "Advanced C function2.faults" Junction33 as Connection751
             [
@@ -2418,27 +2429,27 @@ if(in == 10)
             ]
             connect status.in Junction34 as Connection753
             [
-                breakpoints = 7328, 8096
+                breakpoints = 7520, 8104
             ]
             connect Junction34 Goto23 as Connection754
             [
-                breakpoints = 7328, 8088; 7328, 8088; 7344, 8088; 7344, 8088
+                breakpoints = 7520, 8096; 7520, 8096; 7536, 8096; 7536, 8096
             ]
             connect "Advanced C function2.status" Junction34 as Connection755
             [
-                breakpoints = 7328, 8048
+                breakpoints = 7328, 8016; 7328, 8048; 7328, 8048; 7520, 8048
             ]
             connect "Advanced C function2.bChademoRequestOutput" bChademoRequest.in as Connection756
             [
-                breakpoints = 7240, 8128; 7280, 8376
+                breakpoints = 7240, 8128; 7240, 8384; 7280, 8384
             ]
             connect "Advanced C function2.OUT1" Goto53 as Connection757
             [
-                breakpoints = 7160, 8184; 7160, 8648
+                breakpoints = 7176, 8184; 7176, 8648
             ]
             connect "Advanced C function2.OUT2" Goto54 as Connection758
             [
-                breakpoints = 7144, 8224
+                breakpoints = 7160, 8224; 7160, 8720
             ]
             connect From71 OUT2 as Connection759
             connect From70 OUT1 as Connection760
@@ -2470,11 +2481,11 @@ if(in == 10)
             ]
             connect Junction35 Goto12 as Connection772
             [
-                breakpoints = 7128, 7560
+                breakpoints = 7320, 7568
             ]
             connect sendBatt.in Junction35 as Connection773
             [
-                breakpoints = 7032, 7464; 7056, 7560
+                breakpoints = 7224, 7472; 7248, 7568
             ]
             connect From76 "Advanced C function2.SItargetCurrent" as Connection775
             [
@@ -2483,7 +2494,7 @@ if(in == 10)
             connect SItargetCurrent Goto58 as Connection776
             connect "Advanced C function2.AV" "AVAILABLE VOLTAGE.in" as Connection777
             [
-                breakpoints = 7128, 8216; 7176, 8784
+                breakpoints = 7144, 8216; 7144, 8792; 7176, 8792
             ]
             connect From22 "Advanced C function2.receiveStatus" as Connection778
             [
@@ -2495,7 +2506,7 @@ if(in == 10)
             ]
             connect "Advanced C function2.kwh" KWH.in as Connection780
             [
-                breakpoints = 7120, 8216; 7120, 8856; 7168, 8856
+                breakpoints = 7128, 8216; 7128, 8864; 7168, 8864
             ]
             connect From77 packSize as Connection781
             connect complete Goto59 as Connection782
@@ -2524,6 +2535,10 @@ if(in == 10)
             connect From81 presentVoltage as Connection796
             connect From82 presentCurrent as Connection797
             connect SIaskingAmps.out Goto60 as Connection798
+            connect "Advanced C function2.stateText" stateText.in as Connection799
+            [
+                breakpoints = 7112, 8224; 7112, 8952
+            ]
 
             SIaskingAmps = "100"
             SIavailCurrent = "120"

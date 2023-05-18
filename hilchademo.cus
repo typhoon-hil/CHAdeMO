@@ -77,7 +77,7 @@ widgetValue = None
 widgetValue = hil.model_read('SIbChademoRequest')
 ]]></on_timer_code>
                 <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
-                <inputValue><![CDATA[0]]></inputValue>
+                <inputValue><![CDATA[1.0]]></inputValue>
                 <min>0.0</min>
                 <max>1.0</max>
                 <step>1.0</step>
@@ -186,7 +186,7 @@ displayValue = 0.0
                 <scaling_factor>1.0</scaling_factor>
                 <widget_settings>
                     <x>16</x>
-                    <y>224</y>
+                    <y>184</y>
                     <width>88</width>
                     <height>56</height>
                     <appearance><![CDATA[Flat]]></appearance>
@@ -884,7 +884,7 @@ widgetValue = None
 widgetValue = hil.model_read('Charging cable')
 ]]></on_timer_code>
                 <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
-                <inputValue><![CDATA[0]]></inputValue>
+                <inputValue><![CDATA[1.0]]></inputValue>
                 <min>0.0</min>
                 <max>1.0</max>
                 <step>1.0</step>
@@ -991,7 +991,7 @@ widgetValue = None
 widgetValue = hil.model_read('SId1')
 ]]></on_timer_code>
                 <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
-                <inputValue><![CDATA[0]]></inputValue>
+                <inputValue><![CDATA[1.0]]></inputValue>
                 <min>0.0</min>
                 <max>1.0</max>
                 <step>1.0</step>
@@ -1431,7 +1431,7 @@ widgetValue = None
 widgetValue = hil.model_read('SIreceiveParams')
 ]]></on_timer_code>
                 <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
-                <inputValue><![CDATA[0]]></inputValue>
+                <inputValue><![CDATA[1]]></inputValue>
                 <inputValueType>int</inputValueType>
                 <unit><![CDATA[]]></unit>
                 <widget_settings>
@@ -1706,8 +1706,8 @@ displayValue = 0.0
                 <updateRate>500</updateRate>
                 <scaling_factor>1.0</scaling_factor>
                 <widget_settings>
-                    <x>144</x>
-                    <y>224</y>
+                    <x>152</x>
+                    <y>184</y>
                     <width>80</width>
                     <height>56</height>
                     <appearance><![CDATA[Flat]]></appearance>
@@ -1722,6 +1722,83 @@ displayValue = 0.0
                     <orange_range>(0, 0, 0, 0)</orange_range>
                     <red_range>(0, 0, 0, 0)</red_range>
                 </advance_widget_settings>
+            </component_data>
+        <component_data>
+                <id>61baa1d1f55311eda8bfd43d7ef890c6</id>
+                <name><![CDATA[STATE]]></name>
+                <type>TextDisplay</type>
+                <description><![CDATA[]]></description>
+                <code><![CDATA[
+# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+state = hil.read_analog_signal(name='Subsystem.chademoState')
+stateText = 'LIMBO';
+
+if state == 0:
+    stateText = 'STARTUP';
+    pass
+elif state == 1:
+    stateText = 'SEND_INITIAL_PARAMS';
+    pass
+elif state == 2:
+    stateText = 'WAIT_FOR_EVSE_PARAMS';
+    pass
+elif state == 3:
+    stateText = 'SET_CHARGE_BEGIN';
+    pass
+elif state == 4:
+    stateText = 'WAIT_FOR_BEGIN_CONFIRMATION';
+    pass
+elif state == 5:
+    stateText = 'CLOSE_CONTACTORS';
+    pass
+elif state == 6:
+    stateText = 'RUNNING';
+    pass
+elif state == 7:
+    stateText = 'CEASE_CURRENT';
+    pass
+elif state == 8:
+    stateText = 'WAIT_FOR_ZERO_CURRENT';
+    pass
+elif state == 9:
+    stateText = 'OPEN_CONTACTOR';
+    pass
+elif state == 10:
+    stateText = 'FAULTED';
+    pass
+elif state == 11:
+    stateText = 'STOPPED';
+    pass
+elif state == 12:
+    stateText = 'LIMBO';
+    pass
+
+textDisplayData = {
+    "text": stateText,
+    "text_color": 'black',
+}
+
+# mandatory variable used for storing value that will be displayed
+displayValue = textDisplayData
+]]></code>
+                <updateRate>500</updateRate>
+                <widget_settings>
+                    <x>8</x>
+                    <y>248</y>
+                    <width>400</width>
+                    <height>56</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
             </component_data>
         </components>
 </ui_settings>

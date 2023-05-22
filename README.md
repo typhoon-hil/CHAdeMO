@@ -23,3 +23,6 @@ If we are running in the real-time, model is executing on:
 HIL 404 - the electrical part on the processor Zynq Ultrascale SoC, signal processing on 2xARM Cortex A53 64bit, 1333MHz 16MB external RAM per core.
 HIL 604 - the electrical part on the processor Zynq-7 SoC, signal processing on ARM Cortex A9 32bit, 800MHz 256kB on-chip RAM 96MB external RAM.
 HIL 606 - električni deo na procesoru Zynq Ultrascale SoC, signal processing on 2xARM Cortex A53 64bit, 1500MHz 16MB external RAM per core. 
+
+How to use model?
+When we open HIL SCADA, first of all, we need to close contactors SW (Charging cable) and after that close the contactor d1 which will set IN1 and when IN1 goes HIGH we have been plugged into the chademo port. Now we are in the state WAIT_FOR_EVSE_PARAMS, and because we don’t have EVSE side, we need to manually “receive” parameters from EVSE (increase by one receiveParams). Before that, send EV parameters to EVSE side. Now we are in the state WAIT_FOR_BEGIN_CONFIRMATION, so that means that we need to close d2 contactor, which will set IN2, then that will close contactors, and then we get into state RUNNING which means that we are charging our EV! Now we can monitor the battery charge, but we have to play the EVSE side and we need to receive parameters and status of EVSE every ~1min and less, until it’s full charged.

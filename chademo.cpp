@@ -9,7 +9,7 @@ using namespace std;
 
 CHADEMO chademo;
 bool in1, in2;
-bool out1, out2, out3;
+bool out1, out2;
 float Voltage;
 float Current;
 float Power;
@@ -136,10 +136,7 @@ void CHADEMO::loop(unsigned long CurrentMillis)
       chademo.bChademoMode = 0;
       chademo.bStartedCharge = 0;
       chademo.chademoState = STOPPED;
-      //maybe it would be a good idea to try to see if EVSE is still transmitting to us and providing current
-      //as it is not a good idea to open the contactors under load. But, IN1 shouldn't trigger
-      //until the EVSE is ready. Also, the EVSE should have us locked so the only way the plug should come out under
-      //load is if the driver took off in the car. 
+
       out2 = 0;
       out1 = 0;
     }
@@ -147,7 +144,6 @@ void CHADEMO::loop(unsigned long CurrentMillis)
 
   if (chademo.bChademoMode)
   {
-
     if (!chademo.bDoMismatchChecks && chademo.chademoState == RUNNING)
     {
       if ((chademo.CurrentMillis - chademo.mismatchStart) >= chademo.mismatchDelay) chademo.bDoMismatchChecks = 1;
@@ -193,23 +189,18 @@ void CHADEMO::loop(unsigned long CurrentMillis)
       break; }
 
       case SEND_INITIAL_PARAMS:  
-        //we could do calculations to see how long the charge should take based on SOC and
-        //also set a more realistic starting amperage.
-        //One problem with that is that we don't yet know the EVSE parameters so we can't know
-        //the max allowable amperage just yet.
       {
       chademo.bChademoSendRequests = 1; //causes chademo frames to be sent out every 100ms
       setDelayedState(WAIT_FOR_EVSE_PARAMS, 50, CurrentMillis);
       break; }
 
       case WAIT_FOR_EVSE_PARAMS:
-        //for now do nothing while we wait. Might want to try to resend start up messages periodically if no reply
+        //for now do nothing while we wait
       break;
 
       case SET_CHARGE_BEGIN:
       { 
       out1 = 1; //signal that we're ready to charge
-      //chademo.carStatus.chargingEnabled = 1; //should this be enabled here?
       setDelayedState(WAIT_FOR_BEGIN_CONFIRMATION, 50, CurrentMillis);
       break; }
 
@@ -224,7 +215,6 @@ void CHADEMO::loop(unsigned long CurrentMillis)
       case CLOSE_CONTACTORS:
       {   
       out2 = 1;
-      //out3 = 1;
 
       setDelayedState(RUNNING, 50, CurrentMillis);
       chademo.carStatus.contactorOpen = 0;   //its closed now
@@ -234,9 +224,7 @@ void CHADEMO::loop(unsigned long CurrentMillis)
       break; }
 
       case RUNNING:  
-        //do processing here by taking our measured voltage, amperage, and SOC
-        //to see if we should be commanding something different to the EVSE. 
-        //Also monitor temperatures to make sure we're not incinerating the pack.
+        
       break;
 
       case CEASE_CURRENT:
@@ -256,7 +244,6 @@ void CHADEMO::loop(unsigned long CurrentMillis)
       case OPEN_CONTACTOR: 
       {
       out2 = 0;
-      //out3 = 0;
 
       chademo.carStatus.contactorOpen = 1;
       chademo.carStatus.chargingEnabled = 0;
@@ -275,7 +262,6 @@ void CHADEMO::loop(unsigned long CurrentMillis)
       {
           out1 = 0;
           out2 = 0;
-          //out3 = 0;
 
           chademo.bChademoSendRequests = 0; //don't need to keep sending anymore.
           chademo.bListenEVSEStatus = 0;    //don't want to pay attention to EVSE status when we're stopped
@@ -292,9 +278,9 @@ void CHADEMO::doProcessing()
 
   if (chademo.chademoState == RUNNING && ((chademo.CurrentMillis - chademo.lastCommTime) >= chademo.lastCommTime))
   {
-    //this is BAD news. We can't do the normal cease current procedure because the EVSE seems to be unresponsive.
-    //yes, this isn't ideal - this will open the contactor and send the shutdown signal. It's better than letting the EVSE
-    //potentially run out of control.
+    //this is BAD news. We can't do the normal cease current procedure because the EVSE seems to be 
+    //unresponsive. yes, this isn't ideal - this will open the contactor and send the shutdown signal. 
+    //it's better than letting the EVSE potentially run out of control.
 
       errorDoProcessing = 1;  //flag to see what is the reason of stopping
 
@@ -316,8 +302,9 @@ void CHADEMO::doProcessing()
     }
     else chademo.vOverFault = 0;
 
-    //Constant Current/Constant Voltage Taper checks. If minimum current is set to zero, we terminate once target voltage is reached.
-    //If not zero, we will adjust current up or down as needed to maintain voltage until current decreases to the minimum entered
+    //Constant Current/Constant Voltage Taper checks. If minimum current is set to zero, we terminate once
+    //target voltage is reached. If not zero, we will adjust current up or down as needed to maintain 
+    //voltage until current decreases to the minimum entered
 
     if (Count == 20)
     {
@@ -374,7 +361,7 @@ void CHADEMO::updateTargetAV()
 void CHADEMO::handleCANFrame(unsigned long CurrentMillis, unsigned int receiveID)
 {
     unsigned char tempCurrVal;
-    unsigned char tempAvailCurr; //uint8_t? changed from uint16_t
+    unsigned char tempAvailCurr; 
 
     if (receiveID == EVSE_PARAMS_ID)
     {
@@ -386,9 +373,6 @@ void CHADEMO::handleCANFrame(unsigned long CurrentMillis, unsigned int receiveID
         }
     }
 
-    // Workaround for dunedin charger. If we ask for exactly what it
-    // Says is available then it packs a sad.
-    // So we'll stay on amp less then it says it has. - TAM
     tempAvailCurr = evse_params.availCurrent > 0 ? evse_params.availCurrent - 1 : 0;
 
     //if charger cannot provide our requested voltage then:
@@ -561,7 +545,7 @@ void CHADEMO::sendCANStatus()
     int offsetError = chademo.askingAmps - evse_status.presentCurrent;
     if ((offsetError <= 1) || (evse_status.presentCurrent == 0)) chademo.askingAmps++;
   }
-  //not a typo. We're allowed to change requested amps by +/- 20A per second. We send the above frame
+  //We're allowed to change requested amps by +/- 20A per second. We send the above frame
   //every 100ms so a single increment means we can ramp up 10A per second. 
   //But, we want to ramp down quickly if there is a problem
   //so do two which gives us -20A per second.

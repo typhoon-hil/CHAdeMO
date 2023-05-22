@@ -8,7 +8,7 @@
 #define CAPACITY 180
 
 extern bool in1, in2;
-extern bool out1, out2, out3;
+extern bool out1, out2;
 
 typedef struct
 {

@@ -180,8 +180,8 @@ chademo.evse_status.status = 0;
 chademo.evse_status.remainingChargeSeconds = 18;
 chademo.evse_status.remainingChargeMinutes = 3;
 
-maxChargeVoltage = 0;
-packSizeKWH = 100;
+maxChargeVoltage = MaxChargeVoltage;
+packSizeKWH = PackSizeKWH;
 
 howLongCharge = 0;
 howLongWeThink = 0;
@@ -193,10 +193,10 @@ faults = 0;
 status = 0;
 kiloWattHours = 0;
 
-settings.packSizeKWH = 100; 
+settings.packSizeKWH = PackSizeKWH; 
 settings.ampHours = 0.0;
 settings.kiloWattHours = 0.0; 
-settings.maxChargeVoltage = 485;  
+settings.maxChargeVoltage = MaxChargeVoltage;  //485
 settings.minChargeAmperage = 20;
 settings.capacity = 180;
 
@@ -222,10 +222,10 @@ out2 = 0;
 OUT1 = out1;
 OUT2 = out2;
 /*End code section*/"
-                input_terminals = "inherit currentMillis;inherit receiveParams;inherit receiveStatus;inherit weldCheck;inherit availVoltage;inherit availCurrent;inherit thresholdVoltage;inherit bChademo10Protocol;inherit presentVoltage;inherit presentCurrent;inherit evseStatus;inherit remainingChargeSeconds;inherit currentSeconds;inherit bChademoRequest;inherit SIvoltage;inherit SIcurrent;inherit remainingChargeMinutes;inherit IN1;inherit IN2;inherit batterySOC;inherit SItargetVoltage;inherit SIaskingAmps;inherit SItargetCurrent;inherit complete;"
-                input_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit"
-                input_terminals_feedthrough = "True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;False"
-                input_terminals_show_labels = "False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False"
+                input_terminals = "inherit currentMillis;inherit receiveParams;inherit receiveStatus;inherit weldCheck;inherit availVoltage;inherit availCurrent;inherit thresholdVoltage;inherit bChademo10Protocol;inherit presentVoltage;inherit presentCurrent;inherit evseStatus;inherit remainingChargeSeconds;inherit currentSeconds;inherit bChademoRequest;inherit SIvoltage;inherit SIcurrent;inherit remainingChargeMinutes;inherit IN1;inherit IN2;inherit batterySOC;inherit SItargetVoltage;inherit SIaskingAmps;inherit SItargetCurrent;inherit complete;inherit MaxChargeVoltage;inherit PackSizeKWH;"
+                input_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit"
+                input_terminals_feedthrough = "True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;False;True;True"
+                input_terminals_show_labels = "False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False"
                 output_fnc = "/*Begin code section*/
 chademo.bChademoRequest = bChademoRequest;
 CurrentSeconds = currentSeconds;
@@ -242,11 +242,7 @@ chademo.updateTargetAV();
 
 chademoState = chademo.chademoState;
 
-if ((IN1 != 0) | (IN2 != 0))
-{
-    IN1 = 1;
-    IN2 = 1;
-}
+
 in1 = IN1;
 in2 = IN2;
 
@@ -368,7 +364,7 @@ if (currentMillis - 100 == receiveMillis)  //I\'m checking every 100ms if there 
                 output_terminals_show_labels = "False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False"
             }
             [
-                position = 7040, 8024
+                position = 7040, 8040
                 hide_name = True
                 size = 136, 496
             ]
@@ -653,6 +649,22 @@ if(in == 10)
             }
             [
                 position = 7440, 8688
+            ]
+
+            component "core/Constant" MaxChargeVoltage {
+                signal_type = "uint"
+                value = "MaxChargeVoltage"
+            }
+            [
+                position = 5928, 8536
+            ]
+
+            component "core/Constant" PackSizeKWH {
+                signal_type = "uint"
+                value = "PackSizeKWH"
+            }
+            [
+                position = 5928, 8600
             ]
 
             port SIreceiveParams {
@@ -1344,7 +1356,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 7600, 8048
+                position = 7600, 8040
                 hide_name = True
                 size = 60, 20
             ]
@@ -2059,6 +2071,54 @@ if(in == 10)
                 size = 95, 20
             ]
 
+            tag Goto61 {
+                value = "MaxChargeVoltage"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6048, 8536
+                hide_name = True
+                size = 95, 20
+            ]
+
+            tag Goto62 {
+                value = "PackSizeKWH"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6048, 8600
+                hide_name = True
+                size = 95, 20
+            ]
+
+            tag From83 {
+                value = "MaxChargeVoltage"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6712, 8688
+                hide_name = True
+                size = 98, 20
+            ]
+
+            tag From84 {
+                value = "PackSizeKWH"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6712, 8720
+                hide_name = True
+                size = 102, 20
+            ]
+
             junction Junction14 sp
             [
                 position = 8240, 8640
@@ -2227,7 +2287,7 @@ if(in == 10)
             ]
             connect From20 "Advanced C function2.currentSeconds" as Connection659
             [
-                breakpoints = 6832, 8136; 6832, 8072
+                breakpoints = 6448, 8136; 6808, 8136; 6808, 8072; 6808, 8072; 6808, 8032
             ]
             connect From32 "Advanced C function2.bChademoRequest" as Connection660
             [
@@ -2276,7 +2336,7 @@ if(in == 10)
             connect targetVoltage.in Junction25 as Connection693
             connect "Advanced C function2.askingAmps" Junction26 as Connection694
             [
-                breakpoints = 7128, 8016; 7472, 8016
+                breakpoints = 7128, 8032; 7472, 8032
             ]
             connect Junction26 Goto21 as Connection695
             connect askingAmps.in Junction26 as Connection696
@@ -2363,7 +2423,7 @@ if(in == 10)
             connect complete Goto59 as Connection782
             connect From78 "Advanced C function2.complete" as Connection783
             [
-                breakpoints = 6936, 8624; 6936, 8208; 6960, 8208
+                breakpoints = 6928, 8624; 6928, 8208; 6960, 8208
             ]
             connect weldCheck.out Goto35 as Connection784
             connect SIavailVoltage.out Goto36 as Connection785
@@ -2433,7 +2493,7 @@ if(in == 10)
             connect "Advanced C function2.faults" Junction39 as Connection839
             connect Junction39 Goto22 as Connection840
             [
-                breakpoints = 7472, 8040; 7472, 8048
+                breakpoints = 7472, 8040; 7472, 8040; 7552, 8040
             ]
             connect faultss.in Junction39 as Connection841
             [
@@ -2473,10 +2533,6 @@ if(in == 10)
             [
                 breakpoints = 7320, 8168; 7376, 8456
             ]
-            connect "Advanced C function2.OUT2" Goto54 as Connection852
-            [
-                breakpoints = 7304, 8144; 7384, 8496
-            ]
             connect "Advanced C function2.AV" AV.in as Connection853
             [
                 breakpoints = 7288, 8176; 7352, 8552
@@ -2489,26 +2545,44 @@ if(in == 10)
             [
                 breakpoints = 7256, 8208; 7376, 8688
             ]
+            connect "Advanced C function2.OUT2" Goto54 as Connection858
+            [
+                breakpoints = 7296, 8160; 7304, 8160; 7384, 8496
+            ]
+            connect From83 "Advanced C function2.MaxChargeVoltage" as Connection859
+            [
+                breakpoints = 6936, 8656; 6936, 8224
+            ]
+            connect From84 "Advanced C function2.PackSizeKWH" as Connection860
+            [
+                breakpoints = 6944, 8712; 6944, 8240
+            ]
+            connect PackSizeKWH.out Goto62 as Connection861
+            connect MaxChargeVoltage.out Goto61 as Connection862
 
-            SIaskingAmps = "100"
+            MaxChargeVoltage = "485"
+            PackSizeKWH = "100"
+            SIaskingAmps = "110"
             SIavailCurrent = "120"
-            SIavailVoltage = "480"
+            SIavailVoltage = "490"
             SIbChademo10Protocol = "1"
-            SIpresentCurrent = "120"
-            SIpresentVoltage = "435"
+            SIevseStatus = "1"
+            SIpresentCurrent = "110"
+            SIpresentVoltage = "480"
             SIremainingChargeMinutes = "3"
             SIremainingChargeSeconds = "180"
-            SIthresholdVoltage = "485"
+            SIthresholdVoltage = "500"
             SIweldCheck = "1"
 
             mask {
-                description = "<html><head><meta name=\"qrichtext\" content=\"1\"></meta><style type=\"text/css\">p, li { white-space: pre-wrap; }</style></head><body style=\"\"><p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br></br></p></body></html>"
+                description = "<html><head><meta name=\"qrichtext\" content=\"1\"></meta><style type=\"text/css\">p, li { white-space: pre-wrap; }</style></head><body style=\"\"><p style=\"margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">This component contains logic of charging process and processing of messages on the electrical vehicle\'s (EV) side.</p></body></html>"
 
                 SIweldCheck {
                     label = "SIweldCheck"
                     widget = edit
                     type = int
                     default_value = "0"
+                    group = "EVSE parameters:1"
                 }
 
                 SIavailVoltage {
@@ -2516,6 +2590,7 @@ if(in == 10)
                     widget = edit
                     type = real
                     default_value = "0"
+                    group = "EVSE parameters:1"
                 }
 
                 SIavailCurrent {
@@ -2523,6 +2598,7 @@ if(in == 10)
                     widget = edit
                     type = real
                     default_value = "0"
+                    group = "EVSE parameters:1"
                 }
 
                 SIthresholdVoltage {
@@ -2530,6 +2606,7 @@ if(in == 10)
                     widget = edit
                     type = int
                     default_value = "0"
+                    group = "EVSE parameters:1"
                 }
 
                 SIbChademo10Protocol {
@@ -2537,6 +2614,7 @@ if(in == 10)
                     widget = edit
                     type = int
                     default_value = "0"
+                    group = "EVSE parameters:1"
                 }
 
                 SIpresentVoltage {
@@ -2544,6 +2622,7 @@ if(in == 10)
                     widget = edit
                     type = real
                     default_value = "0"
+                    group = "EVSE parameters:1"
                 }
 
                 SIpresentCurrent {
@@ -2551,6 +2630,7 @@ if(in == 10)
                     widget = edit
                     type = real
                     default_value = "0"
+                    group = "EVSE parameters:1"
                 }
 
                 SIevseStatus {
@@ -2558,6 +2638,7 @@ if(in == 10)
                     widget = edit
                     type = int
                     default_value = "0"
+                    group = "EVSE parameters:1"
                 }
 
                 SIremainingChargeSeconds {
@@ -2565,6 +2646,8 @@ if(in == 10)
                     widget = edit
                     type = int
                     default_value = "0"
+                    min_value = 0
+                    group = "EVSE parameters:1"
                 }
 
                 SIremainingChargeMinutes {
@@ -2572,6 +2655,8 @@ if(in == 10)
                     widget = edit
                     type = int
                     default_value = "0"
+                    min_value = 0
+                    group = "EVSE parameters:1"
                 }
 
                 SIaskingAmps {
@@ -2579,6 +2664,23 @@ if(in == 10)
                     widget = edit
                     type = int
                     default_value = "0"
+                    group = "EVSE parameters:1"
+                }
+
+                MaxChargeVoltage {
+                    label = "MaxChargeVoltage"
+                    widget = edit
+                    type = uint
+                    default_value = "0"
+                    group = "EV parameters:2"
+                }
+
+                PackSizeKWH {
+                    label = "PackSizeKWH"
+                    widget = edit
+                    type = uint
+                    default_value = "0"
+                    group = "EV parameters:2"
                 }
 
                 CODE open
@@ -2596,6 +2698,7 @@ if(in == 10)
         }
         [
             position = 8960, 8168
+            hide_name = True
             size = 416, 584
         ]
 

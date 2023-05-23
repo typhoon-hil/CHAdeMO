@@ -1734,7 +1734,7 @@ displayValue = 0.0
                 </advance_widget_settings>
             </component_data>
         <component_data>
-                <id>f7125cadf56011edad07d43d7ef890c6</id>
+                <id>a56ef628f96b11edbb0ad43d7ef890c6</id>
                 <name><![CDATA[AV]]></name>
                 <type>DigitalDisplay</type>
                 <description><![CDATA[]]></description>
@@ -1751,7 +1751,7 @@ displayValue = 0.0
 displayValue = 0.0
 
 ]]></code>
-                <signal_name><![CDATA[Subsystem.AVAILABLE VOLTAGE]]></signal_name>
+                <signal_name><![CDATA[Subsystem.AV]]></signal_name>
                 <unit><![CDATA[]]></unit>
                 <automatic_unit>True</automatic_unit>
                 <decimals><![CDATA[2]]></decimals>

@@ -2562,12 +2562,12 @@ if(in == 10)
 
             MaxChargeVoltage = "485"
             PackSizeKWH = "100"
-            SIaskingAmps = "110"
+            SIaskingAmps = "120"
             SIavailCurrent = "120"
             SIavailVoltage = "490"
             SIbChademo10Protocol = "1"
             SIevseStatus = "1"
-            SIpresentCurrent = "110"
+            SIpresentCurrent = "120"
             SIpresentVoltage = "480"
             SIremainingChargeMinutes = "3"
             SIremainingChargeSeconds = "180"
@@ -2578,7 +2578,7 @@ if(in == 10)
                 description = "<html><head><meta name=\"qrichtext\" content=\"1\"></meta><style type=\"text/css\">p, li { white-space: pre-wrap; }</style></head><body style=\"\"><p style=\"margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">This component contains logic of charging process and processing of messages on the electrical vehicle\'s (EV) side.</p></body></html>"
 
                 SIweldCheck {
-                    label = "SIweldCheck"
+                    label = "Welding detection"
                     widget = edit
                     type = int
                     default_value = "0"
@@ -2586,7 +2586,7 @@ if(in == 10)
                 }
 
                 SIavailVoltage {
-                    label = "SIavailVoltage"
+                    label = "Available voltage"
                     widget = edit
                     type = real
                     default_value = "0"
@@ -2594,7 +2594,7 @@ if(in == 10)
                 }
 
                 SIavailCurrent {
-                    label = "SIavailCurrent"
+                    label = "Available current"
                     widget = edit
                     type = real
                     default_value = "0"
@@ -2602,7 +2602,7 @@ if(in == 10)
                 }
 
                 SIthresholdVoltage {
-                    label = "SIthresholdVoltage"
+                    label = "Threshold voltage"
                     widget = edit
                     type = int
                     default_value = "0"
@@ -2610,7 +2610,7 @@ if(in == 10)
                 }
 
                 SIbChademo10Protocol {
-                    label = "SIbChademo10Protocol"
+                    label = "Chademo protocol"
                     widget = edit
                     type = int
                     default_value = "0"
@@ -2618,7 +2618,7 @@ if(in == 10)
                 }
 
                 SIpresentVoltage {
-                    label = "SIpresentVoltage"
+                    label = "Present voltage"
                     widget = edit
                     type = real
                     default_value = "0"
@@ -2626,7 +2626,7 @@ if(in == 10)
                 }
 
                 SIpresentCurrent {
-                    label = "SIpresentCurrent"
+                    label = "Present current"
                     widget = edit
                     type = real
                     default_value = "0"
@@ -2634,7 +2634,7 @@ if(in == 10)
                 }
 
                 SIevseStatus {
-                    label = "SIevseStatus"
+                    label = "Station status"
                     widget = edit
                     type = int
                     default_value = "0"
@@ -2642,7 +2642,7 @@ if(in == 10)
                 }
 
                 SIremainingChargeSeconds {
-                    label = "SIremainingChargeSeconds"
+                    label = "Remaining charging time (s)"
                     widget = edit
                     type = int
                     default_value = "0"
@@ -2651,7 +2651,7 @@ if(in == 10)
                 }
 
                 SIremainingChargeMinutes {
-                    label = "SIremainingChargeMinutes"
+                    label = "Remaining charging time (min)"
                     widget = edit
                     type = int
                     default_value = "0"
@@ -2660,7 +2660,7 @@ if(in == 10)
                 }
 
                 SIaskingAmps {
-                    label = "SIaskingAmps"
+                    label = "Asking amps"
                     widget = edit
                     type = int
                     default_value = "0"
@@ -2668,7 +2668,7 @@ if(in == 10)
                 }
 
                 MaxChargeVoltage {
-                    label = "MaxChargeVoltage"
+                    label = "Maximum charge voltage"
                     widget = edit
                     type = uint
                     default_value = "0"
@@ -2676,7 +2676,7 @@ if(in == 10)
                 }
 
                 PackSizeKWH {
-                    label = "PackSizeKWH"
+                    label = "Pack size"
                     widget = edit
                     type = uint
                     default_value = "0"
@@ -3019,18 +3019,21 @@ if(in == 10)
             input_terminals = "real max_current;real max_voltage;int charge_complete;int ev_error;"
             input_terminals_dimensions = "1;1;1;1"
             input_terminals_feedthrough = "True;True;True;True"
-            input_terminals_show_labels = "True;True;True;True"
+            input_terminals_show_labels = "False;False;False;False"
             output_fnc = "/*Begin code section*/
-// The EVReady value will be True when the EVSE send the ChargeParameterDiscoveryRes message.
-// With this message, the EVSE sends its maximum voltage, current and power ratings.
-if((max_current > 0) && (max_voltage > 0)) {
+// The EVReady value will be True when the EVSE send the receiveParams message.
+// With this message, the EVSE sends its maximum voltage, current.
+if((max_current > 0) && (max_voltage > 0)) 
+{
     EVReady = 1;
-} else {
+} else 
+{
     EVReady = 0;
 }
 
 // EVReady is set to False if charging is completed or there is an Error present
-if ((charge_complete == 1) || (ev_error > 0)) {
+if ((charge_complete == 1) || (ev_error > 0)) 
+{
     EVReady = 0;
 }
 /*End code section*/"
@@ -3047,7 +3050,7 @@ if ((charge_complete == 1) || (ev_error > 0)) {
         component "core/Digital Probe" EVReady {
         }
         [
-            position = 9992, 7864
+            position = 9984, 7864
         ]
 
         component "core/C function" "Charge complete logic" {
@@ -3080,18 +3083,18 @@ if (batterySOC >= packSizeKWH) {
             output_terminals = "int charge_complete;int bulk_charge_complete;uint COMPLETE;"
             output_terminals_dimensions = "1;1;1"
             output_terminals_feedthrough = "True;True;True"
-            output_terminals_show_labels = "True;True;True"
+            output_terminals_show_labels = "False;False;False"
             parameters = "int bulk_charge_value;int complete_charge_value;"
         }
         [
-            position = 9824, 8160
-            size = 128, 96
+            position = 9824, 8168
+            size = 120, 128
         ]
 
         component "core/Digital Probe" charge_complete {
         }
         [
-            position = 10008, 8056
+            position = 9984, 8056
         ]
 
         component "core/C function" "EV disconnection logic" {
@@ -3102,7 +3105,7 @@ out_state = 0;
             input_terminals = "real battery_voltage;real present_voltage;int ev_ready;"
             input_terminals_dimensions = "1;1;1"
             input_terminals_feedthrough = "True;True;True"
-            input_terminals_show_labels = "True;True;True"
+            input_terminals_show_labels = "False;False;False"
             output_fnc = "/*Begin code section*/
 out = out_state;
 /*End code section*/"
@@ -3132,14 +3135,14 @@ if (ev_ready)
 /*End code section*/"
         }
         [
-            position = 9832, 8384
-            size = 136, 120
+            position = 9824, 8384
+            size = 128, 128
         ]
 
         component "core/Digital Probe" disconection_status {
         }
         [
-            position = 10024, 8320
+            position = 9984, 8320
         ]
 
         component "core/Ground" gnd7 {
@@ -3171,18 +3174,6 @@ if (ev_ready)
             position = 10608, 8016
         ]
 
-        component "core/Probe" IN1 {
-        }
-        [
-            position = 12000, 8296
-        ]
-
-        component "core/Probe" IN2 {
-        }
-        [
-            position = 11768, 8248
-        ]
-
         component "core/Logical operator" "Logical operator1" {
         }
         [
@@ -3206,12 +3197,6 @@ if (ev_ready)
         }
         [
             position = 11664, 7768
-        ]
-
-        component "core/Probe" out2 {
-        }
-        [
-            position = 9296, 8024
         ]
 
         component "core/SCADA Input" SItargetCurrent {
@@ -3264,7 +3249,7 @@ if (ev_ready)
             direction = in
         }
         [
-            position = 12000, 8352
+            position = 11912, 8352
             hide_name = True
             size = 60, 20
         ]
@@ -3323,7 +3308,7 @@ if (ev_ready)
             direction = in
         }
         [
-            position = 10024, 7928
+            position = 9984, 7928
             hide_name = True
             size = 77, 20
         ]
@@ -3347,7 +3332,7 @@ if (ev_ready)
             direction = in
         }
         [
-            position = 10024, 8160
+            position = 10024, 8168
             hide_name = True
             size = 153, 20
         ]
@@ -3371,7 +3356,7 @@ if (ev_ready)
             direction = out
         }
         [
-            position = 9640, 7904
+            position = 9640, 7912
             hide_name = True
             size = 151, 20
         ]
@@ -3383,7 +3368,7 @@ if (ev_ready)
             direction = out
         }
         [
-            position = 9640, 7952
+            position = 9640, 7944
             hide_name = True
             size = 151, 20
         ]
@@ -3407,7 +3392,7 @@ if (ev_ready)
             direction = out
         }
         [
-            position = 9640, 8128
+            position = 9640, 8120
             hide_name = True
             size = 151, 20
         ]
@@ -3419,7 +3404,7 @@ if (ev_ready)
             direction = out
         }
         [
-            position = 9640, 8336
+            position = 9640, 8344
             hide_name = True
             size = 151, 20
         ]
@@ -3455,7 +3440,7 @@ if (ev_ready)
             direction = out
         }
         [
-            position = 9640, 8432
+            position = 9640, 8424
             hide_name = True
             size = 151, 20
         ]
@@ -3662,7 +3647,7 @@ if (ev_ready)
             direction = out
         }
         [
-            position = 9640, 8192
+            position = 9640, 8216
             hide_name = True
             size = 151, 20
         ]
@@ -3686,7 +3671,7 @@ if (ev_ready)
             direction = in
         }
         [
-            position = 10024, 8192
+            position = 10024, 8208
             hide_name = True
             size = 150, 20
         ]
@@ -3756,19 +3741,9 @@ if (ev_ready)
             position = 11384, 8816
         ]
 
-        junction Junction109 sp
-        [
-            position = 11640, 8280
-        ]
-
         junction Junction110 pe
         [
             position = 11448, 8808
-        ]
-
-        junction Junction111 sp
-        [
-            position = 11880, 8352
         ]
 
         junction Junction114 sp
@@ -3784,11 +3759,6 @@ if (ev_ready)
         junction Junction118 sp
         [
             position = 11528, 7840
-        ]
-
-        junction Junction119 sp
-        [
-            position = 9184, 8056
         ]
 
         junction Junction120 sp
@@ -3838,7 +3808,7 @@ if (ev_ready)
 
         comment Comment8 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Charge complete logic</p></body></html> ENDCOMMENT 
         [
-            position = 9736, 8064
+            position = 9736, 8056
         ]
 
         comment Comment12 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Charge contactor logic</p></body></html> ENDCOMMENT 
@@ -4005,15 +3975,6 @@ if (ev_ready)
         [
             breakpoints = 10656, 8016; 10680, 8096
         ]
-        connect g.out Junction109 as Connection990
-        [
-            breakpoints = 11624, 8272; 11624, 8280
-        ]
-        connect Junction109 Goto38 as Connection991
-        connect IN2.in Junction109 as Connection992
-        [
-            breakpoints = 11736, 8248; 11640, 8248
-        ]
         connect f.p_node R5.n_node as Connection1000
         [
             breakpoints = 11792, 8208
@@ -4026,12 +3987,6 @@ if (ev_ready)
         connect f.n_node Junction110 as Connection1003
         [
             breakpoints = 11728, 8816; 11728, 8816; 11448, 8816
-        ]
-        connect f.out Junction111 as Connection1005
-        connect Junction111 Goto37 as Connection1006
-        connect IN1.in Junction111 as Connection1007
-        [
-            breakpoints = 11880, 8296
         ]
         connect From70 k.ctrl_in as Connection1013
         connect Subsystem.OUT1 Goto49 as Connection1018
@@ -4077,24 +4032,10 @@ if (ev_ready)
         connect From66 Subsystem.in1 as Connection1081
         connect From73 Subsystem.current as Connection1082
         connect SIreceiveParams.out Subsystem.SIreceiveParams as Connection1086
-        connect Subsystem.OUT2 Junction119 as Connection1088
-        connect Junction119 Goto50 as Connection1089
-        connect out2.in Junction119 as Connection1090
-        [
-            breakpoints = 9184, 8032
-        ]
         connect Subsystem.availVoltage Goto2 as Connection1091
         connect Subsystem.availCurrent Goto3 as Connection1092
         connect Subsystem.presentVoltage Goto45 as Connection1093
         connect Subsystem.presentCurrent Goto46 as Connection1094
-        connect "Charge complete logic.bulk_charge_complete" Goto10 as Connection1095
-        [
-            breakpoints = 9904, 8160; 9920, 8160; 9920, 8160
-        ]
-        connect "Charge complete logic.COMPLETE" Goto53 as Connection1096
-        [
-            breakpoints = 9928, 8192
-        ]
         connect SIbChademoRequest.out Subsystem.bChademoRequestt as Connection1097
         connect SIreceiveStatus.out Subsystem.SIreceiveStatus as Connection1098
         connect From72 Junction120 as Connection1099
@@ -4103,6 +4044,14 @@ if (ev_ready)
         [
             breakpoints = 8448, 8256; 8464, 8096; 8576, 8096
         ]
+        connect "Charge complete logic.bulk_charge_complete" Goto10 as Connection1102
+        connect "Charge complete logic.COMPLETE" Goto53 as Connection1103
+        connect Subsystem.OUT2 Goto50 as Connection1104
+        connect g.out Goto38 as Connection1105
+        [
+            breakpoints = 11624, 8248; 11632, 8280
+        ]
+        connect f.out Goto37 as Connection1106
     }
 
     default {

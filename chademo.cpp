@@ -19,7 +19,7 @@ int Count;
 unsigned short int errorDoProcessing;
 unsigned short int errorHandle;
 
-
+//part of the initialization
 CHADEMO::CHADEMO()
 {
   chademo.bStartedCharge = 0;
@@ -89,7 +89,7 @@ void CHADEMO::setBattOverTemp()
   carStatus.battOverTemp = 1;
 }
 
-//stuff that should be frequently run (as fast as possible)
+//stuff that should be frequently run (as fast as possible) 
 void CHADEMO::loop(unsigned long CurrentMillis)
 {
     static unsigned char frameRotate;
@@ -127,7 +127,7 @@ void CHADEMO::loop(unsigned long CurrentMillis)
       }
     }
   }
-  else
+  else  //IN1 is LOW, so we haven't been plugged into the chademo port
   {
     chademo.insertionTime = 0;
 
@@ -154,6 +154,7 @@ void CHADEMO::loop(unsigned long CurrentMillis)
       chademo.chademoState = chademo.stateHolder;
     }
 
+    //sending messages
     if (chademo.bChademoSendRequests && chademo.bChademoRequest)
     {
       chademo.bChademoRequest = 0;
@@ -162,18 +163,18 @@ void CHADEMO::loop(unsigned long CurrentMillis)
 
       switch (frameRotate)
       {
-        case 0:
+        case 0:  //sending EV status to EVSE
         {
         chademo.sendCANStatus();
         chademo.sendStatus = 1;
         break; }
 
-        case 1:
+        case 1:  //sending battery specifications from EV to EVSE
         {
         chademo.sendBatt = 1;
         break; }
 
-        case 2:
+        case 2:  //sending charging time from EV to EVSE
         {
         chademo.sendTime = 1;
         break; }
@@ -289,7 +290,7 @@ void CHADEMO::doProcessing()
 
   if (chademo.chademoState == RUNNING && chademo.bDoMismatchChecks)
   {
-    if (Voltage > settings.maxChargeVoltage && !carStatus.battOverVolt)
+    if (Voltage > settings.maxChargeVoltage && !carStatus.battOverVolt)  //battery voltage must be less than maxChargeVoltage!
     {
       chademo.vOverFault++;
       if (chademo.vOverFault > 9)
@@ -308,7 +309,7 @@ void CHADEMO::doProcessing()
 
     if (Count == 20)
     {
-      if (evse_status.presentVoltage > settings.targetChargeVoltage - 1) //All initializations complete and we're running.We've reached charging target
+      if (evse_status.presentVoltage > settings.targetChargeVoltage - 1) //All initializations complete and we're running. We've reached charging target
       {
         if (settings.minChargeAmperage == 0 || carStatus.targetCurrent < settings.minChargeAmperage) 
         {
@@ -332,6 +333,7 @@ void CHADEMO::doProcessing()
 void CHADEMO::checkChargingState()
 {
     unsigned long CurrentSecs = chademo.CurrentMillis / 1000;
+
     if (Current < -2.0 && Current > -20 && Voltage >= settings.targetChargeVoltage)
     {
         if (Current > -15 && (CurrentSecs - chademo.ChargeTimeRefSecs) > 30)
@@ -358,6 +360,7 @@ void CHADEMO::updateTargetAV()
     chademo.setTargetVoltage(settings.targetChargeVoltage);
 }
 
+//handling of received messages
 void CHADEMO::handleCANFrame(unsigned long CurrentMillis, unsigned int receiveID)
 {
     unsigned char tempCurrVal;
@@ -376,7 +379,7 @@ void CHADEMO::handleCANFrame(unsigned long CurrentMillis, unsigned int receiveID
     tempAvailCurr = evse_params.availCurrent > 0 ? evse_params.availCurrent - 1 : 0;
 
     //if charger cannot provide our requested voltage then:
-    if ((evse_params.availVoltage < carStatus.targetVoltage) && (chademo.chademoState <= RUNNING))
+    if ((evse_params.availVoltage < carStatus.targetVoltage) && (chademo.chademoState <= RUNNING))  //target Voltage must be less than available voltage
     {
       chademo.vCapCount++;
       if (chademo.vCapCount > 9)

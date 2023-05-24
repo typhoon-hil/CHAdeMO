@@ -12,17 +12,15 @@ extern bool out1, out2;
 
 typedef struct
 {
-  unsigned char valid; //a token to store EEPROM version and validity. If it matches expected value then EEPROM is not reset to defaults //0
-  float ampHours; //floats are 4 bytes //1
-  float kiloWattHours; //5
-  float packSizeKWH; //9
-  unsigned short int  maxChargeVoltage; //21
-  unsigned short int targetChargeVoltage; //23
+  float ampHours; 
+  float kiloWattHours; 
+  float packSizeKWH; 
+  unsigned short int  maxChargeVoltage; 
+  unsigned short int targetChargeVoltage; 
 
-  unsigned char maxChargeAmperage; //25
-  unsigned char minChargeAmperage; //26
-  unsigned char capacity; //27
-  unsigned char debuggingLevel; //29
+  unsigned char maxChargeAmperage; 
+  unsigned char minChargeAmperage; 
+  unsigned char capacity; 
 } EESettings;
 
 extern EESettings settings;

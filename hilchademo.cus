@@ -26,957 +26,11 @@ SETTINGS_DIR = get_settings_dir_path()
 ]]></initialization_code>
     <components>
         <component_data>
-                <id>a805c684d77d11ed8938d43d7ef890c6</id>
-                <name><![CDATA[SIbChademoRequest]]></name>
-                <type>SliderMacro</type>
-                <description><![CDATA[]]></description>
-                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-# NOTE: entered value is available through variable 'inputValue'
-
-hil.model_write('SIbChademoRequest', inputValue)]]></on_use_code>
-                <on_start_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
-# NOTE: Variables specified here will be available in other handlers.
-# HIL API is imported as 'hil'
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# Change widget value by setting this variable.
-# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
-# widget value won't be changed.
-widgetValue = None
-]]></on_start_code>
-                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
-# HIL API is imported as 'hil'
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# Change widget value by setting this variable.
-# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
-# widget value won't be changed.
-widgetValue = None
-]]></on_stop_code>
-                <on_timer_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed periodically each 1000ms.
-# HIL API is imported as 'hil'
-# NOTE: Only read functions are available from the HIL API
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# Change the widget value by setting this variable.
-# NOTE: If you do not specify a 'widgetValue' variable or assign 'None' to it, 
-# the widget value will not be changed.
-widgetValue = hil.model_read('SIbChademoRequest')
-]]></on_timer_code>
-                <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
-                <inputValue><![CDATA[0]]></inputValue>
-                <min>0.0</min>
-                <max>1.0</max>
-                <step>1.0</step>
-                <widget_settings>
-                    <x>32</x>
-                    <y>280</y>
-                    <width>112</width>
-                    <height>56</height>
-                    <appearance><![CDATA[Flat]]></appearance>
-                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
-                    <is_background><![CDATA[False]]></is_background>
-                    <label><![CDATA[]]></label>
-                    <use_label>False</use_label>
-                </widget_settings>
-            </component_data>
-        <component_data>
-                <id>c7794f38d77d11edb29dd43d7ef890c6</id>
-                <name><![CDATA[Receive status]]></name>
-                <type>TextBoxMacro</type>
-                <description><![CDATA[]]></description>
-                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-# NOTE: entered value is available through variable 'inputValue'
-
-hil.model_write('SIreceiveStatus', inputValue)]]></on_use_code>
-                <on_start_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
-# NOTE: Variables specified here will be available in other handlers.
-# HIL API is imported as 'hil'
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# Change widget value by setting this variable.
-# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
-# widget value won't be changed.
-widgetValue = None
-]]></on_start_code>
-                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
-# HIL API is imported as 'hil'
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# Change widget value by setting this variable.
-# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
-# widget value won't be changed.
-widgetValue = None
-]]></on_stop_code>
-                <on_timer_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed periodically each 1000ms.
-# HIL API is imported as 'hil'
-# NOTE: Only read functions are available from the HIL API
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# Change the widget value by setting this variable.
-# NOTE: If you do not specify a 'widgetValue' variable or assign 'None' to it, 
-# the widget value will not be changed.
-widgetValue = hil.model_read('SIreceiveStatus')
-]]></on_timer_code>
-                <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
-                <inputValue><![CDATA[0]]></inputValue>
-                <inputValueType>int</inputValueType>
-                <unit><![CDATA[]]></unit>
-                <widget_settings>
-                    <x>40</x>
-                    <y>440</y>
-                    <width>176</width>
-                    <height>48</height>
-                    <inputWidgetWidth>80</inputWidgetWidth>
-                    <appearance><![CDATA[Flat]]></appearance>
-                    <hierarchy_position>1</hierarchy_position>
-                    <label><![CDATA[]]></label>
-                    <use_label>False</use_label>
-                </widget_settings>
-            </component_data>
-        <component_data>
-                <id>65adcf30df7311ed83d1d43d7ef890c6</id>
-                <name><![CDATA[chademoState]]></name>
-                <type>DigitalDisplay</type>
-                <description><![CDATA[]]></description>
-                <data_type>Analog signal</data_type>
-                <code><![CDATA[# HIL API is imported as 'hil'
-# NOTE: Only read functions are available from the HIL API
-
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# mandatory variable used for storing value that will be displayed
-displayValue = 0.0
-
-]]></code>
-                <signal_name><![CDATA[Subsystem.chademoState]]></signal_name>
-                <unit><![CDATA[]]></unit>
-                <automatic_unit>True</automatic_unit>
-                <decimals><![CDATA[2]]></decimals>
-                <updateRate>500</updateRate>
-                <scaling_factor>1.0</scaling_factor>
-                <widget_settings>
-                    <x>40</x>
-                    <y>128</y>
-                    <width>88</width>
-                    <height>56</height>
-                    <appearance><![CDATA[Flat]]></appearance>
-                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
-                    <is_background><![CDATA[False]]></is_background>
-                    <label><![CDATA[]]></label>
-                    <use_label>False</use_label>
-                </widget_settings>
-                <advance_widget_settings>
-                    <color_range>False</color_range>
-                    <green_range>(0, 0, 0, 0)</green_range>
-                    <orange_range>(0, 0, 0, 0)</orange_range>
-                    <red_range>(0, 0, 0, 0)</red_range>
-                </advance_widget_settings>
-            </component_data>
-        <component_data>
-                <id>c0b98204df7311ed964dd43d7ef890c6</id>
-                <name><![CDATA[ERRORdoP]]></name>
-                <type>DigitalDisplay</type>
-                <description><![CDATA[]]></description>
-                <data_type>Analog signal</data_type>
-                <code><![CDATA[# HIL API is imported as 'hil'
-# NOTE: Only read functions are available from the HIL API
-
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# mandatory variable used for storing value that will be displayed
-displayValue = 0.0
-
-]]></code>
-                <signal_name><![CDATA[Subsystem.ERRORdoP]]></signal_name>
-                <unit><![CDATA[]]></unit>
-                <automatic_unit>True</automatic_unit>
-                <decimals><![CDATA[2]]></decimals>
-                <updateRate>500</updateRate>
-                <scaling_factor>1.0</scaling_factor>
-                <widget_settings>
-                    <x>64</x>
-                    <y>568</y>
-                    <width>72</width>
-                    <height>56</height>
-                    <appearance><![CDATA[Flat]]></appearance>
-                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
-                    <is_background><![CDATA[False]]></is_background>
-                    <label><![CDATA[]]></label>
-                    <use_label>False</use_label>
-                </widget_settings>
-                <advance_widget_settings>
-                    <color_range>False</color_range>
-                    <green_range>(0, 0, 0, 0)</green_range>
-                    <orange_range>(0, 0, 0, 0)</orange_range>
-                    <red_range>(0, 0, 0, 0)</red_range>
-                </advance_widget_settings>
-            </component_data>
-        <component_data>
-                <id>c538a28edf7311edac75d43d7ef890c6</id>
-                <name><![CDATA[ERRORhandle]]></name>
-                <type>DigitalDisplay</type>
-                <description><![CDATA[]]></description>
-                <data_type>Analog signal</data_type>
-                <code><![CDATA[# HIL API is imported as 'hil'
-# NOTE: Only read functions are available from the HIL API
-
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# mandatory variable used for storing value that will be displayed
-displayValue = 0.0
-
-]]></code>
-                <signal_name><![CDATA[Subsystem.ERRORhandle]]></signal_name>
-                <unit><![CDATA[]]></unit>
-                <automatic_unit>True</automatic_unit>
-                <decimals><![CDATA[2]]></decimals>
-                <updateRate>500</updateRate>
-                <scaling_factor>1.0</scaling_factor>
-                <widget_settings>
-                    <x>144</x>
-                    <y>568</y>
-                    <width>80</width>
-                    <height>56</height>
-                    <appearance><![CDATA[Flat]]></appearance>
-                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
-                    <is_background><![CDATA[False]]></is_background>
-                    <label><![CDATA[]]></label>
-                    <use_label>False</use_label>
-                </widget_settings>
-                <advance_widget_settings>
-                    <color_range>False</color_range>
-                    <green_range>(0, 0, 0, 0)</green_range>
-                    <orange_range>(0, 0, 0, 0)</orange_range>
-                    <red_range>(0, 0, 0, 0)</red_range>
-                </advance_widget_settings>
-            </component_data>
-        <component_data>
-                <id>cc2d7583e40411ed9b18d43d7ef890c6</id>
-                <name><![CDATA[sendBatt]]></name>
-                <type>DigitalDisplay</type>
-                <description><![CDATA[]]></description>
-                <data_type>Analog signal</data_type>
-                <code><![CDATA[# HIL API is imported as 'hil'
-# NOTE: Only read functions are available from the HIL API
-
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# mandatory variable used for storing value that will be displayed
-displayValue = 0.0
-
-]]></code>
-                <signal_name><![CDATA[Subsystem.sendBatt]]></signal_name>
-                <unit><![CDATA[]]></unit>
-                <automatic_unit>True</automatic_unit>
-                <decimals><![CDATA[2]]></decimals>
-                <updateRate>500</updateRate>
-                <scaling_factor>1.0</scaling_factor>
-                <widget_settings>
-                    <x>200</x>
-                    <y>280</y>
-                    <width>80</width>
-                    <height>56</height>
-                    <appearance><![CDATA[Flat]]></appearance>
-                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
-                    <is_background><![CDATA[False]]></is_background>
-                    <label><![CDATA[]]></label>
-                    <use_label>False</use_label>
-                </widget_settings>
-                <advance_widget_settings>
-                    <color_range>False</color_range>
-                    <green_range>(0, 0, 0, 0)</green_range>
-                    <orange_range>(0, 0, 0, 0)</orange_range>
-                    <red_range>(0, 0, 0, 0)</red_range>
-                </advance_widget_settings>
-            </component_data>
-        <component_data>
-                <id>d083fd4be40411edafd4d43d7ef890c6</id>
-                <name><![CDATA[sendStatus]]></name>
-                <type>DigitalDisplay</type>
-                <description><![CDATA[]]></description>
-                <data_type>Analog signal</data_type>
-                <code><![CDATA[# HIL API is imported as 'hil'
-# NOTE: Only read functions are available from the HIL API
-
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# mandatory variable used for storing value that will be displayed
-displayValue = 0.0
-
-]]></code>
-                <signal_name><![CDATA[Subsystem.sendStatus]]></signal_name>
-                <unit><![CDATA[]]></unit>
-                <automatic_unit>True</automatic_unit>
-                <decimals><![CDATA[2]]></decimals>
-                <updateRate>500</updateRate>
-                <scaling_factor>1.0</scaling_factor>
-                <widget_settings>
-                    <x>280</x>
-                    <y>280</y>
-                    <width>80</width>
-                    <height>56</height>
-                    <appearance><![CDATA[Flat]]></appearance>
-                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
-                    <is_background><![CDATA[False]]></is_background>
-                    <label><![CDATA[]]></label>
-                    <use_label>False</use_label>
-                </widget_settings>
-                <advance_widget_settings>
-                    <color_range>False</color_range>
-                    <green_range>(0, 0, 0, 0)</green_range>
-                    <orange_range>(0, 0, 0, 0)</orange_range>
-                    <red_range>(0, 0, 0, 0)</red_range>
-                </advance_widget_settings>
-            </component_data>
-        <component_data>
-                <id>d45e5336e40411edbc6cd43d7ef890c6</id>
-                <name><![CDATA[sendTime]]></name>
-                <type>DigitalDisplay</type>
-                <description><![CDATA[]]></description>
-                <data_type>Analog signal</data_type>
-                <code><![CDATA[# HIL API is imported as 'hil'
-# NOTE: Only read functions are available from the HIL API
-
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# mandatory variable used for storing value that will be displayed
-displayValue = 0.0
-
-]]></code>
-                <signal_name><![CDATA[Subsystem.sendTime]]></signal_name>
-                <unit><![CDATA[]]></unit>
-                <automatic_unit>True</automatic_unit>
-                <decimals><![CDATA[2]]></decimals>
-                <updateRate>500</updateRate>
-                <scaling_factor>1.0</scaling_factor>
-                <widget_settings>
-                    <x>360</x>
-                    <y>280</y>
-                    <width>80</width>
-                    <height>56</height>
-                    <appearance><![CDATA[Flat]]></appearance>
-                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
-                    <is_background><![CDATA[False]]></is_background>
-                    <label><![CDATA[]]></label>
-                    <use_label>False</use_label>
-                </widget_settings>
-                <advance_widget_settings>
-                    <color_range>False</color_range>
-                    <green_range>(0, 0, 0, 0)</green_range>
-                    <orange_range>(0, 0, 0, 0)</orange_range>
-                    <red_range>(0, 0, 0, 0)</red_range>
-                </advance_widget_settings>
-            </component_data>
-        <component_data>
-                <id>4ccd0917e98511ed9a6fd43d7ef890c6</id>
-                <name><![CDATA[Charging cable]]></name>
-                <type>SliderMacro</type>
-                <description><![CDATA[]]></description>
-                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-# NOTE: entered value is available through variable 'inputValue'
-
-hil.model_write('Charging cable', inputValue)]]></on_use_code>
-                <on_start_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
-# NOTE: Variables specified here will be available in other handlers.
-# HIL API is imported as 'hil'
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# Change widget value by setting this variable.
-# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
-# widget value won't be changed.
-widgetValue = None
-]]></on_start_code>
-                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
-# HIL API is imported as 'hil'
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# Change widget value by setting this variable.
-# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
-# widget value won't be changed.
-widgetValue = None
-]]></on_stop_code>
-                <on_timer_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed periodically each 1000ms.
-# HIL API is imported as 'hil'
-# NOTE: Only read functions are available from the HIL API
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# Change the widget value by setting this variable.
-# NOTE: If you do not specify a 'widgetValue' variable or assign 'None' to it, 
-# the widget value will not be changed.
-widgetValue = hil.model_read('Charging cable')
-]]></on_timer_code>
-                <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
-                <inputValue><![CDATA[0]]></inputValue>
-                <min>0.0</min>
-                <max>1.0</max>
-                <step>1.0</step>
-                <widget_settings>
-                    <x>240</x>
-                    <y>472</y>
-                    <width>80</width>
-                    <height>48</height>
-                    <appearance><![CDATA[Flat]]></appearance>
-                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
-                    <is_background><![CDATA[False]]></is_background>
-                    <label><![CDATA[]]></label>
-                    <use_label>False</use_label>
-                </widget_settings>
-            </component_data>
-        <component_data>
-                <id>1137dd96e99011eda911d43d7ef890c6</id>
-                <name><![CDATA[d1]]></name>
-                <type>SliderMacro</type>
-                <description><![CDATA[]]></description>
-                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-# NOTE: entered value is available through variable 'inputValue'
-
-hil.model_write('SId1', inputValue)]]></on_use_code>
-                <on_start_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
-# NOTE: Variables specified here will be available in other handlers.
-# HIL API is imported as 'hil'
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# Change widget value by setting this variable.
-# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
-# widget value won't be changed.
-widgetValue = None
-]]></on_start_code>
-                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
-# HIL API is imported as 'hil'
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# Change widget value by setting this variable.
-# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
-# widget value won't be changed.
-widgetValue = None
-]]></on_stop_code>
-                <on_timer_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed periodically each 1000ms.
-# HIL API is imported as 'hil'
-# NOTE: Only read functions are available from the HIL API
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# Change the widget value by setting this variable.
-# NOTE: If you do not specify a 'widgetValue' variable or assign 'None' to it, 
-# the widget value will not be changed.
-widgetValue = hil.model_read('SId1')
-]]></on_timer_code>
-                <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
-                <inputValue><![CDATA[0]]></inputValue>
-                <min>0.0</min>
-                <max>1.0</max>
-                <step>1.0</step>
-                <widget_settings>
-                    <x>240</x>
-                    <y>376</y>
-                    <width>80</width>
-                    <height>48</height>
-                    <appearance><![CDATA[Flat]]></appearance>
-                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
-                    <is_background><![CDATA[False]]></is_background>
-                    <label><![CDATA[]]></label>
-                    <use_label>False</use_label>
-                </widget_settings>
-            </component_data>
-        <component_data>
-                <id>21548f0ee99011eda47fd43d7ef890c6</id>
-                <name><![CDATA[d2]]></name>
-                <type>SliderMacro</type>
-                <description><![CDATA[]]></description>
-                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-# NOTE: entered value is available through variable 'inputValue'
-
-hil.model_write('SId2', inputValue)]]></on_use_code>
-                <on_start_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
-# NOTE: Variables specified here will be available in other handlers.
-# HIL API is imported as 'hil'
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# Change widget value by setting this variable.
-# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
-# widget value won't be changed.
-widgetValue = None
-]]></on_start_code>
-                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
-# HIL API is imported as 'hil'
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# Change widget value by setting this variable.
-# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
-# widget value won't be changed.
-widgetValue = None
-]]></on_stop_code>
-                <on_timer_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed periodically each 1000ms.
-# HIL API is imported as 'hil'
-# NOTE: Only read functions are available from the HIL API
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# Change the widget value by setting this variable.
-# NOTE: If you do not specify a 'widgetValue' variable or assign 'None' to it, 
-# the widget value will not be changed.
-widgetValue = hil.model_read('SId2')
-]]></on_timer_code>
-                <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
-                <inputValue><![CDATA[0]]></inputValue>
-                <min>0.0</min>
-                <max>1.0</max>
-                <step>1.0</step>
-                <widget_settings>
-                    <x>240</x>
-                    <y>424</y>
-                    <width>80</width>
-                    <height>48</height>
-                    <appearance><![CDATA[Flat]]></appearance>
-                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
-                    <is_background><![CDATA[False]]></is_background>
-                    <label><![CDATA[]]></label>
-                    <use_label>False</use_label>
-                </widget_settings>
-            </component_data>
-        <component_data>
-                <id>7a50cd66f0bc11ed8f0bd43d7ef890c6</id>
-                <name><![CDATA[Receive parameters]]></name>
-                <type>TextBoxMacro</type>
-                <description><![CDATA[]]></description>
-                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-# NOTE: entered value is available through variable 'inputValue'
-
-hil.model_write('SIreceiveParams', inputValue)]]></on_use_code>
-                <on_start_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
-# NOTE: Variables specified here will be available in other handlers.
-# HIL API is imported as 'hil'
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# Change widget value by setting this variable.
-# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
-# widget value won't be changed.
-widgetValue = None
-]]></on_start_code>
-                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
-# HIL API is imported as 'hil'
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# Change widget value by setting this variable.
-# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
-# widget value won't be changed.
-widgetValue = None
-]]></on_stop_code>
-                <on_timer_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed periodically each 1000ms.
-# HIL API is imported as 'hil'
-# NOTE: Only read functions are available from the HIL API
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# Change the widget value by setting this variable.
-# NOTE: If you do not specify a 'widgetValue' variable or assign 'None' to it, 
-# the widget value will not be changed.
-widgetValue = hil.model_read('SIreceiveParams')
-]]></on_timer_code>
-                <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
-                <inputValue><![CDATA[0]]></inputValue>
-                <inputValueType>int</inputValueType>
-                <unit><![CDATA[]]></unit>
-                <widget_settings>
-                    <x>16</x>
-                    <y>392</y>
-                    <width>200</width>
-                    <height>48</height>
-                    <inputWidgetWidth>80</inputWidgetWidth>
-                    <appearance><![CDATA[Flat]]></appearance>
-                    <hierarchy_position>1</hierarchy_position>
-                    <label><![CDATA[]]></label>
-                    <use_label>False</use_label>
-                </widget_settings>
-            </component_data>
-        <component_data>
-                <id>2ef347a2f3ee11edbf5ad43d7ef890c6</id>
-                <name><![CDATA[Target current]]></name>
-                <type>TextBoxMacro</type>
-                <description><![CDATA[]]></description>
-                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-# NOTE: entered value is available through variable 'inputValue'
-
-hil.model_write('SItargetCurrent', inputValue)]]></on_use_code>
-                <on_start_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
-# NOTE: Variables specified here will be available in other handlers.
-# HIL API is imported as 'hil'
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# Change widget value by setting this variable.
-# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
-# widget value won't be changed.
-widgetValue = None
-]]></on_start_code>
-                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
-# HIL API is imported as 'hil'
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# Change widget value by setting this variable.
-# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
-# widget value won't be changed.
-widgetValue = None
-]]></on_stop_code>
-                <on_timer_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed periodically each 1000ms.
-# HIL API is imported as 'hil'
-# NOTE: Only read functions are available from the HIL API
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# Change the widget value by setting this variable.
-# NOTE: If you do not specify a 'widgetValue' variable or assign 'None' to it, 
-# the widget value will not be changed.
-widgetValue = hil.model_read('SItargetCurrent')
-]]></on_timer_code>
-                <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
-                <inputValue><![CDATA[120.0]]></inputValue>
-                <inputValueType>float</inputValueType>
-                <unit><![CDATA[]]></unit>
-                <widget_settings>
-                    <x>40</x>
-                    <y>48</y>
-                    <width>176</width>
-                    <height>48</height>
-                    <inputWidgetWidth>80</inputWidgetWidth>
-                    <appearance><![CDATA[Flat]]></appearance>
-                    <hierarchy_position>1</hierarchy_position>
-                    <label><![CDATA[]]></label>
-                    <use_label>False</use_label>
-                </widget_settings>
-            </component_data>
-        <component_data>
-                <id>bfb7fac0f3f311ed8c89d43d7ef890c6</id>
-                <name><![CDATA[BATTERY SOC]]></name>
-                <type>DigitalDisplay</type>
-                <description><![CDATA[]]></description>
-                <data_type>Analog signal</data_type>
-                <code><![CDATA[# HIL API is imported as 'hil'
-# NOTE: Only read functions are available from the HIL API
-
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# mandatory variable used for storing value that will be displayed
-displayValue = 0.0
-
-]]></code>
-                <signal_name><![CDATA[BATTERY SOC]]></signal_name>
-                <unit><![CDATA[]]></unit>
-                <automatic_unit>True</automatic_unit>
-                <decimals><![CDATA[2]]></decimals>
-                <updateRate>500</updateRate>
-                <scaling_factor>1.0</scaling_factor>
-                <widget_settings>
-                    <x>152</x>
-                    <y>128</y>
-                    <width>88</width>
-                    <height>56</height>
-                    <appearance><![CDATA[Flat]]></appearance>
-                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
-                    <is_background><![CDATA[False]]></is_background>
-                    <label><![CDATA[]]></label>
-                    <use_label>False</use_label>
-                </widget_settings>
-                <advance_widget_settings>
-                    <color_range>False</color_range>
-                    <green_range>(0, 0, 0, 0)</green_range>
-                    <orange_range>(0, 0, 0, 0)</orange_range>
-                    <red_range>(0, 0, 0, 0)</red_range>
-                </advance_widget_settings>
-            </component_data>
-        <component_data>
-                <id>61baa1d1f55311eda8bfd43d7ef890c6</id>
-                <name><![CDATA[STATE]]></name>
-                <type>TextDisplay</type>
-                <description><![CDATA[]]></description>
-                <code><![CDATA[
-# HIL API is imported as 'hil'
-# NOTE: Only read functions are available from the HIL API
-
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-state = hil.read_analog_signal(name='Subsystem.chademoState')
-stateText = 'LIMBO';
-
-if state == 0:
-    stateText = 'STARTUP';
-    pass
-elif state == 1:
-    stateText = 'SEND_INITIAL_PARAMS';
-    pass
-elif state == 2:
-    stateText = 'WAIT_FOR_EVSE_PARAMS';
-    pass
-elif state == 3:
-    stateText = 'SET_CHARGE_BEGIN';
-    pass
-elif state == 4:
-    stateText = 'WAIT_FOR_BEGIN_CONFIRMATION';
-    pass
-elif state == 5:
-    stateText = 'CLOSE_CONTACTORS';
-    pass
-elif state == 6:
-    stateText = 'RUNNING';
-    pass
-elif state == 7:
-    stateText = 'CEASE_CURRENT';
-    pass
-elif state == 8:
-    stateText = 'WAIT_FOR_ZERO_CURRENT';
-    pass
-elif state == 9:
-    stateText = 'OPEN_CONTACTOR';
-    pass
-elif state == 10:
-    stateText = 'FAULTED';
-    pass
-elif state == 11:
-    stateText = 'STOPPED';
-    pass
-elif state == 12:
-    stateText = 'LIMBO';
-    pass
-
-textDisplayData = {
-    "text": stateText,
-    "text_color": 'black',
-}
-
-# mandatory variable used for storing value that will be displayed
-displayValue = textDisplayData
-]]></code>
-                <updateRate>500</updateRate>
-                <widget_settings>
-                    <x>32</x>
-                    <y>192</y>
-                    <width>400</width>
-                    <height>56</height>
-                    <appearance><![CDATA[Flat]]></appearance>
-                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
-                    <is_background><![CDATA[False]]></is_background>
-                    <label><![CDATA[]]></label>
-                    <use_label>False</use_label>
-                </widget_settings>
-            </component_data>
-        <component_data>
-                <id>9a142054fa0411edbd34d43d7ef890c6</id>
-                <name><![CDATA[disconection status]]></name>
-                <type>LedDisplay</type>
-                <description><![CDATA[]]></description>
-                <data_type>Digital signal</data_type>
-                <signal_name><![CDATA[disconection_status]]></signal_name>
-                <hil_device>0</hil_device>
-                <led_color>Green</led_color>
-                <code><![CDATA[# HIL API is imported as 'hil'
-# NOTE: Only read functions are available from the HIL API
-
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# mandatory variable used for storing LED indicator state
-# True -> On, False -> Off
-displayValue = False
-]]></code>
-                <updateRate>500</updateRate>
-                <widget_settings>
-                    <x>392</x>
-                    <y>400</y>
-                    <width>134</width>
-                    <height>32</height>
-                    <appearance><![CDATA[Flat]]></appearance>
-                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
-                    <is_background><![CDATA[False]]></is_background>
-                    <label><![CDATA[]]></label>
-                    <use_label>False</use_label>
-                </widget_settings>
-            </component_data>
-        <component_data>
-                <id>b83cb5bbfa0411ed92d9d43d7ef890c6</id>
-                <name><![CDATA[EV ready]]></name>
-                <type>LedDisplay</type>
-                <description><![CDATA[]]></description>
-                <data_type>Digital signal</data_type>
-                <signal_name><![CDATA[EVReady]]></signal_name>
-                <hil_device>0</hil_device>
-                <led_color>Green</led_color>
-                <code><![CDATA[# HIL API is imported as 'hil'
-# NOTE: Only read functions are available from the HIL API
-
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# mandatory variable used for storing LED indicator state
-# True -> On, False -> Off
-displayValue = False
-]]></code>
-                <updateRate>500</updateRate>
-                <widget_settings>
-                    <x>440</x>
-                    <y>440</y>
-                    <width>88</width>
-                    <height>32</height>
-                    <appearance><![CDATA[Flat]]></appearance>
-                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
-                    <is_background><![CDATA[False]]></is_background>
-                    <label><![CDATA[]]></label>
-                    <use_label>False</use_label>
-                </widget_settings>
-            </component_data>
-        <component_data>
-                <id>cce38c32fa0411ed8de1d43d7ef890c6</id>
-                <name><![CDATA[charge complete]]></name>
-                <type>LedDisplay</type>
-                <description><![CDATA[]]></description>
-                <data_type>Digital signal</data_type>
-                <signal_name><![CDATA[charge_complete]]></signal_name>
-                <hil_device>0</hil_device>
-                <led_color>Red</led_color>
-                <code><![CDATA[# HIL API is imported as 'hil'
-# NOTE: Only read functions are available from the HIL API
-
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# mandatory variable used for storing LED indicator state
-# True -> On, False -> Off
-displayValue = False
-]]></code>
-                <updateRate>500</updateRate>
-                <widget_settings>
-                    <x>256</x>
-                    <y>128</y>
-                    <width>128</width>
-                    <height>32</height>
-                    <appearance><![CDATA[Flat]]></appearance>
-                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
-                    <is_background><![CDATA[False]]></is_background>
-                    <label><![CDATA[]]></label>
-                    <use_label>False</use_label>
-                </widget_settings>
-            </component_data>
-        <component_data>
                 <id>24055be3fa0611edbe6ad43d7ef890c6</id>
                 <name><![CDATA[EV]]></name>
                 <type>Group</type>
                 <description><![CDATA[]]></description>
-                <components_ids><![CDATA[['2de1b02dfa0711ed9a65d43d7ef890c6', '395614aefa0711ed9781d43d7ef890c6', '4eb255f6fa0711edaf61d43d7ef890c6']]]></components_ids>
+                <components_ids><![CDATA[['2de1b02dfa0711ed9a65d43d7ef890c6', '395614aefa0711ed9781d43d7ef890c6', '4eb255f6fa0711edaf61d43d7ef890c6', 'c161ee71fa0e11edad50d43d7ef890c6', 'c97d1cc0fa0e11ed90f2d43d7ef890c6', 'cd70d0c1fa0e11ed881fd43d7ef890c6', 'f7e272c1fa0e11edbe04d43d7ef890c6', '00bc5f67fa0f11edb2a0d43d7ef890c6', '1fa40b9ffa0f11edac29d43d7ef890c6', '48bfefb0fa0f11ed92fcd43d7ef890c6', '63d57fe6fa0f11ed9225d43d7ef890c6', '6f736669fa0f11edbabdd43d7ef890c6', '7bdf4824fa0f11edbc8dd43d7ef890c6', '8652189efa0f11ed8155d43d7ef890c6', 'c0f37839fa0f11ed860dd43d7ef890c6', 'c5a80457fa0f11ed8ed3d43d7ef890c6', '00df73f4fa1011eda9f7d43d7ef890c6', '3a503e75fa1011edad7cd43d7ef890c6', '791ccb5afa1011eda5ccd43d7ef890c6', '8670a2defa1011eda4f3d43d7ef890c6', '8f878674fa1011ed8e11d43d7ef890c6']]]></components_ids>
                 <canvas_bg_color>#ffffff</canvas_bg_color>
                 <initialization_code><![CDATA[# NOTE: Variables and functions defined here will be available for use in 
 # all Macro, Expression and handlers codes of components owned by this widget.
@@ -992,9 +46,9 @@ displayValue = False
 
 ]]></initialization_code>
                 <widget_settings>
-                    <x>632</x>
+                    <x>32</x>
                     <y>40</y>
-                    <width>464</width>
+                    <width>1064</width>
                     <height>616</height>
                     <appearance><![CDATA[Flat]]></appearance>
                     <collapsed>False</collapsed>
@@ -1031,7 +85,7 @@ displayValue = 0.0
                 <decimals>2</decimals>
                 <scaling_factor>1.0</scaling_factor>
                 <widget_settings>
-                    <x>96</x>
+                    <x>776</x>
                     <y>24</y>
                     <width>248</width>
                     <height>144</height>
@@ -1074,7 +128,7 @@ displayValue = 0.0
                 <decimals>2</decimals>
                 <scaling_factor>1.0</scaling_factor>
                 <widget_settings>
-                    <x>96</x>
+                    <x>776</x>
                     <y>184</y>
                     <width>248</width>
                     <height>144</height>
@@ -1133,8 +187,8 @@ displayValue = data
                 <execution_rate>None</execution_rate>
                 <background_color>white</background_color>
                 <widget_settings>
-                    <x>24</x>
-                    <y>328</y>
+                    <x>632</x>
+                    <y>360</y>
                     <width>400</width>
                     <height>200</height>
                     <appearance><![CDATA[Flat]]></appearance>
@@ -1190,7 +244,7 @@ referenceCurves = [refCurveData1]
             </component_data>
         <component_data>
                 <id>a0b3771bfa0811ed91f1d43d7ef890c6</id>
-                <name><![CDATA[Sending parameters]]></name>
+                <name><![CDATA[Sending parameters (EV to EVSE)]]></name>
                 <type>Group</type>
                 <description><![CDATA[]]></description>
                 <components_ids><![CDATA[['d1eb6b34fa0811ed9ea5d43d7ef890c6', 'dc24efc6fa0811ed858cd43d7ef890c6', '0648d916fa0911ed8533d43d7ef890c6', '0b108f38fa0911ed9ec3d43d7ef890c6', '256ef998fa0911edac8ed43d7ef890c6', '2c314ab9fa0911ed82b1d43d7ef890c6', '32d218dcfa0911edbf69d43d7ef890c6', '5cd150d0fa0911ed963fd43d7ef890c6', '64f2a156fa0911edaaa3d43d7ef890c6', '9d1e6bcefa0911ed8d02d43d7ef890c6']]]></components_ids>
@@ -1763,6 +817,954 @@ displayValue = 0.0
                     <warning_range>(0, 0, 0, 0)</warning_range>
                     <critical_range>(0, 0, 0, 0)</critical_range>
                 </advance_widget_settings>
+            </component_data>
+        <component_data>
+                <id>c161ee71fa0e11edad50d43d7ef890c6</id>
+                <name><![CDATA[sendBatt]]></name>
+                <type>DigitalDisplay</type>
+                <description><![CDATA[]]></description>
+                <data_type>Analog signal</data_type>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# mandatory variable used for storing value that will be displayed
+displayValue = 0.0
+
+]]></code>
+                <signal_name><![CDATA[Subsystem.sendBatt]]></signal_name>
+                <unit><![CDATA[]]></unit>
+                <automatic_unit>True</automatic_unit>
+                <decimals><![CDATA[2]]></decimals>
+                <updateRate>500</updateRate>
+                <scaling_factor>1.0</scaling_factor>
+                <widget_settings>
+                    <x>432</x>
+                    <y>128</y>
+                    <width>144</width>
+                    <height>56</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[2]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+                <advance_widget_settings>
+                    <color_range>False</color_range>
+                    <green_range>(0, 0, 0, 0)</green_range>
+                    <orange_range>(0, 0, 0, 0)</orange_range>
+                    <red_range>(0, 0, 0, 0)</red_range>
+                </advance_widget_settings>
+            </component_data>
+        <component_data>
+                <id>c97d1cc0fa0e11ed90f2d43d7ef890c6</id>
+                <name><![CDATA[sendTime]]></name>
+                <type>DigitalDisplay</type>
+                <description><![CDATA[]]></description>
+                <data_type>Analog signal</data_type>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# mandatory variable used for storing value that will be displayed
+displayValue = 0.0
+
+]]></code>
+                <signal_name><![CDATA[Subsystem.sendTime]]></signal_name>
+                <unit><![CDATA[]]></unit>
+                <automatic_unit>True</automatic_unit>
+                <decimals><![CDATA[2]]></decimals>
+                <updateRate>500</updateRate>
+                <scaling_factor>1.0</scaling_factor>
+                <widget_settings>
+                    <x>584</x>
+                    <y>128</y>
+                    <width>144</width>
+                    <height>56</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[2]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+                <advance_widget_settings>
+                    <color_range>False</color_range>
+                    <green_range>(0, 0, 0, 0)</green_range>
+                    <orange_range>(0, 0, 0, 0)</orange_range>
+                    <red_range>(0, 0, 0, 0)</red_range>
+                </advance_widget_settings>
+            </component_data>
+        <component_data>
+                <id>cd70d0c1fa0e11ed881fd43d7ef890c6</id>
+                <name><![CDATA[sendStatus]]></name>
+                <type>DigitalDisplay</type>
+                <description><![CDATA[]]></description>
+                <data_type>Analog signal</data_type>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# mandatory variable used for storing value that will be displayed
+displayValue = 0.0
+
+]]></code>
+                <signal_name><![CDATA[Subsystem.sendStatus]]></signal_name>
+                <unit><![CDATA[]]></unit>
+                <automatic_unit>True</automatic_unit>
+                <decimals><![CDATA[2]]></decimals>
+                <updateRate>500</updateRate>
+                <scaling_factor>1.0</scaling_factor>
+                <widget_settings>
+                    <x>280</x>
+                    <y>128</y>
+                    <width>144</width>
+                    <height>56</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[2]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+                <advance_widget_settings>
+                    <color_range>False</color_range>
+                    <green_range>(0, 0, 0, 0)</green_range>
+                    <orange_range>(0, 0, 0, 0)</orange_range>
+                    <red_range>(0, 0, 0, 0)</red_range>
+                </advance_widget_settings>
+            </component_data>
+        <component_data>
+                <id>f7e272c1fa0e11edbe04d43d7ef890c6</id>
+                <name><![CDATA[ERRORdoP]]></name>
+                <type>DigitalDisplay</type>
+                <description><![CDATA[]]></description>
+                <data_type>Analog signal</data_type>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# mandatory variable used for storing value that will be displayed
+displayValue = 0.0
+
+]]></code>
+                <signal_name><![CDATA[Subsystem.ERRORdoP]]></signal_name>
+                <unit><![CDATA[]]></unit>
+                <automatic_unit>True</automatic_unit>
+                <decimals><![CDATA[2]]></decimals>
+                <updateRate>500</updateRate>
+                <scaling_factor>1.0</scaling_factor>
+                <widget_settings>
+                    <x>24</x>
+                    <y>432</y>
+                    <width>104</width>
+                    <height>56</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[2]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+                <advance_widget_settings>
+                    <color_range>False</color_range>
+                    <green_range>(0, 0, 0, 0)</green_range>
+                    <orange_range>(0, 0, 0, 0)</orange_range>
+                    <red_range>(0, 0, 0, 0)</red_range>
+                </advance_widget_settings>
+            </component_data>
+        <component_data>
+                <id>00bc5f67fa0f11edb2a0d43d7ef890c6</id>
+                <name><![CDATA[ERRORhandle]]></name>
+                <type>DigitalDisplay</type>
+                <description><![CDATA[]]></description>
+                <data_type>Analog signal</data_type>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# mandatory variable used for storing value that will be displayed
+displayValue = 0.0
+
+]]></code>
+                <signal_name><![CDATA[Subsystem.ERRORhandle]]></signal_name>
+                <unit><![CDATA[]]></unit>
+                <automatic_unit>True</automatic_unit>
+                <decimals><![CDATA[2]]></decimals>
+                <updateRate>500</updateRate>
+                <scaling_factor>1.0</scaling_factor>
+                <widget_settings>
+                    <x>24</x>
+                    <y>496</y>
+                    <width>104</width>
+                    <height>56</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[2]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+                <advance_widget_settings>
+                    <color_range>False</color_range>
+                    <green_range>(0, 0, 0, 0)</green_range>
+                    <orange_range>(0, 0, 0, 0)</orange_range>
+                    <red_range>(0, 0, 0, 0)</red_range>
+                </advance_widget_settings>
+            </component_data>
+        <component_data>
+                <id>1fa40b9ffa0f11edac29d43d7ef890c6</id>
+                <name><![CDATA[chademoState]]></name>
+                <type>DigitalDisplay</type>
+                <description><![CDATA[]]></description>
+                <data_type>Analog signal</data_type>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# mandatory variable used for storing value that will be displayed
+displayValue = 0.0
+
+]]></code>
+                <signal_name><![CDATA[Subsystem.chademoState]]></signal_name>
+                <unit><![CDATA[]]></unit>
+                <automatic_unit>True</automatic_unit>
+                <decimals><![CDATA[2]]></decimals>
+                <updateRate>500</updateRate>
+                <scaling_factor>1.0</scaling_factor>
+                <widget_settings>
+                    <x>24</x>
+                    <y>336</y>
+                    <width>144</width>
+                    <height>56</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[2]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+                <advance_widget_settings>
+                    <color_range>False</color_range>
+                    <green_range>(0, 0, 0, 0)</green_range>
+                    <orange_range>(0, 0, 0, 0)</orange_range>
+                    <red_range>(0, 0, 0, 0)</red_range>
+                </advance_widget_settings>
+            </component_data>
+        <component_data>
+                <id>48bfefb0fa0f11ed92fcd43d7ef890c6</id>
+                <name><![CDATA[Target current]]></name>
+                <type>SliderMacro</type>
+                <description><![CDATA[]]></description>
+                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+# NOTE: entered value is available through variable 'inputValue'
+
+hil.model_write('SItargetCurrent', inputValue)]]></on_use_code>
+                <on_start_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
+# NOTE: Variables specified here will be available in other handlers.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
+# widget value won't be changed.
+widgetValue = None
+]]></on_start_code>
+                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
+# widget value won't be changed.
+widgetValue = None
+]]></on_stop_code>
+                <on_timer_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed periodically each 1000ms.
+# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change the widget value by setting this variable.
+# NOTE: If you do not specify a 'widgetValue' variable or assign 'None' to it, 
+# the widget value will not be changed.
+widgetValue = hil.model_read('SItargetCurrent')
+]]></on_timer_code>
+                <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
+                <inputValue><![CDATA[120.0]]></inputValue>
+                <min>-0.0</min>
+                <max>150.0</max>
+                <step>1.0</step>
+                <widget_settings>
+                    <x>16</x>
+                    <y>16</y>
+                    <width>288</width>
+                    <height>48</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[2]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>63d57fe6fa0f11ed9225d43d7ef890c6</id>
+                <name><![CDATA[BATTERY SOC]]></name>
+                <type>DigitalDisplay</type>
+                <description><![CDATA[]]></description>
+                <data_type>Analog signal</data_type>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# mandatory variable used for storing value that will be displayed
+displayValue = 0.0
+
+]]></code>
+                <signal_name><![CDATA[BATTERY SOC]]></signal_name>
+                <unit><![CDATA[]]></unit>
+                <automatic_unit>True</automatic_unit>
+                <decimals><![CDATA[2]]></decimals>
+                <updateRate>500</updateRate>
+                <scaling_factor>1.0</scaling_factor>
+                <widget_settings>
+                    <x>280</x>
+                    <y>240</y>
+                    <width>144</width>
+                    <height>56</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[2]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+                <advance_widget_settings>
+                    <color_range>False</color_range>
+                    <green_range>(0, 0, 0, 0)</green_range>
+                    <orange_range>(0, 0, 0, 0)</orange_range>
+                    <red_range>(0, 0, 0, 0)</red_range>
+                </advance_widget_settings>
+            </component_data>
+        <component_data>
+                <id>6f736669fa0f11edbabdd43d7ef890c6</id>
+                <name><![CDATA[SId1]]></name>
+                <type>SliderMacro</type>
+                <description><![CDATA[]]></description>
+                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+# NOTE: entered value is available through variable 'inputValue'
+
+hil.model_write('SId1', inputValue)]]></on_use_code>
+                <on_start_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
+# NOTE: Variables specified here will be available in other handlers.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
+# widget value won't be changed.
+widgetValue = None
+]]></on_start_code>
+                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
+# widget value won't be changed.
+widgetValue = None
+]]></on_stop_code>
+                <on_timer_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed periodically each 1000ms.
+# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change the widget value by setting this variable.
+# NOTE: If you do not specify a 'widgetValue' variable or assign 'None' to it, 
+# the widget value will not be changed.
+widgetValue = hil.model_read('SId1')
+]]></on_timer_code>
+                <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
+                <inputValue><![CDATA[0]]></inputValue>
+                <min>0.0</min>
+                <max>1.0</max>
+                <step>1.0</step>
+                <widget_settings>
+                    <x>24</x>
+                    <y>64</y>
+                    <width>80</width>
+                    <height>48</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[2]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>7bdf4824fa0f11edbc8dd43d7ef890c6</id>
+                <name><![CDATA[SId2]]></name>
+                <type>SliderMacro</type>
+                <description><![CDATA[]]></description>
+                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+# NOTE: entered value is available through variable 'inputValue'
+
+hil.model_write('SId2', inputValue)]]></on_use_code>
+                <on_start_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
+# NOTE: Variables specified here will be available in other handlers.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
+# widget value won't be changed.
+widgetValue = None
+]]></on_start_code>
+                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
+# widget value won't be changed.
+widgetValue = None
+]]></on_stop_code>
+                <on_timer_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed periodically each 1000ms.
+# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change the widget value by setting this variable.
+# NOTE: If you do not specify a 'widgetValue' variable or assign 'None' to it, 
+# the widget value will not be changed.
+widgetValue = hil.model_read('SId2')
+]]></on_timer_code>
+                <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
+                <inputValue><![CDATA[0]]></inputValue>
+                <min>0.0</min>
+                <max>1.0</max>
+                <step>1.0</step>
+                <widget_settings>
+                    <x>24</x>
+                    <y>128</y>
+                    <width>80</width>
+                    <height>48</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[2]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>8652189efa0f11ed8155d43d7ef890c6</id>
+                <name><![CDATA[Charging cable]]></name>
+                <type>SliderMacro</type>
+                <description><![CDATA[]]></description>
+                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+# NOTE: entered value is available through variable 'inputValue'
+
+hil.model_write('Charging cable', inputValue)]]></on_use_code>
+                <on_start_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
+# NOTE: Variables specified here will be available in other handlers.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
+# widget value won't be changed.
+widgetValue = None
+]]></on_start_code>
+                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
+# widget value won't be changed.
+widgetValue = None
+]]></on_stop_code>
+                <on_timer_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed periodically each 1000ms.
+# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change the widget value by setting this variable.
+# NOTE: If you do not specify a 'widgetValue' variable or assign 'None' to it, 
+# the widget value will not be changed.
+widgetValue = hil.model_read('Charging cable')
+]]></on_timer_code>
+                <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
+                <inputValue><![CDATA[0]]></inputValue>
+                <min>0.0</min>
+                <max>1.0</max>
+                <step>1.0</step>
+                <widget_settings>
+                    <x>24</x>
+                    <y>192</y>
+                    <width>80</width>
+                    <height>48</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[2]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>c0f37839fa0f11ed860dd43d7ef890c6</id>
+                <name><![CDATA[Receive parameters]]></name>
+                <type>TextBoxMacro</type>
+                <description><![CDATA[]]></description>
+                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+# NOTE: entered value is available through variable 'inputValue'
+
+hil.model_write('SIreceiveParams', inputValue)]]></on_use_code>
+                <on_start_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
+# NOTE: Variables specified here will be available in other handlers.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
+# widget value won't be changed.
+widgetValue = None
+]]></on_start_code>
+                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
+# widget value won't be changed.
+widgetValue = None
+]]></on_stop_code>
+                <on_timer_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed periodically each 1000ms.
+# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change the widget value by setting this variable.
+# NOTE: If you do not specify a 'widgetValue' variable or assign 'None' to it, 
+# the widget value will not be changed.
+widgetValue = hil.model_read('SIreceiveParams')
+]]></on_timer_code>
+                <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
+                <inputValue><![CDATA[0]]></inputValue>
+                <inputValueType>int</inputValueType>
+                <unit><![CDATA[]]></unit>
+                <widget_settings>
+                    <x>144</x>
+                    <y>440</y>
+                    <width>208</width>
+                    <height>32</height>
+                    <inputWidgetWidth>80</inputWidgetWidth>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position>2</hierarchy_position>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>c5a80457fa0f11ed8ed3d43d7ef890c6</id>
+                <name><![CDATA[Receive status]]></name>
+                <type>TextBoxMacro</type>
+                <description><![CDATA[]]></description>
+                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+# NOTE: entered value is available through variable 'inputValue'
+
+hil.model_write('SIreceiveStatus', inputValue)]]></on_use_code>
+                <on_start_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
+# NOTE: Variables specified here will be available in other handlers.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
+# widget value won't be changed.
+widgetValue = None
+]]></on_start_code>
+                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
+# widget value won't be changed.
+widgetValue = None
+]]></on_stop_code>
+                <on_timer_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed periodically each 1000ms.
+# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change the widget value by setting this variable.
+# NOTE: If you do not specify a 'widgetValue' variable or assign 'None' to it, 
+# the widget value will not be changed.
+widgetValue = hil.model_read('SIreceiveStatus')
+]]></on_timer_code>
+                <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
+                <inputValue><![CDATA[0]]></inputValue>
+                <inputValueType>int</inputValueType>
+                <unit><![CDATA[]]></unit>
+                <widget_settings>
+                    <x>176</x>
+                    <y>480</y>
+                    <width>168</width>
+                    <height>32</height>
+                    <inputWidgetWidth>80</inputWidgetWidth>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position>2</hierarchy_position>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>00df73f4fa1011eda9f7d43d7ef890c6</id>
+                <name><![CDATA[STATE]]></name>
+                <type>TextDisplay</type>
+                <description><![CDATA[]]></description>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# specify Text Display options ('text' part is mandatory)
+state = hil.read_analog_signal(name='Subsystem.chademoState')
+stateText = 'STOPPED';
+
+if state == 0:
+    stateText = 'STARTUP';
+    pass
+elif state == 1:
+    stateText = 'SEND_INITIAL_PARAMS';
+    pass
+elif state == 2:
+    stateText = 'WAIT_FOR_EVSE_PARAMS';
+    pass
+elif state == 3:
+    stateText = 'SET_CHARGE_BEGIN';
+    pass
+elif state == 4:
+    stateText = 'WAIT_FOR_BEGIN_CONFIRMATION';
+    pass
+elif state == 5:
+    stateText = 'CLOSE_CONTACTORS';
+    pass
+elif state == 6:
+    stateText = 'RUNNING';
+    pass
+elif state == 7:
+    stateText = 'CEASE_CURRENT';
+    pass
+elif state == 8:
+    stateText = 'WAIT_FOR_ZERO_CURRENT';
+    pass
+elif state == 9:
+    stateText = 'OPEN_CONTACTOR';
+    pass
+elif state == 10:
+    stateText = 'FAULTED';
+    pass
+elif state == 11:
+    stateText = 'STOPPED';
+    pass
+elif state == 12:
+    stateText = 'LIMBO';
+    pass
+
+textDisplayData = {
+    "text": stateText,
+    "text_color": 'black',
+}
+
+# mandatory variable used for storing value that will be displayed
+displayValue = textDisplayData
+]]></code>
+                <updateRate>500</updateRate>
+                <widget_settings>
+                    <x>192</x>
+                    <y>336</y>
+                    <width>400</width>
+                    <height>56</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[2]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>3a503e75fa1011edad7cd43d7ef890c6</id>
+                <name><![CDATA[Chademo request]]></name>
+                <type>SliderMacro</type>
+                <description><![CDATA[]]></description>
+                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+# NOTE: entered value is available through variable 'inputValue'
+
+hil.model_write('SIbChademoRequest', inputValue)]]></on_use_code>
+                <on_start_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
+# NOTE: Variables specified here will be available in other handlers.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
+# widget value won't be changed.
+widgetValue = None
+]]></on_start_code>
+                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it, 
+# widget value won't be changed.
+widgetValue = None
+]]></on_stop_code>
+                <on_timer_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed periodically each 1000ms.
+# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change the widget value by setting this variable.
+# NOTE: If you do not specify a 'widgetValue' variable or assign 'None' to it, 
+# the widget value will not be changed.
+widgetValue = hil.model_read('SIbChademoRequest')
+]]></on_timer_code>
+                <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
+                <inputValue><![CDATA[0]]></inputValue>
+                <min>0.0</min>
+                <max>1.0</max>
+                <step>1.0</step>
+                <widget_settings>
+                    <x>152</x>
+                    <y>128</y>
+                    <width>112</width>
+                    <height>48</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[2]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>791ccb5afa1011eda5ccd43d7ef890c6</id>
+                <name><![CDATA[disconection_status]]></name>
+                <type>LedDisplay</type>
+                <description><![CDATA[]]></description>
+                <data_type>Digital signal</data_type>
+                <signal_name><![CDATA[disconection_status]]></signal_name>
+                <hil_device>0</hil_device>
+                <led_color>Green</led_color>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# mandatory variable used for storing LED indicator state
+# True -> On, False -> Off
+displayValue = False
+]]></code>
+                <updateRate>500</updateRate>
+                <widget_settings>
+                    <x>432</x>
+                    <y>24</y>
+                    <width>144</width>
+                    <height>32</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[2]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>8670a2defa1011eda4f3d43d7ef890c6</id>
+                <name><![CDATA[EVReady]]></name>
+                <type>LedDisplay</type>
+                <description><![CDATA[]]></description>
+                <data_type>Digital signal</data_type>
+                <signal_name><![CDATA[EVReady]]></signal_name>
+                <hil_device>0</hil_device>
+                <led_color>Green</led_color>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# mandatory variable used for storing LED indicator state
+# True -> On, False -> Off
+displayValue = False
+]]></code>
+                <updateRate>500</updateRate>
+                <widget_settings>
+                    <x>608</x>
+                    <y>24</y>
+                    <width>88</width>
+                    <height>32</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[2]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>8f878674fa1011ed8e11d43d7ef890c6</id>
+                <name><![CDATA[charge_complete]]></name>
+                <type>LedDisplay</type>
+                <description><![CDATA[]]></description>
+                <data_type>Digital signal</data_type>
+                <signal_name><![CDATA[charge_complete]]></signal_name>
+                <hil_device>0</hil_device>
+                <led_color>Red</led_color>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# mandatory variable used for storing LED indicator state
+# True -> On, False -> Off
+displayValue = False
+]]></code>
+                <updateRate>500</updateRate>
+                <widget_settings>
+                    <x>448</x>
+                    <y>240</y>
+                    <width>128</width>
+                    <height>32</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[2]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
             </component_data>
         </components>
 </ui_settings>

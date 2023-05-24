@@ -168,7 +168,7 @@ errorHandle = 0;
 
 AV, PV = 0;
 
-CHADEMO();
+CHADEMO();  //constructor
 
 chademo.evse_params.availVoltage = 0;
 chademo.evse_params.availCurrent = 0;
@@ -196,7 +196,7 @@ kiloWattHours = 0;
 settings.packSizeKWH = PackSizeKWH; 
 settings.ampHours = 0.0;
 settings.kiloWattHours = 0.0; 
-settings.maxChargeVoltage = MaxChargeVoltage;  //485
+settings.maxChargeVoltage = MaxChargeVoltage;  
 settings.minChargeAmperage = 20;
 settings.capacity = 180;
 
@@ -242,7 +242,6 @@ chademo.updateTargetAV();
 
 chademoState = chademo.chademoState;
 
-
 in1 = IN1;
 in2 = IN2;
 
@@ -258,6 +257,7 @@ chademo.CurrentMillis = currentMillis;
 
 chademo.loop(currentMillis);
 
+//sending battery specifications from EV to EVSE
 if (chademo.sendBatt == 1) 
 {
     chademo.sendBatt = 0;
@@ -266,7 +266,8 @@ if (chademo.sendBatt == 1)
     packSizeKWH = settings.packSizeKWH;
 }
 else sendBatt = 0;
-      
+ 
+//sending EV status to EVSE
 if (chademo.sendStatus == 1)
 {
     chademo.sendStatus = 0;
@@ -281,6 +282,7 @@ if (chademo.sendStatus == 1)
 }
 else sendStatus = 0;
     
+//sending charging time from EV to EVSE  
 if (chademo.sendTime == 1)  
 {
     chademo.sendTime = 0;
@@ -302,7 +304,7 @@ if (chademo.CurrentMillis - PreviousMillis >= Interval)
     Count++;
     Voltage = SIvoltage;
     Current = SIcurrent;
-    Power = Voltage*Current/1000;          //KWbChadeomRequestOut
+    Power = Voltage*Current/1000;          
     settings.kiloWattHours = batterySOC;   //%
     settings.ampHours = settings.capacity*batterySOC/100;  
     kwh = settings.ampHours*Voltage/1000;  
@@ -352,7 +354,6 @@ if (currentMillis - 100 == receiveMillis)  //I\'m checking every 100ms if there 
         
         chademo.evse_status.remainingChargeSeconds = remainingChargeSeconds * 10;
         chademo.evse_status.remainingChargeMinutes = remainingChargeSeconds * 60;
-        //chademo.evse_status.remainingChargeMinutes = chademo.evse_status.remainingChargeSeconds * 6;
 
         chademo.handleCANFrame(currentMillis, receiveID);
     }

@@ -1182,7 +1182,7 @@ displayValue = 0.0
             </component_data>
         <component_data>
                 <id>6f736669fa0f11edbabdd43d7ef890c6</id>
-                <name><![CDATA[SId1]]></name>
+                <name><![CDATA[d1]]></name>
                 <type>SliderMacro</type>
                 <description><![CDATA[]]></description>
                 <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
@@ -1250,7 +1250,7 @@ widgetValue = hil.model_read('SId1')
             </component_data>
         <component_data>
                 <id>7bdf4824fa0f11edbc8dd43d7ef890c6</id>
-                <name><![CDATA[SId2]]></name>
+                <name><![CDATA[d2]]></name>
                 <type>SliderMacro</type>
                 <description><![CDATA[]]></description>
                 <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'

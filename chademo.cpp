@@ -19,9 +19,11 @@ int Count;
 unsigned short int errorDoProcessing;
 unsigned short int errorHandle;
 
-//part of the initialization
 CHADEMO::CHADEMO()
 {
+  //part of the initialization
+
+
   chademo.bStartedCharge = 0;
   chademo.bChademoMode = 0;
   chademo.bChademoSendRequests = 0;
@@ -55,9 +57,10 @@ CHADEMO::CHADEMO()
   chademo.lastCommTimeout = 1000;
 }
 
-//will wait delayTime milliseconds and then transition to new state. Sets state to LIMBO in the meantime
 void CHADEMO::setDelayedState(int newstate, unsigned short int delayTime, unsigned long CurrentMillis)
 {
+  //will wait delayTime milliseconds and then transition to new state. Sets state to LIMBO in the meantime
+
   chademo.chademoState = LIMBO;
   chademo.stateHolder = (CHADEMOSTATE)newstate;
   chademo.stateMilli = CurrentMillis;

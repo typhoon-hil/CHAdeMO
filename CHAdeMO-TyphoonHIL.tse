@@ -7,7 +7,7 @@ version = 4.2
 model "chademo-typhoonhil" {
     configuration {
         hil_device = "HIL606"
-        hil_configuration_id = 1
+        hil_configuration_id = 2
         simulation_method = exact
         simulation_time_step = auto
         simulation_discret_scaling = 1.0

@@ -6,8 +6,8 @@ version = 4.2
 
 model "chademo-typhoonhil" {
     configuration {
-        hil_device = "HIL604"
-        hil_configuration_id = 7
+        hil_device = "HIL404"
+        hil_configuration_id = 1
         simulation_method = exact
         simulation_time_step = auto
         simulation_discret_scaling = 1.0
@@ -456,18 +456,6 @@ if(in == 10)
                 position = 7440, 8264
             ]
 
-            component "core/Probe" howLongCharge {
-            }
-            [
-                position = 7656, 7760
-            ]
-
-            component "core/Probe" howLongWeThink {
-            }
-            [
-                position = 7656, 7824
-            ]
-
             component "core/Probe" ERRORdoP {
             }
             [
@@ -478,54 +466,6 @@ if(in == 10)
             }
             [
                 position = 7440, 8392
-            ]
-
-            component "core/Probe" maxChargeVoltage {
-            }
-            [
-                position = 7616, 7640
-            ]
-
-            component "core/Probe" packSizeKWH {
-            }
-            [
-                position = 7616, 7696
-            ]
-
-            component "core/Probe" askingAmps {
-            }
-            [
-                position = 7736, 7984
-            ]
-
-            component "core/Probe" faultss {
-            }
-            [
-                position = 7736, 8064
-            ]
-
-            component "core/Probe" talkingProtocol {
-            }
-            [
-                position = 7736, 7872
-            ]
-
-            component "core/Probe" targetVoltage {
-            }
-            [
-                position = 7736, 7928
-            ]
-
-            component "core/Probe" status {
-            }
-            [
-                position = 7736, 8120
-            ]
-
-            component "core/Probe" kiloWattHours {
-            }
-            [
-                position = 7736, 8176
             ]
 
             component "core/Probe" sendBatt {
@@ -558,92 +498,12 @@ if(in == 10)
                 position = 7440, 8616
             ]
 
-            component "core/Constant" weldCheck {
-                signal_type = "uint"
-                value = "SIweldCheck"
-            }
-            [
-                position = 5928, 7888
-            ]
-
-            component "core/Constant" SIavailVoltage {
-                signal_type = "uint"
-                value = "SIavailVoltage"
-            }
-            [
-                position = 5928, 7944
-            ]
-
-            component "core/Constant" SIavailCurrent {
-                signal_type = "uint"
-                value = "SIavailCurrent"
-            }
-            [
-                position = 5928, 8000
-            ]
-
-            component "core/Constant" thresholdVoltage {
-                signal_type = "uint"
-                value = "SIthresholdVoltage"
-            }
-            [
-                position = 5928, 8064
-            ]
-
-            component "core/Constant" bChademo10Protocol {
-                signal_type = "uint"
-                value = "SIbChademo10Protocol"
-            }
-            [
-                position = 5928, 8120
-            ]
-
-            component "core/Constant" SIpresentVoltage {
-                signal_type = "uint"
-                value = "SIpresentVoltage"
-            }
-            [
-                position = 5928, 8176
-            ]
-
-            component "core/Constant" SIpresentCurrent {
-                signal_type = "uint"
-                value = "SIpresentCurrent"
-            }
-            [
-                position = 5928, 8232
-            ]
-
-            component "core/Constant" evseStatus {
-                signal_type = "uint"
-                value = "SIevseStatus"
-            }
-            [
-                position = 5928, 8296
-            ]
-
-            component "core/Constant" remainingChargeSeconds {
-                signal_type = "uint"
-                value = "SIremainingChargeSeconds"
-            }
-            [
-                position = 5928, 8352
-            ]
-
-            component "core/Constant" remainingChargeMinutes {
-                signal_type = "uint"
-                value = "SIremainingChargeMinutes"
-            }
-            [
-                position = 5928, 8416
-            ]
-
             component "core/Constant" SIaskingAmps {
                 signal_type = "uint"
                 value = "SIremainingChargeMinutes"
             }
             [
-                position = 5928, 8480
+                position = 5912, 8376
             ]
 
             component "core/Probe" PV {
@@ -657,7 +517,7 @@ if(in == 10)
                 value = "MaxChargeVoltage"
             }
             [
-                position = 5928, 8536
+                position = 5912, 8432
             ]
 
             component "core/Constant" PackSizeKWH {
@@ -665,158 +525,7 @@ if(in == 10)
                 value = "PackSizeKWH"
             }
             [
-                position = 5928, 8600
-            ]
-
-            component "core/CAN Bus Receive" "EV - BATTERY SPECSS" {
-                can_controller = "CAN2"
-                data_length = "7"
-                identifier_type = "CAN 2.0 A (11 bit identifier)"
-                signals = "[{\'name\': \'EVmaxChargeVoltage\', \'start_bit\': \'32\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'V\', \'name_old\': \'\', \'name_changed\': \'True\'}, {\'name\': \'EVpackSizeKWH\', \'start_bit\': \'48\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'%\', \'name_old\': \'\', \'name_changed\': \'True\'}]"
-            }
-            [
-                position = 9440, 6960
-                size = 160, 120
-            ]
-
-            component "core/CAN Bus Receive" "CHARGING TIMEE" {
-                can_controller = "CAN2"
-                data_length = "8"
-                identifier_type = "CAN 2.0 A (11 bit identifier)"
-                identifier_value = "101"
-                signals = "[{\'name\': \'EVhowLongCharge\', \'start_bit\': \'16\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'min\', \'name_old\': \'\', \'name_changed\': \'True\'}, {\'name\': \'EVhowLongWeThink\', \'start_bit\': \'32\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'min\', \'name_old\': \'\', \'name_changed\': \'True\'}]"
-            }
-            [
-                position = 9440, 7248
-                size = 160, 120
-            ]
-
-            component "core/CAN Bus Send" "EVSE PARAMSS" {
-                can_controller = "CAN2"
-                data_length = "6"
-                identifier_type = "CAN 2.0 A (11 bit identifier)"
-                identifier_value = "108"
-                signal_names_dict = "{\'EVSEweldCheck\': {\'rename\': \'EVSEweldCheck\', \'delete\': False}, \'EVSEavailVoltage\': {\'rename\': \'EVSEavailVoltage\', \'delete\': False}, \'EVSEavailCurrent\': {\'rename\': \'EVSEavailCurrent\', \'delete\': False}, \'EVSEthresholdVoltage\': {\'rename\': \'EVSEthresholdVoltage\', \'delete\': False}}"
-                signals = "[{\'name\': \'EVSEweldCheck\', \'start_bit\': \'0\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'EVSEweldCheck\', \'name_changed\': \'False\'}, {\'name\': \'EVSEavailVoltage\', \'start_bit\': \'8\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'V\', \'name_old\': \'EVSEavailVoltage\', \'name_changed\': \'False\'}, {\'name\': \'EVSEavailCurrent\', \'start_bit\': \'24\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'A\', \'name_old\': \'EVSEavailCurrent\', \'name_changed\': \'False\'}, {\'name\': \'EVSEthresholdVoltage\', \'start_bit\': \'32\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'V\', \'name_old\': \'EVSEthresholdVoltage\', \'name_changed\': \'False\'}]"
-                transmit_period = "10.0"
-                transmit_type = "{\'On event\': False, \'On timer\': True, \'On request\': False}"
-            }
-            [
-                position = 9144, 7064
-                size = 160, 120
-            ]
-
-            component "core/CAN Bus Receive" "EV STATUSS" {
-                can_controller = "CAN2"
-                data_length = "8"
-                identifier_type = "CAN 2.0 A (11 bit identifier)"
-                identifier_value = "102"
-                signals = "[{\'name\': \'EVtalkingProtocol\', \'start_bit\': \'0\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal0\', \'name_changed\': \'True\'}, {\'name\': \'EVtargetVoltage\', \'start_bit\': \'8\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'V\', \'name_old\': \'\', \'name_changed\': \'True\'}, {\'name\': \'EVaskingAmps\', \'start_bit\': \'24\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'A\', \'name_old\': \'\', \'name_changed\': \'True\'}, {\'name\': \'EVfaults\', \'start_bit\': \'32\', \'length\': \'5\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'\', \'name_changed\': \'True\'}, {\'name\': \'EVstatus\', \'start_bit\': \'40\', \'length\': \'5\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'\', \'name_changed\': \'True\'}, {\'name\': \'EVkiloWattHours\', \'start_bit\': \'48\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'%\', \'name_old\': \'\', \'name_changed\': \'True\'}]"
-            }
-            [
-                position = 9440, 7552
-                size = 160, 120
-            ]
-
-            component "core/CAN Bus Send" "EVSE STATUSS" {
-                can_controller = "CAN2"
-                data_length = "8"
-                identifier_type = "CAN 2.0 A (11 bit identifier)"
-                identifier_value = "109"
-                signal_names_dict = "{\'EVSEbChademo10Protocol\': {\'rename\': \'EVSEbChademo10Protocol\', \'delete\': False}, \'EVSEpresentVoltage\': {\'rename\': \'EVSEpresentVoltage\', \'delete\': False}, \'EVSEpresentCurrent\': {\'rename\': \'EVSEpresentCurrent\', \'delete\': False}, \'EVSEstatus\': {\'rename\': \'EVSEstatus\', \'delete\': False}, \'EVSEremainingChargeSeconds\': {\'rename\': \'EVSEremainingChargeSeconds\', \'delete\': False}, \'EVSEremainingChargeMinutes\': {\'rename\': \'EVSEremainingChargeMinutes\', \'delete\': False}}"
-                signals = "[{\'name\': \'EVSEbChademo10Protocol\', \'start_bit\': \'0\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'EVSEbChademo10Protocol\', \'name_changed\': \'False\'}, {\'name\': \'EVSEpresentVoltage\', \'start_bit\': \'8\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'V\', \'name_old\': \'EVSEpresentVoltage\', \'name_changed\': \'False\'}, {\'name\': \'EVSEpresentCurrent\', \'start_bit\': \'24\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'A\', \'name_old\': \'EVSEpresentCurrent\', \'name_changed\': \'False\'}, {\'name\': \'EVSEstatus\', \'start_bit\': \'40\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'EVSEstatus\', \'name_changed\': \'False\'}, {\'name\': \'EVSEremainingChargeSeconds\', \'start_bit\': \'48\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'s\', \'name_old\': \'EVSEremainingChargeSeconds\', \'name_changed\': \'False\'}, {\'name\': \'EVSEremainingChargeMinutes\', \'start_bit\': \'56\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'min\', \'name_old\': \'EVSEremainingChargeMinutes\', \'name_changed\': \'False\'}]"
-                transmit_period = "10.0"
-                transmit_type = "{\'On event\': False, \'On timer\': True, \'On request\': False}"
-            }
-            [
-                position = 9144, 7360
-                size = 160, 120
-            ]
-
-            component "core/Probe" maxChargeVoltage1 {
-            }
-            [
-                position = 9688, 6920
-            ]
-
-            component "core/Probe" packSizeKWH1 {
-            }
-            [
-                position = 9688, 7000
-            ]
-
-            component "core/Probe" askingAmps1 {
-            }
-            [
-                position = 9688, 7520
-            ]
-
-            component "core/Probe" faultss1 {
-            }
-            [
-                position = 9688, 7600
-            ]
-
-            component "core/Probe" talkingProtocol1 {
-            }
-            [
-                position = 9688, 7408
-            ]
-
-            component "core/Probe" targetVoltage1 {
-            }
-            [
-                position = 9688, 7464
-            ]
-
-            component "core/Probe" status1 {
-            }
-            [
-                position = 9688, 7656
-            ]
-
-            component "core/Probe" kiloWattHours1 {
-            }
-            [
-                position = 9688, 7712
-            ]
-
-            component "core/Probe" howLongCharge1 {
-            }
-            [
-                position = 9680, 7208
-            ]
-
-            component "core/Probe" howLongWeThink1 {
-            }
-            [
-                position = 9680, 7288
-            ]
-
-            port SIreceiveParams {
-                position = auto:auto
-                kind = sp
-                direction =  out
-                sp_type {
-                    default = auto
-                    readonly = True
-                }
-            }
-            [
-                position = 5648, 7888
-            ]
-
-            port SIreceiveStatus {
-                position = auto:auto
-                kind = sp
-                direction =  out
-                sp_type {
-                    default = auto
-                    readonly = True
-                }
-            }
-            [
-                position = 5648, 7952
+                position = 5912, 8496
             ]
 
             port bChademoRequestt {
@@ -829,7 +538,7 @@ if(in == 10)
                 }
             }
             [
-                position = 5648, 8008
+                position = 5912, 7808
             ]
 
             port voltage {
@@ -842,7 +551,7 @@ if(in == 10)
                 }
             }
             [
-                position = 5648, 8064
+                position = 5912, 7864
             ]
 
             port current {
@@ -855,7 +564,7 @@ if(in == 10)
                 }
             }
             [
-                position = 5648, 8128
+                position = 5912, 7928
             ]
 
             port faults {
@@ -868,7 +577,7 @@ if(in == 10)
                 }
             }
             [
-                position = 9040, 7968
+                position = 9216, 8008
             ]
 
             port in1 {
@@ -881,7 +590,7 @@ if(in == 10)
                 }
             }
             [
-                position = 5648, 8192
+                position = 5912, 7992
             ]
 
             port in2 {
@@ -894,7 +603,7 @@ if(in == 10)
                 }
             }
             [
-                position = 5648, 8256
+                position = 5912, 8056
             ]
 
             port OUT1 {
@@ -907,7 +616,7 @@ if(in == 10)
                 }
             }
             [
-                position = 9040, 8024
+                position = 9216, 8064
             ]
 
             port OUT2 {
@@ -920,7 +629,7 @@ if(in == 10)
                 }
             }
             [
-                position = 9040, 8080
+                position = 9216, 8120
             ]
 
             port "battery soc" {
@@ -933,7 +642,7 @@ if(in == 10)
                 }
             }
             [
-                position = 5648, 8320
+                position = 5912, 8120
             ]
 
             port SItargetVoltage {
@@ -946,7 +655,7 @@ if(in == 10)
                 }
             }
             [
-                position = 5648, 8384
+                position = 5912, 8184
             ]
 
             port SItargetCurrent {
@@ -959,7 +668,7 @@ if(in == 10)
                 }
             }
             [
-                position = 5648, 8440
+                position = 5912, 8240
             ]
 
             port packSize {
@@ -972,7 +681,7 @@ if(in == 10)
                 }
             }
             [
-                position = 9040, 8136
+                position = 9216, 8176
             ]
 
             port complete {
@@ -985,7 +694,7 @@ if(in == 10)
                 }
             }
             [
-                position = 5648, 8504
+                position = 5912, 8304
             ]
 
             port availVoltage {
@@ -998,7 +707,7 @@ if(in == 10)
                 }
             }
             [
-                position = 9040, 8192
+                position = 9216, 8232
             ]
 
             port availCurrent {
@@ -1011,7 +720,7 @@ if(in == 10)
                 }
             }
             [
-                position = 9040, 8248
+                position = 9216, 8288
             ]
 
             port presentVoltage {
@@ -1024,7 +733,7 @@ if(in == 10)
                 }
             }
             [
-                position = 9040, 8304
+                position = 9216, 8344
             ]
 
             port presentCurrent {
@@ -1037,31 +746,7 @@ if(in == 10)
                 }
             }
             [
-                position = 9040, 8360
-            ]
-
-            tag Goto33 {
-                value = "SIreceiveParams"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 5768, 7888
-                hide_name = True
-                size = 95, 20
-            ]
-
-            tag Goto34 {
-                value = "SIreceiveStatus"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 5768, 7952
-                hide_name = True
-                size = 95, 20
+                position = 9216, 8400
             ]
 
             tag From3 {
@@ -1371,7 +1056,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 7528, 7848
+                position = 7528, 7832
                 hide_name = True
                 size = 89, 20
             ]
@@ -1482,7 +1167,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 7600, 8040
+                position = 7600, 8048
                 hide_name = True
                 size = 60, 20
             ]
@@ -1597,114 +1282,6 @@ if(in == 10)
                 size = 102, 20
             ]
 
-            tag Goto35 {
-                value = "SIweldCheck"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 6048, 7888
-                hide_name = True
-                size = 95, 20
-            ]
-
-            tag Goto36 {
-                value = "SIavailVoltage"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 6048, 7944
-                hide_name = True
-                size = 95, 20
-            ]
-
-            tag Goto37 {
-                value = "SIavailCurrent"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 6048, 8000
-                hide_name = True
-                size = 95, 20
-            ]
-
-            tag Goto38 {
-                value = "SIthresholdVoltage"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 6048, 8064
-                hide_name = True
-                size = 95, 20
-            ]
-
-            tag Goto39 {
-                value = "SIbChademo10Protocol"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 6056, 8120
-                hide_name = True
-                size = 115, 20
-            ]
-
-            tag Goto40 {
-                value = "SIpresentVoltage"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 6048, 8176
-                hide_name = True
-                size = 95, 20
-            ]
-
-            tag Goto41 {
-                value = "SIpresentCurrent"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 6048, 8232
-                hide_name = True
-                size = 95, 20
-            ]
-
-            tag Goto42 {
-                value = "SIevseStatus"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 6048, 8296
-                hide_name = True
-                size = 95, 20
-            ]
-
-            tag Goto43 {
-                value = "SIremainingChargeSeconds"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 6072, 8352
-                hide_name = True
-                size = 146, 20
-            ]
-
             tag Goto44 {
                 value = "bChademoRequest"
                 scope = local
@@ -1712,7 +1289,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 5768, 8008
+                position = 6032, 7808
                 hide_name = True
                 size = 95, 20
             ]
@@ -1724,7 +1301,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 5768, 8064
+                position = 6032, 7864
                 hide_name = True
                 size = 95, 20
             ]
@@ -1736,21 +1313,9 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 5768, 8128
+                position = 6032, 7928
                 hide_name = True
                 size = 95, 20
-            ]
-
-            tag Goto48 {
-                value = "SIremainingChargeMinutes"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 6080, 8416
-                hide_name = True
-                size = 155, 20
             ]
 
             tag From23 {
@@ -1916,7 +1481,7 @@ if(in == 10)
                 direction = out
             }
             [
-                position = 8936, 7968
+                position = 9112, 8008
                 hide_name = True
                 size = 60, 20
             ]
@@ -1928,7 +1493,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 5752, 8192
+                position = 6016, 7992
                 hide_name = True
                 size = 55, 20
             ]
@@ -1940,7 +1505,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 5752, 8256
+                position = 6016, 8056
                 hide_name = True
                 size = 54, 20
             ]
@@ -2000,7 +1565,7 @@ if(in == 10)
                 direction = out
             }
             [
-                position = 8928, 8024
+                position = 9104, 8064
                 hide_name = True
                 size = 71, 20
             ]
@@ -2012,7 +1577,7 @@ if(in == 10)
                 direction = out
             }
             [
-                position = 8928, 8080
+                position = 9104, 8120
                 hide_name = True
                 size = 71, 20
             ]
@@ -2024,7 +1589,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 5768, 8320
+                position = 6032, 8120
                 hide_name = True
                 size = 84, 20
             ]
@@ -2072,7 +1637,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 5768, 8384
+                position = 6032, 8184
                 hide_name = True
                 size = 95, 20
             ]
@@ -2096,7 +1661,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 5768, 8440
+                position = 6032, 8240
                 hide_name = True
                 size = 95, 20
             ]
@@ -2108,7 +1673,7 @@ if(in == 10)
                 direction = out
             }
             [
-                position = 8920, 8136
+                position = 9096, 8176
                 hide_name = True
                 size = 85, 20
             ]
@@ -2120,7 +1685,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 5768, 8504
+                position = 6032, 8304
                 hide_name = True
                 size = 95, 20
             ]
@@ -2138,49 +1703,49 @@ if(in == 10)
             ]
 
             tag From79 {
-                value = "SIavailVoltage"
+                value = "availVoltage"
                 scope = local
                 kind = sp
                 direction = out
             }
             [
-                position = 8912, 8192
+                position = 9088, 8232
                 hide_name = True
                 size = 102, 20
             ]
 
             tag From80 {
-                value = "SIavailCurrent"
+                value = "availCurrent"
                 scope = local
                 kind = sp
                 direction = out
             }
             [
-                position = 8912, 8248
+                position = 9088, 8288
                 hide_name = True
                 size = 98, 20
             ]
 
             tag From81 {
-                value = "SIpresentVoltage"
+                value = "presentVoltage"
                 scope = local
                 kind = sp
                 direction = out
             }
             [
-                position = 8912, 8304
+                position = 9088, 8344
                 hide_name = True
                 size = 102, 20
             ]
 
             tag From82 {
-                value = "SIpresentCurrent"
+                value = "presentCurrent"
                 scope = local
                 kind = sp
                 direction = out
             }
             [
-                position = 8912, 8360
+                position = 9088, 8400
                 hide_name = True
                 size = 98, 20
             ]
@@ -2192,7 +1757,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 6048, 8480
+                position = 6032, 8376
                 hide_name = True
                 size = 95, 20
             ]
@@ -2204,7 +1769,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 6048, 8536
+                position = 6032, 8432
                 hide_name = True
                 size = 95, 20
             ]
@@ -2216,7 +1781,7 @@ if(in == 10)
                 direction = in
             }
             [
-                position = 6048, 8600
+                position = 6032, 8496
                 hide_name = True
                 size = 95, 20
             ]
@@ -2245,159 +1810,9 @@ if(in == 10)
                 size = 102, 20
             ]
 
-            tag From85 {
-                value = "SIweldCheck"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8840, 7008
-                hide_name = True
-                size = 98, 20
-            ]
-
-            tag From86 {
-                value = "SIavailVoltage"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8840, 7048
-                hide_name = True
-                size = 102, 20
-            ]
-
-            tag From87 {
-                value = "SIavailCurrent"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8840, 7080
-                hide_name = True
-                size = 98, 20
-            ]
-
-            tag From88 {
-                value = "SIthresholdVoltage"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8840, 7120
-                hide_name = True
-                size = 102, 20
-            ]
-
-            tag From89 {
-                value = "SIbChademo10Protocol"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8824, 7288
-                hide_name = True
-                size = 115, 20
-            ]
-
-            tag From90 {
-                value = "SIpresentVoltage"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8832, 7320
-                hide_name = True
-                size = 102, 20
-            ]
-
-            tag From91 {
-                value = "SIpresentCurrent"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8832, 7352
-                hide_name = True
-                size = 98, 20
-            ]
-
-            tag From92 {
-                value = "SIevseStatus"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8832, 7392
-                hide_name = True
-                size = 102, 20
-            ]
-
-            tag From93 {
-                value = "SIremainingChargeSeconds"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8808, 7424
-                hide_name = True
-                size = 149, 20
-            ]
-
-            tag From94 {
-                value = "SIremainingChargeMinutes"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8816, 7456
-                hide_name = True
-                size = 131, 20
-            ]
-
             junction Junction14 sp
             [
                 position = 8240, 8640
-            ]
-
-            junction Junction20 sp
-            [
-                position = 7408, 7784
-            ]
-
-            junction Junction21 sp
-            [
-                position = 7424, 7848
-            ]
-
-            junction Junction22 sp
-            [
-                position = 7392, 7712
-            ]
-
-            junction Junction24 sp
-            [
-                position = 7440, 7904
-            ]
-
-            junction Junction25 sp
-            [
-                position = 7448, 7952
-            ]
-
-            junction Junction26 sp
-            [
-                position = 7472, 8000
             ]
 
             junction Junction35 sp
@@ -2413,26 +1828,6 @@ if(in == 10)
             junction Junction37 sp
             [
                 position = 7224, 7576
-            ]
-
-            junction Junction38 sp
-            [
-                position = 7384, 7664
-            ]
-
-            junction Junction39 sp
-            [
-                position = 7472, 8048
-            ]
-
-            junction Junction40 sp
-            [
-                position = 7520, 8096
-            ]
-
-            junction Junction41 sp
-            [
-                position = 7496, 8144
             ]
 
             connect From5 "EV STATUS.EVtalkingProtocol" as Connection2
@@ -2467,7 +1862,6 @@ if(in == 10)
             [
                 breakpoints = 8624, 8096
             ]
-            connect "EVSE PARAMS.EVSEavailVoltage" Goto2 as Connection32
             connect "EVSE PARAMS.EVSEweldCheck" Goto1 as Connection33
             [
                 breakpoints = 8624, 8040; 8624, 8016
@@ -2495,30 +1889,6 @@ if(in == 10)
             connect currentSeconds.in Junction14 as Connection167
             connect "C function1.rst" "Unit Delay1.in" as Connection196
             connect "C function1.out_millis" Goto11 as Connection197
-            connect "Advanced C function2.howLongCharge" Junction20 as Connection221
-            [
-                breakpoints = 7216, 7816
-            ]
-            connect Junction20 Goto17 as Connection222
-            [
-                breakpoints = 7408, 7784
-            ]
-            connect howLongCharge.in Junction20 as Connection223
-            [
-                breakpoints = 7408, 7768
-            ]
-            connect "Advanced C function2.howLongWeThink" Junction21 as Connection224
-            [
-                breakpoints = 7232, 7832; 7424, 7832
-            ]
-            connect Junction21 Goto18 as Connection225
-            [
-                breakpoints = 7448, 7848
-            ]
-            connect howLongWeThink.in Junction21 as Connection226
-            [
-                breakpoints = 7424, 7824
-            ]
             connect "EVSE STATUS.EVSEstatus" Goto8 as Connection628
             [
                 breakpoints = 8616, 8344; 8624, 8344; 8624, 8360
@@ -2551,44 +1921,9 @@ if(in == 10)
             [
                 breakpoints = 6872, 8296; 6872, 8152
             ]
-            connect SIreceiveParams Goto33 as Connection666
-            connect SIreceiveStatus Goto34 as Connection667
             connect bChademoRequestt Goto44 as Connection677
             connect voltage Goto45 as Connection678
             connect Goto46 current as Connection679
-            connect "Advanced C function2.packSizeKWH" Junction22 as Connection682
-            [
-                breakpoints = 7208, 7904; 7208, 7712
-            ]
-            connect Junction22 Goto16 as Connection683
-            connect packSizeKWH.in Junction22 as Connection684
-            connect "Advanced C function2.talkingProtocol" Junction24 as Connection688
-            [
-                breakpoints = 7248, 7872; 7440, 7872
-            ]
-            connect Junction24 Goto19 as Connection689
-            [
-                breakpoints = 7456, 7904
-            ]
-            connect talkingProtocol.in Junction24 as Connection690
-            connect "Advanced C function2.targetVoltage" Junction25 as Connection691
-            [
-                breakpoints = 7256, 7928; 7448, 7928
-            ]
-            connect Junction25 Goto20 as Connection692
-            [
-                breakpoints = 7456, 7952
-            ]
-            connect targetVoltage.in Junction25 as Connection693
-            connect "Advanced C function2.askingAmps" Junction26 as Connection694
-            [
-                breakpoints = 7128, 8032; 7472, 8032
-            ]
-            connect Junction26 Goto21 as Connection695
-            connect askingAmps.in Junction26 as Connection696
-            [
-                breakpoints = 7704, 7984; 7472, 7984
-            ]
             connect From39 faults as Connection720
             connect in1 Goto49 as Connection721
             connect in2 Goto50 as Connection722
@@ -2671,22 +2006,6 @@ if(in == 10)
             [
                 breakpoints = 6928, 8624; 6928, 8208; 6960, 8208
             ]
-            connect weldCheck.out Goto35 as Connection784
-            connect SIavailVoltage.out Goto36 as Connection785
-            [
-                breakpoints = 5992, 7944
-            ]
-            connect SIavailCurrent.out Goto37 as Connection786
-            connect thresholdVoltage.out Goto38 as Connection787
-            connect bChademo10Protocol.out Goto39 as Connection788
-            connect SIpresentVoltage.out Goto40 as Connection789
-            connect SIpresentCurrent.out Goto41 as Connection790
-            connect evseStatus.out Goto42 as Connection791
-            connect remainingChargeSeconds.out Goto43 as Connection792
-            [
-                breakpoints = 5992, 8352
-            ]
-            connect remainingChargeMinutes.out Goto48 as Connection793
             connect From79 availVoltage as Connection794
             connect From80 availCurrent as Connection795
             connect From81 presentVoltage as Connection796
@@ -2723,45 +2042,9 @@ if(in == 10)
             [
                 breakpoints = 7224, 7552
             ]
-            connect maxChargeVoltage.in Junction38 as Connection814
-            connect Junction38 Goto15 as Connection815
-            [
-                breakpoints = 7384, 7672; 7384, 7672
-            ]
-            connect "Advanced C function2.maxChargeVoltage" Junction38 as Connection816
-            [
-                breakpoints = 7192, 7832; 7192, 7680; 7192, 7672
-            ]
             connect Counter1.out "C function1.in" as Connection835
             [
                 breakpoints = 8144, 8632
-            ]
-            connect "Advanced C function2.faults" Junction39 as Connection839
-            connect Junction39 Goto22 as Connection840
-            [
-                breakpoints = 7472, 8040; 7472, 8040; 7552, 8040
-            ]
-            connect faultss.in Junction39 as Connection841
-            [
-                breakpoints = 7472, 8064
-            ]
-            connect status.in Junction40 as Connection842
-            connect Junction40 Goto23 as Connection843
-            [
-                breakpoints = 7520, 8104; 7520, 8096; 7520, 8096; 7520, 8096; 7520, 8096; 7536, 8096; 7536, 8096
-            ]
-            connect "Advanced C function2.status" Junction40 as Connection844
-            [
-                breakpoints = 7456, 8072; 7464, 8096
-            ]
-            connect kiloWattHours.in Junction41 as Connection845
-            connect Junction41 Goto24 as Connection846
-            [
-                breakpoints = 7496, 8144; 7504, 8144
-            ]
-            connect "Advanced C function2.kiloWattHours" Junction41 as Connection847
-            [
-                breakpoints = 7440, 8088; 7456, 8144
             ]
             connect "Advanced C function2.chademoState" chademoState.in as Connection848
             [
@@ -2805,179 +2088,60 @@ if(in == 10)
             ]
             connect PackSizeKWH.out Goto62 as Connection861
             connect MaxChargeVoltage.out Goto61 as Connection862
-            connect From85 "EVSE PARAMSS.EVSEweldCheck" as Connection863
-            connect From86 "EVSE PARAMSS.EVSEavailVoltage" as Connection1107
-            connect From87 "EVSE PARAMSS.EVSEavailCurrent" as Connection865
+            connect "Advanced C function2.howLongCharge" Goto17 as Connection1131
             [
-                breakpoints = 8904, 7080; 9048, 7080
+                breakpoints = 7216, 7784; 7408, 7784; 7408, 7784; 7408, 7784
             ]
-            connect From88 "EVSE PARAMSS.EVSEthresholdVoltage" as Connection866
-            connect From89 "EVSE STATUSS.EVSEbChademo10Protocol" as Connection867
+            connect "Advanced C function2.howLongWeThink" Goto18 as Connection1130
             [
-                breakpoints = 8896, 7288; 9048, 7288
+                breakpoints = 7232, 7832; 7424, 7832; 7424, 7832; 7448, 7832
             ]
-            connect From90 "EVSE STATUSS.EVSEpresentVoltage" as Connection1108
+            connect "Advanced C function2.packSizeKWH" Goto16 as Connection1128
             [
-                breakpoints = 8904, 7320; 9032, 7320; 9032, 7336; 9048, 7336
+                breakpoints = 7208, 7904; 7208, 7712; 7392, 7712
             ]
-            connect From91 "EVSE STATUSS.EVSEpresentCurrent" as Connection1109
+            connect "Advanced C function2.askingAmps" Goto21 as Connection1135
             [
-                breakpoints = 8896, 7352; 9016, 7352
+                breakpoints = 7128, 8032; 7472, 8032; 7472, 8000
             ]
-            connect From92 "EVSE STATUSS.EVSEstatus" as Connection1110
+            connect "Advanced C function2.talkingProtocol" Goto19 as Connection1133
             [
-                breakpoints = 9016, 7376
+                breakpoints = 7248, 7904; 7440, 7904; 7440, 7904; 7456, 7904
             ]
-            connect From93 "EVSE STATUSS.EVSEremainingChargeSeconds" as Connection1111
+            connect "Advanced C function2.targetVoltage" Goto20 as Connection1136
             [
-                breakpoints = 9032, 7392
+                breakpoints = 7256, 7952; 7448, 7952; 7448, 7952; 7456, 7952
             ]
-            connect From94 "EVSE STATUSS.EVSEremainingChargeMinutes" as Connection872
+            connect "Advanced C function2.status" Goto23 as Connection1137
             [
-                breakpoints = 9048, 7448
+                breakpoints = 7472, 8080; 7472, 8096
             ]
-            connect "EV STATUSS.EVtalkingProtocol" talkingProtocol1.in as Connection1112
+            connect "Advanced C function2.kiloWattHours" Goto24 as Connection1138
             [
-                breakpoints = 9536, 7504; 9544, 7408
+                breakpoints = 7456, 8096; 7464, 8144
             ]
-            connect "EV STATUSS.EVtargetVoltage" targetVoltage1.in as Connection1113
+            connect "Advanced C function2.faults" Goto22 as Connection1139
+            connect "Advanced C function2.maxChargeVoltage" Goto15 as Connection1140
             [
-                breakpoints = 9552, 7528; 9560, 7464
+                breakpoints = 7192, 7928; 7200, 7672
             ]
-            connect "EV STATUSS.EVaskingAmps" askingAmps1.in as Connection1114
+            connect "EVSE PARAMS.EVSEavailVoltage" Goto2 as Connection1141
             [
-                breakpoints = 9560, 7544; 9568, 7544; 9584, 7520
+                breakpoints = 8648, 8056
             ]
-            connect "EV STATUSS.EVfaults" faultss1.in as Connection1115
-            [
-                breakpoints = 9560, 7560; 9576, 7560; 9608, 7600
-            ]
-            connect "EV STATUSS.EVstatus" status1.in as Connection1116
-            [
-                breakpoints = 9560, 7576; 9576, 7656
-            ]
-            connect "EV STATUSS.EVkiloWattHours" kiloWattHours1.in as Connection1117
-            [
-                breakpoints = 9544, 7600; 9592, 7712
-            ]
-            connect "EV - BATTERY SPECSS.EVmaxChargeVoltage" maxChargeVoltage1.in as Connection1118
-            connect "EV - BATTERY SPECSS.EVpackSizeKWH" packSizeKWH1.in as Connection1119
-            connect "CHARGING TIMEE.EVhowLongCharge" howLongCharge1.in as Connection1120
-            connect "CHARGING TIMEE.EVhowLongWeThink" howLongWeThink1.in as Connection1121
 
             MaxChargeVoltage = "485"
             PackSizeKWH = "100"
-            SIaskingAmps = "120"
-            SIavailCurrent = "120"
-            SIavailVoltage = "490"
-            SIbChademo10Protocol = "1"
-            SIevseStatus = "1"
-            SIpresentCurrent = "120"
-            SIpresentVoltage = "480"
-            SIremainingChargeMinutes = "3"
-            SIremainingChargeSeconds = "180"
-            SIthresholdVoltage = "500"
-            SIweldCheck = "1"
 
             mask {
                 description = "<html><head><meta name=\"qrichtext\" content=\"1\"></meta><style type=\"text/css\">p, li { white-space: pre-wrap; }</style></head><body style=\"\"><p style=\"margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">This component contains logic of charging process and processing of messages on the electrical vehicle\'s (EV) side.</p></body></html>"
-
-                SIweldCheck {
-                    label = "Welding detection"
-                    widget = edit
-                    type = int
-                    default_value = "0"
-                    group = "EVSE parameters:1"
-                }
-
-                SIavailVoltage {
-                    label = "Available voltage"
-                    widget = edit
-                    type = real
-                    default_value = "0"
-                    group = "EVSE parameters:1"
-                }
-
-                SIavailCurrent {
-                    label = "Available current"
-                    widget = edit
-                    type = real
-                    default_value = "0"
-                    group = "EVSE parameters:1"
-                }
-
-                SIthresholdVoltage {
-                    label = "Threshold voltage"
-                    widget = edit
-                    type = int
-                    default_value = "0"
-                    group = "EVSE parameters:1"
-                }
-
-                SIbChademo10Protocol {
-                    label = "Chademo protocol"
-                    widget = edit
-                    type = int
-                    default_value = "0"
-                    group = "EVSE parameters:1"
-                }
-
-                SIpresentVoltage {
-                    label = "Present voltage"
-                    widget = edit
-                    type = real
-                    default_value = "0"
-                    group = "EVSE parameters:1"
-                }
-
-                SIpresentCurrent {
-                    label = "Present current"
-                    widget = edit
-                    type = real
-                    default_value = "0"
-                    group = "EVSE parameters:1"
-                }
-
-                SIevseStatus {
-                    label = "Station status"
-                    widget = edit
-                    type = int
-                    default_value = "0"
-                    group = "EVSE parameters:1"
-                }
-
-                SIremainingChargeSeconds {
-                    label = "Remaining charging time (s)"
-                    widget = edit
-                    type = int
-                    default_value = "0"
-                    min_value = 0
-                    group = "EVSE parameters:1"
-                }
-
-                SIremainingChargeMinutes {
-                    label = "Remaining charging time (min)"
-                    widget = edit
-                    type = int
-                    default_value = "0"
-                    min_value = 0
-                    group = "EVSE parameters:1"
-                }
-
-                SIaskingAmps {
-                    label = "Asking amps"
-                    widget = edit
-                    type = int
-                    default_value = "0"
-                    group = "EVSE parameters:1"
-                }
 
                 MaxChargeVoltage {
                     label = "Maximum charge voltage"
                     widget = edit
                     type = uint
                     default_value = "0"
-                    group = "EV parameters:2"
+                    group = "EV parameters:1"
                 }
 
                 PackSizeKWH {
@@ -2985,7 +2149,7 @@ if(in == 10)
                     widget = edit
                     type = uint
                     default_value = "0"
-                    group = "EV parameters:2"
+                    group = "EV parameters:1"
                 }
 
                 CODE open
@@ -3006,26 +2170,6 @@ if(in == 10)
             size = 416, 584
         ]
 
-        component "core/SCADA Input" SIreceiveParams {
-            format = "uint"
-            min = "0"
-            signal_type = "uint"
-            unit = ""
-        }
-        [
-            position = 8512, 7928
-        ]
-
-        component "core/SCADA Input" SIreceiveStatus {
-            format = "uint"
-            min = "0"
-            signal_type = "uint"
-            unit = ""
-        }
-        [
-            position = 8512, 7976
-        ]
-
         component "core/SCADA Input" SIbChademoRequest {
             format = "uint"
             min = "0"
@@ -3033,7 +2177,7 @@ if(in == 10)
             unit = ""
         }
         [
-            position = 8512, 8024
+            position = 8520, 7912
         ]
 
         component "core/SCADA Input" "Charging cable" {
@@ -3276,7 +2420,7 @@ if(in == 10)
             execution_rate = "Ts"
         }
         [
-            position = 10800, 7696
+            position = 10624, 7848
             scale = -1, 1
             size = 64, 32
         ]
@@ -3286,7 +2430,7 @@ if(in == 10)
             threshold = "1"
         }
         [
-            position = 10712, 7608
+            position = 10536, 7760
             hide_name = True
         ]
 
@@ -3296,7 +2440,7 @@ if(in == 10)
             value = "0"
         }
         [
-            position = 10576, 7592
+            position = 10400, 7744
             hide_name = True
         ]
 
@@ -3304,7 +2448,7 @@ if(in == 10)
             resistance = "1e4"
         }
         [
-            position = 10856, 7792
+            position = 10680, 7944
             rotation = right
         ]
 
@@ -3464,7 +2608,7 @@ if (ev_ready)
             unit = ""
         }
         [
-            position = 10608, 7960
+            position = 10584, 8304
         ]
 
         component "core/SCADA Input" SId2 {
@@ -3475,7 +2619,7 @@ if (ev_ready)
             unit = ""
         }
         [
-            position = 10608, 8016
+            position = 10584, 8360
         ]
 
         component "core/Logical operator" "Logical operator1" {
@@ -3560,14 +2704,6 @@ if (ev_ready)
                 position = 7424, 8072
             ]
 
-            component "core/Constant" SIpresentCurrent {
-                signal_type = "uint"
-                value = "SIpresentCurrent"
-            }
-            [
-                position = 7424, 8128
-            ]
-
             component "core/Constant" evseStatus {
                 signal_type = "uint"
                 value = "SIevseStatus"
@@ -3598,6 +2734,160 @@ if (ev_ready)
             }
             [
                 position = 7424, 8376
+            ]
+
+            component "core/CAN Bus Receive" "EV - BATTERY SPECSS" {
+                can_controller = "CAN2"
+                data_length = "7"
+                identifier_type = "CAN 2.0 A (11 bit identifier)"
+                signals = "[{\'name\': \'EVmaxChargeVoltage\', \'start_bit\': \'32\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'V\', \'name_old\': \'\', \'name_changed\': \'True\'}, {\'name\': \'EVpackSizeKWH\', \'start_bit\': \'48\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'%\', \'name_old\': \'\', \'name_changed\': \'True\'}]"
+            }
+            [
+                position = 8656, 7784
+                size = 160, 120
+            ]
+
+            component "core/CAN Bus Receive" "CHARGING TIMEE" {
+                can_controller = "CAN2"
+                data_length = "8"
+                identifier_type = "CAN 2.0 A (11 bit identifier)"
+                identifier_value = "101"
+                signals = "[{\'name\': \'EVhowLongCharge\', \'start_bit\': \'16\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'min\', \'name_old\': \'\', \'name_changed\': \'True\'}, {\'name\': \'EVhowLongWeThink\', \'start_bit\': \'32\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'min\', \'name_old\': \'\', \'name_changed\': \'True\'}]"
+            }
+            [
+                position = 8656, 8072
+                size = 160, 120
+            ]
+
+            component "core/CAN Bus Send" "EVSE PARAMSS" {
+                can_controller = "CAN2"
+                data_length = "6"
+                identifier_type = "CAN 2.0 A (11 bit identifier)"
+                identifier_value = "108"
+                signals = "[{\'name\': \'EVSEweldCheck\', \'start_bit\': \'0\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'EVSEweldCheck\', \'name_changed\': \'False\'}, {\'name\': \'EVSEavailVoltage\', \'start_bit\': \'8\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'V\', \'name_old\': \'EVSEavailVoltage\', \'name_changed\': \'False\'}, {\'name\': \'EVSEavailCurrent\', \'start_bit\': \'24\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'A\', \'name_old\': \'EVSEavailCurrent\', \'name_changed\': \'False\'}, {\'name\': \'EVSEthresholdVoltage\', \'start_bit\': \'32\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'V\', \'name_old\': \'EVSEthresholdVoltage\', \'name_changed\': \'False\'}]"
+                transmit_period = "10.0"
+                transmit_type = "{\'On event\': False, \'On timer\': True, \'On request\': False}"
+            }
+            [
+                position = 8360, 7888
+                size = 160, 120
+            ]
+
+            component "core/CAN Bus Receive" "EV STATUSS" {
+                can_controller = "CAN2"
+                data_length = "8"
+                identifier_type = "CAN 2.0 A (11 bit identifier)"
+                identifier_value = "102"
+                signals = "[{\'name\': \'EVtalkingProtocol\', \'start_bit\': \'0\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal0\', \'name_changed\': \'True\'}, {\'name\': \'EVtargetVoltage\', \'start_bit\': \'8\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'V\', \'name_old\': \'\', \'name_changed\': \'True\'}, {\'name\': \'EVaskingAmps\', \'start_bit\': \'24\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'A\', \'name_old\': \'\', \'name_changed\': \'True\'}, {\'name\': \'EVfaults\', \'start_bit\': \'32\', \'length\': \'5\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'\', \'name_changed\': \'True\'}, {\'name\': \'EVstatus\', \'start_bit\': \'40\', \'length\': \'5\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'\', \'name_changed\': \'True\'}, {\'name\': \'EVkiloWattHours\', \'start_bit\': \'48\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'%\', \'name_old\': \'\', \'name_changed\': \'True\'}]"
+            }
+            [
+                position = 8656, 8376
+                size = 160, 120
+            ]
+
+            component "core/CAN Bus Send" "EVSE STATUSS" {
+                can_controller = "CAN2"
+                data_length = "8"
+                identifier_type = "CAN 2.0 A (11 bit identifier)"
+                identifier_value = "109"
+                signals = "[{\'name\': \'EVSEbChademo10Protocol\', \'start_bit\': \'0\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'EVSEbChademo10Protocol\', \'name_changed\': \'False\'}, {\'name\': \'EVSEpresentVoltage\', \'start_bit\': \'8\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'V\', \'name_old\': \'EVSEpresentVoltage\', \'name_changed\': \'False\'}, {\'name\': \'EVSEpresentCurrent\', \'start_bit\': \'24\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'A\', \'name_old\': \'EVSEpresentCurrent\', \'name_changed\': \'False\'}, {\'name\': \'EVSEstatus\', \'start_bit\': \'40\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'EVSEstatus\', \'name_changed\': \'False\'}, {\'name\': \'EVSEremainingChargeSeconds\', \'start_bit\': \'48\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'s\', \'name_old\': \'EVSEremainingChargeSeconds\', \'name_changed\': \'False\'}, {\'name\': \'EVSEremainingChargeMinutes\', \'start_bit\': \'56\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'min\', \'name_old\': \'EVSEremainingChargeMinutes\', \'name_changed\': \'False\'}]"
+                transmit_period = "10.0"
+                transmit_type = "{\'On event\': False, \'On timer\': True, \'On request\': False}"
+            }
+            [
+                position = 8360, 8184
+                size = 160, 120
+            ]
+
+            component "core/Probe" maxChargeVoltage {
+            }
+            [
+                position = 8904, 7744
+            ]
+
+            component "core/Probe" packSizeKWH {
+            }
+            [
+                position = 8904, 7824
+            ]
+
+            component "core/Probe" askingAmps {
+            }
+            [
+                position = 8904, 8344
+            ]
+
+            component "core/Probe" faultss {
+            }
+            [
+                position = 8904, 8424
+            ]
+
+            component "core/Probe" talkingProtocol {
+            }
+            [
+                position = 8904, 8232
+            ]
+
+            component "core/Probe" targetVoltage {
+            }
+            [
+                position = 8904, 8288
+            ]
+
+            component "core/Probe" status {
+            }
+            [
+                position = 8904, 8480
+            ]
+
+            component "core/Probe" kiloWattHours {
+            }
+            [
+                position = 8904, 8536
+            ]
+
+            component "core/Probe" howLongCharge {
+            }
+            [
+                position = 8896, 8032
+            ]
+
+            component "core/Probe" howLongWeThink {
+            }
+            [
+                position = 8896, 8112
+            ]
+
+            component "core/Probe" countBattSpecss {
+            }
+            [
+                position = 8720, 7632
+            ]
+
+            component "core/Probe" countChargeTimee {
+            }
+            [
+                position = 8720, 7912
+            ]
+
+            component "core/Probe" countStatuss {
+            }
+            [
+                position = 8720, 8208
+            ]
+
+            port SIpresentCurrent {
+                position = auto:auto
+                kind = sp
+                direction =  out
+                sp_type {
+                    default = auto
+                    readonly = True
+                }
+            }
+            [
+                position = 7424, 8136
             ]
 
             tag Goto35 {
@@ -3672,18 +2962,6 @@ if (ev_ready)
                 size = 95, 20
             ]
 
-            tag Goto41 {
-                value = "SIpresentCurrent"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 7544, 8128
-                hide_name = True
-                size = 95, 20
-            ]
-
             tag Goto42 {
                 value = "SIevseStatus"
                 scope = local
@@ -3732,6 +3010,138 @@ if (ev_ready)
                 size = 95, 20
             ]
 
+            tag From85 {
+                value = "SIweldCheck"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8056, 7832
+                hide_name = True
+                size = 98, 20
+            ]
+
+            tag From86 {
+                value = "SIavailVoltage"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8056, 7872
+                hide_name = True
+                size = 102, 20
+            ]
+
+            tag From87 {
+                value = "SIavailCurrent"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8056, 7904
+                hide_name = True
+                size = 98, 20
+            ]
+
+            tag From88 {
+                value = "SIthresholdVoltage"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8056, 7944
+                hide_name = True
+                size = 102, 20
+            ]
+
+            tag From89 {
+                value = "SIbChademo10Protocol"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8040, 8112
+                hide_name = True
+                size = 115, 20
+            ]
+
+            tag From90 {
+                value = "SIpresentVoltage"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8048, 8144
+                hide_name = True
+                size = 102, 20
+            ]
+
+            tag From91 {
+                value = "SIpresentCurrent"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8048, 8176
+                hide_name = True
+                size = 98, 20
+            ]
+
+            tag From92 {
+                value = "SIevseStatus"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8048, 8216
+                hide_name = True
+                size = 102, 20
+            ]
+
+            tag From93 {
+                value = "SIremainingChargeSeconds"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8024, 8248
+                hide_name = True
+                size = 149, 20
+            ]
+
+            tag From94 {
+                value = "SIremainingChargeMinutes"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8032, 8280
+                hide_name = True
+                size = 131, 20
+            ]
+
+            tag Goto61 {
+                value = "SIpresentCurrent"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7544, 8136
+                hide_name = True
+                size = 95, 20
+            ]
+
             connect weldCheck.out Goto35 as Connection784
             connect SIavailVoltage.out Goto36 as Connection785
             [
@@ -3741,7 +3151,6 @@ if (ev_ready)
             connect thresholdVoltage.out Goto38 as Connection787
             connect bChademo10Protocol.out Goto39 as Connection788
             connect SIpresentVoltage.out Goto40 as Connection789
-            connect SIpresentCurrent.out Goto41 as Connection790
             connect evseStatus.out Goto42 as Connection791
             connect remainingChargeSeconds.out Goto43 as Connection792
             [
@@ -3749,9 +3158,91 @@ if (ev_ready)
             ]
             connect remainingChargeMinutes.out Goto48 as Connection793
             connect SIaskingAmps.out Goto60 as Connection798
+            connect From85 "EVSE PARAMSS.EVSEweldCheck" as Connection863
+            connect From86 "EVSE PARAMSS.EVSEavailVoltage" as Connection1107
+            connect From87 "EVSE PARAMSS.EVSEavailCurrent" as Connection865
+            [
+                breakpoints = 8120, 7904; 8264, 7904
+            ]
+            connect From88 "EVSE PARAMSS.EVSEthresholdVoltage" as Connection866
+            connect From89 "EVSE STATUSS.EVSEbChademo10Protocol" as Connection867
+            [
+                breakpoints = 8112, 8112; 8264, 8112
+            ]
+            connect From90 "EVSE STATUSS.EVSEpresentVoltage" as Connection1108
+            [
+                breakpoints = 8120, 8144; 8248, 8144; 8248, 8160; 8264, 8160
+            ]
+            connect From91 "EVSE STATUSS.EVSEpresentCurrent" as Connection1109
+            [
+                breakpoints = 8112, 8176; 8232, 8176
+            ]
+            connect From92 "EVSE STATUSS.EVSEstatus" as Connection1110
+            [
+                breakpoints = 8232, 8200
+            ]
+            connect From93 "EVSE STATUSS.EVSEremainingChargeSeconds" as Connection1111
+            [
+                breakpoints = 8248, 8216
+            ]
+            connect From94 "EVSE STATUSS.EVSEremainingChargeMinutes" as Connection872
+            [
+                breakpoints = 8264, 8272
+            ]
+            connect "EV STATUSS.EVtalkingProtocol" talkingProtocol.in as Connection1112
+            [
+                breakpoints = 8752, 8328; 8760, 8232
+            ]
+            connect "EV STATUSS.EVtargetVoltage" targetVoltage.in as Connection1113
+            [
+                breakpoints = 8768, 8352; 8776, 8288
+            ]
+            connect "EV STATUSS.EVaskingAmps" askingAmps.in as Connection1114
+            [
+                breakpoints = 8776, 8368; 8784, 8368; 8800, 8344
+            ]
+            connect "EV STATUSS.EVfaults" faultss.in as Connection1115
+            [
+                breakpoints = 8776, 8384; 8792, 8384; 8824, 8424
+            ]
+            connect "EV STATUSS.EVstatus" status.in as Connection1116
+            [
+                breakpoints = 8776, 8400; 8792, 8480
+            ]
+            connect "EV STATUSS.EVkiloWattHours" kiloWattHours.in as Connection1117
+            [
+                breakpoints = 8760, 8424; 8808, 8536
+            ]
+            connect "EV - BATTERY SPECSS.EVmaxChargeVoltage" maxChargeVoltage.in as Connection1118
+            connect "EV - BATTERY SPECSS.EVpackSizeKWH" packSizeKWH.in as Connection1119
+            connect "CHARGING TIMEE.EVhowLongCharge" howLongCharge.in as Connection1120
+            connect "CHARGING TIMEE.EVhowLongWeThink" howLongWeThink.in as Connection1121
+            connect "EV - BATTERY SPECSS.rcv_cnt" countBattSpecss.in as Connection1122
+            [
+                breakpoints = 8656, 7632
+            ]
+            connect "CHARGING TIMEE.rcv_cnt" countChargeTimee.in as Connection1123
+            [
+                breakpoints = 8656, 7912
+            ]
+            connect countStatuss.in "EV STATUSS.rcv_cnt" as Connection1124
+            [
+                breakpoints = 8656, 8224
+            ]
+            connect SIpresentCurrent Goto61 as Connection1125
+
+            SIaskingAmps = "120"
+            SIavailCurrent = "120"
+            SIavailVoltage = "490"
+            SIbChademo10Protocol = "1"
+            SIpresentVoltage = "480"
+            SIremainingChargeMinutes = "3"
+            SIremainingChargeSeconds = "180"
+            SIthresholdVoltage = "500"
+            SIweldCheck = "1"
 
             mask {
-                description = "<html><head><meta name=\"qrichtext\" content=\"1\"></meta><style type=\"text/css\">p, li { white-space: pre-wrap; }</style></head><body style=\"\"><p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br></br></p></body></html>"
+                description = "<html><head><meta name=\"qrichtext\" content=\"1\"></meta><style type=\"text/css\">p, li { white-space: pre-wrap; }</style></head><body style=\"\"><p style=\"margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">This component contains just sending and receiving parameters on EVSE side.</p></body></html>"
 
                 SIweldCheck {
                     label = "Welding detection"
@@ -3790,13 +3281,6 @@ if (ev_ready)
 
                 SIpresentVoltage {
                     label = "Present voltage"
-                    widget = edit
-                    type = real
-                    default_value = "0"
-                }
-
-                SIpresentCurrent {
-                    label = "Present current"
                     widget = edit
                     type = real
                     default_value = "0"
@@ -3844,8 +3328,15 @@ if (ev_ready)
             }
         }
         [
-            position = 8912, 8744
-            size = 96, 176
+            position = 8928, 8824
+            size = 352, 368
+        ]
+
+        component "core/SCADA Input" SIpresentCurrent {
+            unit = "V"
+        }
+        [
+            position = 8520, 8824
         ]
 
         tag From25 {
@@ -3926,7 +3417,7 @@ if (ev_ready)
             direction = out
         }
         [
-            position = 10536, 7552
+            position = 10360, 7704
             hide_name = True
             size = 158, 20
         ]
@@ -3938,7 +3429,7 @@ if (ev_ready)
             direction = out
         }
         [
-            position = 10536, 7624
+            position = 10360, 7776
             hide_name = True
             size = 158, 20
         ]
@@ -4130,7 +3621,7 @@ if (ev_ready)
             direction = out
         }
         [
-            position = 8520, 8168
+            position = 8520, 8104
             hide_name = True
             size = 71, 20
         ]
@@ -4142,7 +3633,7 @@ if (ev_ready)
             direction = out
         }
         [
-            position = 8520, 8216
+            position = 8520, 8168
             hide_name = True
             size = 71, 20
         ]
@@ -4205,7 +3696,7 @@ if (ev_ready)
             direction = out
         }
         [
-            position = 8520, 8072
+            position = 8520, 7976
             hide_name = True
             size = 71, 20
         ]
@@ -4253,7 +3744,7 @@ if (ev_ready)
             direction = out
         }
         [
-            position = 8520, 8120
+            position = 8520, 8040
             hide_name = True
             size = 71, 20
         ]
@@ -4265,7 +3756,7 @@ if (ev_ready)
             direction = out
         }
         [
-            position = 8520, 8264
+            position = 8520, 8232
             hide_name = True
             size = 71, 20
         ]
@@ -4301,7 +3792,7 @@ if (ev_ready)
             direction = out
         }
         [
-            position = 8520, 8408
+            position = 8520, 8424
             hide_name = True
             size = 105, 20
         ]
@@ -4321,16 +3812,6 @@ if (ev_ready)
         junction Junction67 pe
         [
             position = 11624, 7936
-        ]
-
-        junction Junction83 pe
-        [
-            position = 10856, 7696
-        ]
-
-        junction Junction84 pe
-        [
-            position = 10856, 7864
         ]
 
         junction Junction38 sp
@@ -4405,7 +3886,17 @@ if (ev_ready)
 
         junction Junction120 sp
         [
-            position = 8576, 8072
+            position = 8576, 7976
+        ]
+
+        junction Junction121 pe
+        [
+            position = 10680, 8008
+        ]
+
+        junction Junction122 pe
+        [
+            position = 10680, 7848
         ]
 
         comment Comment3 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">DC+</p></body></html> ENDCOMMENT 
@@ -4458,6 +3949,16 @@ if (ev_ready)
             position = 9736, 8280
         ]
 
+        comment Comment13 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">EVSE</p></body></html> ENDCOMMENT 
+        [
+            position = 10808, 7552
+        ]
+
+        comment Comment14 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">EV</p></body></html> ENDCOMMENT 
+        [
+            position = 11440, 7552
+        ]
+
         connect "battery current.n_node" Junction67 as Connection493
         connect Junction67 Battery.p_node as Connection494
         connect "battery voltage.p_node" Junction67 as Connection697
@@ -4475,30 +3976,6 @@ if (ev_ready)
         connect From47 "Signal switch3.in2" as Connection548
         connect From48 "Signal switch3.in1" as Connection558
         connect "Charging cable.out" SW.ctrl_in as Connection796
-        connect R8.p_node Junction83 as Connection808
-        [
-            breakpoints = 10856, 7736; 10856, 7736
-        ]
-        connect Junction83 Isp1.p_node as Connection809
-        [
-            breakpoints = 10856, 7696; 10856, 7696
-        ]
-        connect SW.in_1 Junction83 as Connection810
-        [
-            breakpoints = 11088, 7984; 10968, 7984; 10968, 7936; 10968, 7864; 10968, 7696
-        ]
-        connect Isp1.n_node Junction84 as Connection811
-        [
-            breakpoints = 10768, 7864
-        ]
-        connect Junction84 R8.n_node as Connection812
-        [
-            breakpoints = 10856, 7864
-        ]
-        connect SW.in_2 Junction84 as Connection813
-        [
-            breakpoints = 10936, 8032; 10936, 7864
-        ]
         connect d1.a_out SW.in_3 as Connection814
         connect d2.a_out SW.in_4 as Connection815
         connect R1.n_node SW.in_5 as Connection816
@@ -4612,11 +4089,6 @@ if (ev_ready)
         [
             breakpoints = 11384, 8816
         ]
-        connect SId1.out d1.ctrl_in as Connection980
-        connect SId2.out d2.ctrl_in as Connection981
-        [
-            breakpoints = 10656, 8016; 10680, 8096
-        ]
         connect f.p_node R5.n_node as Connection1000
         [
             breakpoints = 11792, 8208
@@ -4673,18 +4145,19 @@ if (ev_ready)
         connect From67 EV.in2 as Connection1080
         connect From66 EV.in1 as Connection1081
         connect From73 EV.current as Connection1082
-        connect SIreceiveParams.out EV.SIreceiveParams as Connection1086
         connect EV.availVoltage Goto2 as Connection1091
         connect EV.availCurrent Goto3 as Connection1092
         connect EV.presentVoltage Goto45 as Connection1093
         connect EV.presentCurrent Goto46 as Connection1094
         connect SIbChademoRequest.out EV.bChademoRequestt as Connection1097
-        connect SIreceiveStatus.out EV.SIreceiveStatus as Connection1098
         connect From72 Junction120 as Connection1099
         connect Junction120 EV.voltage as Connection1100
+        [
+            breakpoints = 8576, 7976; 8656, 7976; 8656, 7976
+        ]
         connect EV.SItargetVoltage Junction120 as Connection1101
         [
-            breakpoints = 8448, 8256; 8464, 8096; 8576, 8096
+            breakpoints = 8448, 8256; 8464, 8008; 8576, 8008
         ]
         connect "Charge complete logic.bulk_charge_complete" Goto10 as Connection1102
         connect "Charge complete logic.COMPLETE" Goto53 as Connection1103
@@ -4694,30 +4167,33 @@ if (ev_ready)
             breakpoints = 11624, 8248; 11632, 8280
         ]
         connect f.out Goto37 as Connection1106
-    }
-
-    logically_deleted {
-        "EV.howLongCharge"
-        "EV.howLongWeThink"
-        "EV.maxChargeVoltage"
-        "EV.packSizeKWH"
-        "EV.askingAmps"
-        "EV.faultss"
-        "EV.talkingProtocol"
-        "EV.targetVoltage"
-        "EV.status"
-        "EV.kiloWattHours"
-        "EV.Connection223"
-        "EV.Connection226"
-        "EV.Connection684"
-        "EV.Connection690"
-        "EV.Connection693"
-        "EV.Connection696"
-        "EV.Connection814"
-        "EV.Connection841"
-        "EV.Connection842"
-        "EV.Connection845"
-        "EVSE"
+        connect SId1.out d1.ctrl_in as Connection1107
+        [
+            breakpoints = 10832, 8200; 10832, 8040; 10720, 8040
+        ]
+        connect R8.n_node Junction121 as Connection1110
+        connect Junction121 Isp1.n_node as Connection1111
+        [
+            breakpoints = 10680, 8016; 10680, 8032; 10576, 8032; 10576, 7872
+        ]
+        connect SW.in_2 Junction121 as Connection1112
+        connect R8.p_node Junction122 as Connection1114
+        [
+            breakpoints = 10680, 7888; 10680, 7888
+        ]
+        connect Junction122 Isp1.p_node as Connection1115
+        [
+            breakpoints = 10680, 7848; 10680, 7848; 10680, 7848
+        ]
+        connect SW.in_1 Junction122 as Connection1116
+        [
+            breakpoints = 11024, 7952; 11008, 7848
+        ]
+        connect SId2.out d2.ctrl_in as Connection1117
+        [
+            breakpoints = 10872, 8344; 10864, 8096; 10720, 8096
+        ]
+        connect SIpresentCurrent.out EVSE.SIpresentCurrent as Connection1118
     }
 
     default {

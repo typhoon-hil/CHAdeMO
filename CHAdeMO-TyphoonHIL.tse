@@ -235,6 +235,7 @@ ERRORhandle = errorHandle;
 
 AV = chademo.evse_params.availVoltage;
 PV = chademo.evse_status.presentVoltage;
+chademo.askingAmps = SIaskingAmps;
 
 settings.targetChargeVoltage = SItargetVoltage; //targetVoltage
 settings.maxChargeAmperage = SItargetCurrent; //targetCurrent
@@ -500,7 +501,7 @@ if(in == 10)
 
             component "core/Constant" SIaskingAmps {
                 signal_type = "uint"
-                value = "SIremainingChargeMinutes"
+                value = "SIaskingAmps"
             }
             [
                 position = 5912, 8376
@@ -2132,6 +2133,7 @@ if(in == 10)
 
             MaxChargeVoltage = "485"
             PackSizeKWH = "100"
+            SIaskingAmps = "120"
 
             mask {
                 description = "<html><head><meta name=\"qrichtext\" content=\"1\"></meta><style type=\"text/css\">p, li { white-space: pre-wrap; }</style></head><body style=\"\"><p style=\"margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">This component contains logic of charging process and processing of messages on the electrical vehicle\'s (EV) side.</p></body></html>"
@@ -2146,6 +2148,14 @@ if(in == 10)
 
                 PackSizeKWH {
                     label = "Pack size"
+                    widget = edit
+                    type = uint
+                    default_value = "0"
+                    group = "EV parameters:1"
+                }
+
+                SIaskingAmps {
+                    label = "Asking amps"
                     widget = edit
                     type = uint
                     default_value = "0"
@@ -2728,14 +2738,6 @@ if (ev_ready)
                 position = 7424, 8312
             ]
 
-            component "core/Constant" SIaskingAmps {
-                signal_type = "uint"
-                value = "SIremainingChargeMinutes"
-            }
-            [
-                position = 7424, 8376
-            ]
-
             component "core/CAN Bus Receive" "EV - BATTERY SPECSS" {
                 can_controller = "CAN2"
                 data_length = "7"
@@ -2998,18 +3000,6 @@ if (ev_ready)
                 size = 155, 20
             ]
 
-            tag Goto60 {
-                value = "SIaskingAmps"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 7544, 8376
-                hide_name = True
-                size = 95, 20
-            ]
-
             tag From85 {
                 value = "SIweldCheck"
                 scope = local
@@ -3157,7 +3147,6 @@ if (ev_ready)
                 breakpoints = 7488, 8248
             ]
             connect remainingChargeMinutes.out Goto48 as Connection793
-            connect SIaskingAmps.out Goto60 as Connection798
             connect From85 "EVSE PARAMSS.EVSEweldCheck" as Connection863
             connect From86 "EVSE PARAMSS.EVSEavailVoltage" as Connection1107
             connect From87 "EVSE PARAMSS.EVSEavailCurrent" as Connection865
@@ -3231,7 +3220,6 @@ if (ev_ready)
             ]
             connect SIpresentCurrent Goto61 as Connection1125
 
-            SIaskingAmps = "120"
             SIavailCurrent = "120"
             SIavailVoltage = "490"
             SIbChademo10Protocol = "1"
@@ -3302,13 +3290,6 @@ if (ev_ready)
 
                 SIremainingChargeMinutes {
                     label = "Remaining charging time (min)"
-                    widget = edit
-                    type = int
-                    default_value = "0"
-                }
-
-                SIaskingAmps {
-                    label = "Asking amps"
                     widget = edit
                     type = int
                     default_value = "0"

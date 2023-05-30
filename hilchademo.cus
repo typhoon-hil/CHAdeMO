@@ -275,7 +275,7 @@ widgetValue = hil.model_read('SItargetCurrent')
                 <widget_settings>
                     <x>16</x>
                     <y>16</y>
-                    <width>288</width>
+                    <width>280</width>
                     <height>48</height>
                     <appearance><![CDATA[Flat]]></appearance>
                     <hierarchy_position><![CDATA[2]]></hierarchy_position>
@@ -378,7 +378,7 @@ widgetValue = None
 widgetValue = hil.model_read('SId1')
 ]]></on_timer_code>
                 <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
-                <inputValue><![CDATA[0]]></inputValue>
+                <inputValue><![CDATA[1.0]]></inputValue>
                 <min>0.0</min>
                 <max>1.0</max>
                 <step>1.0</step>
@@ -446,7 +446,7 @@ widgetValue = None
 widgetValue = hil.model_read('SId2')
 ]]></on_timer_code>
                 <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
-                <inputValue><![CDATA[0]]></inputValue>
+                <inputValue><![CDATA[1.0]]></inputValue>
                 <min>0.0</min>
                 <max>1.0</max>
                 <step>1.0</step>
@@ -514,7 +514,7 @@ widgetValue = None
 widgetValue = hil.model_read('Charging cable')
 ]]></on_timer_code>
                 <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
-                <inputValue><![CDATA[0]]></inputValue>
+                <inputValue><![CDATA[1.0]]></inputValue>
                 <min>0.0</min>
                 <max>1.0</max>
                 <step>1.0</step>
@@ -660,7 +660,7 @@ widgetValue = None
 widgetValue = hil.model_read('SIbChademoRequest')
 ]]></on_timer_code>
                 <on_start_code_source><![CDATA[Macro code]]></on_start_code_source>
-                <inputValue><![CDATA[0]]></inputValue>
+                <inputValue><![CDATA[1.0]]></inputValue>
                 <min>0.0</min>
                 <max>1.0</max>
                 <step>1.0</step>

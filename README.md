@@ -1,4 +1,5 @@
-CHAdeMO
+# CHAdeMO
+
 Communication between an Electric Vehicle (EV) and Electric Vehicle Supply Equipment (EVSE) based on the CHAdeMO standard
 
 This project focuses on establishing communication between an electric vehicle and a charger, specifically implementing the CHAdeMO standard. The CHAdeMO standard is based on the international standard IEC 61851-24, Annex A, and it serves as the Japanese fast charging standard for DC charging. The communication between the EV and EVSE takes place using the Controller Area Network (CAN) bus protocol, which enables bidirectional serial communication.

@@ -1,13 +1,13 @@
 version = 4.2
 
 //
-// Saved by sw version: 2023.2
+// Saved by sw version: 2023.3
 //
 
 model "chademo-typhoonhil" {
     configuration {
-        hil_device = "HIL404"
-        hil_configuration_id = 5
+        hil_device = "HIL606"
+        hil_configuration_id = 1
         simulation_method = exact
         simulation_time_step = auto
         simulation_discret_scaling = 1.0
@@ -61,8 +61,9 @@ model "chademo-typhoonhil" {
         component Subsystem EV {
             layout = dynamic
             component "core/CAN Bus Receive" "EVSE PARAMS" {
+                can_controller = "CAN2"
                 data_length = "6"
-                execution_rate = "Ts"
+                execution_rate = "excRate"
                 file_label = "Import DBC file"
                 file_path = "Import DBC file"
                 identifier_type = "CAN 2.0 A (11 bit identifier)"
@@ -75,6 +76,7 @@ model "chademo-typhoonhil" {
             ]
 
             component "core/CAN Bus Send" "EV - BATTERY SPECS" {
+                can_controller = "CAN2"
                 data_length = "7"
                 file_label = "Import DBC file"
                 file_path = "Import DBC file"
@@ -89,24 +91,31 @@ model "chademo-typhoonhil" {
             ]
 
             component "core/CAN Setup" "CAN Setup1" {
+                calc_values = "{\'CAN1\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, 
+            \'send_num\': 0,
+            \'send_buff_len\': 0,
+            \'receive_num\': 0,
+            \'receive_buff_len\': 0,}"
                 can1_cd = "1"
-                can1_er = "1e-3"
+                can1_er = "excRate"
                 can1_ts1 = "1"
                 can1_ts2 = "1"
                 can2_cd = "1"
-                can2_er = "1e-3"
+                can2_er = "excRate"
                 can2_ts1 = "1"
                 can2_ts2 = "1"
-                hil_device_id_combo_values = "[\'0\']"
+                execution_rate = "excRate"
                 saved_hil_device_config = "{\'0\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'1e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'1e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'1\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'2\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'3\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'4\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'5\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'6\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'7\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'8\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'9\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'10\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'11\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'12\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'13\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'14\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}, \'15\': {\'CAN1\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'method\': \'Automatic\', \'er\': \'10e-3\', \'baud\': \'50000\', \'cd\': \'1\', \'ts1\': \'1\', \'ts2\': \'1\', \'sjw\': \'1\', \'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'send_num\': 0, \'send_buff_len\': 0, \'receive_num\': 0, \'receive_buff_len\': 0}}"
             }
             [
-                position = 8192, 7560
+                position = 8504, 7760
+                size = 64, 64
             ]
 
             component "core/CAN Bus Receive" "EVSE STATUS" {
+                can_controller = "CAN2"
                 data_length = "8"
-                execution_rate = "Ts"
+                execution_rate = "excRate"
                 file_label = "Import DBC file"
                 file_path = "Import DBC file"
                 identifier_type = "CAN 2.0 A (11 bit identifier)"
@@ -119,6 +128,7 @@ model "chademo-typhoonhil" {
             ]
 
             component "core/CAN Bus Send" "CHARGING TIME" {
+                can_controller = "CAN2"
                 data_length = "8"
                 file_label = "Import DBC file"
                 file_path = "Import DBC file"
@@ -134,6 +144,7 @@ model "chademo-typhoonhil" {
             ]
 
             component "core/CAN Bus Send" "EV STATUS" {
+                can_controller = "CAN2"
                 data_length = "8"
                 file_label = "Import DBC file"
                 file_path = "Import DBC file"
@@ -154,7 +165,7 @@ model "chademo-typhoonhil" {
                 arb_defs = "/*Begin code section*/
 
 /*End code section*/"
-                execution_rate = "Ts"
+                execution_rate = "excRate"
                 global_variables = "uint Count;uint PreviousMillis;uint Interval;uint Time;uint CurrentSecs;uint debugTick;uint receiveMillis;uint auxReceiveParams;uint auxReceiveStatus;uint receiveID;uint currentMillis;uint currentSeconds;"
                 init_fnc = "/*Begin code section*/
 receiveMillis = 0;
@@ -434,7 +445,7 @@ if (currentMillis - 100 == receiveMillis)    //check every 100ms if there is a r
             ]
 
             component "core/Constant" askingAmps {
-                execution_rate = "Ts"
+                execution_rate = "excRate"
                 signal_type = "uint"
                 value = "AskingAmps"
             }
@@ -449,7 +460,7 @@ if (currentMillis - 100 == receiveMillis)    //check every 100ms if there is a r
             ]
 
             component "core/Constant" MaxChargeVoltage {
-                execution_rate = "Ts"
+                execution_rate = "excRate"
                 signal_type = "uint"
                 value = "MaxChargeVoltage"
             }
@@ -458,7 +469,7 @@ if (currentMillis - 100 == receiveMillis)    //check every 100ms if there is a r
             ]
 
             component "core/Constant" PackSizeKWH {
-                execution_rate = "Ts"
+                execution_rate = "excRate"
                 signal_type = "uint"
                 value = "PackSizeKWH"
             }
@@ -467,7 +478,7 @@ if (currentMillis - 100 == receiveMillis)    //check every 100ms if there is a r
             ]
 
             component "core/Constant" MinChargeAmperage {
-                execution_rate = "Ts"
+                execution_rate = "excRate"
                 signal_type = "uint"
                 value = "MinChargeAmperage"
             }
@@ -2035,9 +2046,11 @@ if (currentMillis - 100 == receiveMillis)    //check every 100ms if there is a r
             ]
 
             AskingAmps = "120"
+            CANcontroller = "CAN2"
             MaxChargeVoltage = "485"
             MinChargeAmperage = "20"
             PackSizeKWH = "100"
+            excRate = "1e-3"
 
             mask {
                 description = "<html><head><meta name=\"qrichtext\" content=\"1\"></meta><style type=\"text/css\">p, li { white-space: pre-wrap; }</style></head><body style=\"\"><p style=\"margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">This component contains logic of charging process and processing of messages on the electrical vehicle\'s (EV) side.</p></body></html>"
@@ -2047,7 +2060,6 @@ if (currentMillis - 100 == receiveMillis)    //check every 100ms if there is a r
                     widget = edit
                     type = uint
                     default_value = "0"
-                    group = "EV parameters:1"
                 }
 
                 PackSizeKWH {
@@ -2055,7 +2067,6 @@ if (currentMillis - 100 == receiveMillis)    //check every 100ms if there is a r
                     widget = edit
                     type = uint
                     default_value = "0"
-                    group = "EV parameters:1"
                 }
 
                 AskingAmps {
@@ -2063,7 +2074,6 @@ if (currentMillis - 100 == receiveMillis)    //check every 100ms if there is a r
                     widget = edit
                     type = uint
                     default_value = "0"
-                    group = "EV parameters:1"
                 }
 
                 MinChargeAmperage {
@@ -2071,7 +2081,58 @@ if (currentMillis - 100 == receiveMillis)    //check every 100ms if there is a r
                     widget = edit
                     type = uint
                     default_value = "0"
-                    group = "EV parameters:1"
+                }
+
+                excRate {
+                    label = "Execution rate"
+                    widget = edit
+                    type = real
+                    default_value = "0"
+                }
+
+                CANcontroller {
+                    label = "Choose CAN controller"
+                    widget = combo
+                    combo_values = "CAN1", "CAN2"
+                    type = string
+                    default_value = "CAN1"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        comp_handle = mdl.get_sub_level_handle(container_handle)
+                        
+                        if new_value == "CAN1":
+                            comp1 = mdl.get_item("EV - BATTERY SPECS", parent=comp_handle)
+                            mdl.set_property_value(mdl.prop(comp1, "can_controller"), "CAN1")
+                            
+                            comp2 = mdl.get_item("CHARGING TIME", parent=comp_handle)
+                            mdl.set_property_value(mdl.prop(comp2, "can_controller"), "CAN1")
+                            
+                            comp3 = mdl.get_item("EV STATUS", parent=comp_handle)
+                            mdl.set_property_value(mdl.prop(comp3, "can_controller"), "CAN1")
+                            
+                            comp4 = mdl.get_item("EVSE PARAMS", parent=comp_handle)
+                            mdl.set_property_value(mdl.prop(comp4, "can_controller"), "CAN1")
+                            
+                            comp5 = mdl.get_item("EVSE STATUS", parent=comp_handle)
+                            mdl.set_property_value(mdl.prop(comp5, "can_controller"), "CAN1")
+                            
+                        elif new_value == "CAN2":
+                            comp1 = mdl.get_item("EV - BATTERY SPECS", parent=comp_handle)
+                            mdl.set_property_value(mdl.prop(comp1, "can_controller"), "CAN2")
+                            
+                            comp2 = mdl.get_item("CHARGING TIME", parent=comp_handle)
+                            mdl.set_property_value(mdl.prop(comp2, "can_controller"), "CAN2")
+                            
+                            comp3 = mdl.get_item("EV STATUS", parent=comp_handle)
+                            mdl.set_property_value(mdl.prop(comp3, "can_controller"), "CAN2")
+                            
+                            comp4 = mdl.get_item("EVSE PARAMS", parent=comp_handle)
+                            mdl.set_property_value(mdl.prop(comp4, "can_controller"), "CAN2")
+                            
+                            comp5 = mdl.get_item("EVSE STATUS", parent=comp_handle)
+                            mdl.set_property_value(mdl.prop(comp5, "can_controller"), "CAN2")
+                    ENDCODE
                 }
 
                 CODE open
@@ -2084,6 +2145,9 @@ if (currentMillis - 100 == receiveMillis)    //check every 100ms if there is a r
                     )
                     dialog.exec_()
                     
+                ENDCODE
+
+                CODE init
                 ENDCODE
             }
         }
@@ -2390,7 +2454,6 @@ if (currentMillis - 100 == receiveMillis)    //check every 100ms if there is a r
         ]
 
         component "core/C function" "EV Ready logic" {
-            execution_rate = "Ts"
             input_terminals = "real max_current;real max_voltage;int charge_complete;int ev_error;"
             input_terminals_dimensions = "1;1;1;1"
             input_terminals_feedthrough = "True;True;True;True"
@@ -2580,7 +2643,8 @@ if (ev_ready)
 
         component "core/SCADA Input" targetCurrent {
             execution_rate = "Ts"
-            unit = "V"
+            min = "0"
+            unit = "A"
         }
         [
             position = 8520, 8360
@@ -4073,7 +4137,7 @@ if (ev_ready)
         ]
         connect EV.targetVoltage Junction120 as Connection1101
         [
-            breakpoints = 8448, 8256; 8464, 8008; 8576, 8008
+            breakpoints = 8416, 8256; 8416, 8008; 8464, 8008; 8576, 8008
         ]
         connect "Charge complete logic.bulk_charge_complete" Goto10 as Connection1102
         connect "Charge complete logic.COMPLETE" Goto53 as Connection1103
@@ -4165,32 +4229,6 @@ if (ev_ready)
             global_variables = ""
             parameters = ""
             execution_rate = "inherit"
-        }
-
-        "core/CAN Setup" {
-            can1_cofig_method = "Automatic"
-            can1_baud_rate = "50000"
-            can1_cd = "0"
-            can1_ts1 = "0"
-            can1_ts2 = "0"
-            can1_sjw = "1"
-            can1_er = "10e-3"
-            can2_cofig_method = "Automatic"
-            can2_baud_rate = "50000"
-            can2_cd = "0"
-            can2_ts1 = "0"
-            can2_ts2 = "0"
-            can2_sjw = "1"
-            can2_er = "10e-3"
-            hil_id = "0"
-            calc_values = "{\'CAN1\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, 
-            \'send_num\': 0,
-            \'send_buff_len\': 0,
-            \'receive_num\': 0,
-            \'receive_buff_len\': 0,}"
-            execution_rate = "100e-6"
-            hil_device_id_combo_values = "[]"
-            saved_hil_device_config = ""
         }
 
         "core/Constant" {
@@ -4330,6 +4368,54 @@ if (ev_ready)
             _supported_platforms = "[\'hil\']"
         }
 
+        "core/CAN Setup" {
+            can1_cofig_method = "Automatic"
+            can1_baud_rate = "50000"
+            can1_cd = "0"
+            can1_ts1 = "0"
+            can1_ts2 = "0"
+            can1_sjw = "1"
+            can1_er = "10e-3"
+            can2_cofig_method = "Automatic"
+            can2_baud_rate = "50000"
+            can2_cd = "0"
+            can2_ts1 = "0"
+            can2_ts2 = "0"
+            can2_sjw = "1"
+            can2_er = "10e-3"
+            hil_id = "0"
+            calc_values = "{\'CAN1\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'},
+                                \'CAN FD1\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, 
+                                \'CAN FD2\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'},  
+                                \'send_num\': 0,
+                                \'send_buff_len\': 0,
+                                \'receive_num\': 0,}"
+            calc_values_can_fd = "{
+                                \'CAN FD1\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, 
+                                \'CAN FD2\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'},  
+                                \'send_num\': 0,
+                                \'send_buff_len\': 0,
+                                \'receive_num\': 0,
+                                \'receive_buff_len\': 0,}"
+            execution_rate = "100e-6"
+            can_fd1_config_method = "Automatic"
+            can_fd1_baud_rate = "50000"
+            can_fd1_cd = "0"
+            can_fd1_ts1 = "0"
+            can_fd1_ts2 = "0"
+            can_fd1_sjw = "1"
+            can_fd1_er = "10e-3"
+            can_fd2_config_method = "Automatic"
+            can_fd2_baud_rate = "50000"
+            can_fd2_cd = "0"
+            can_fd2_ts1 = "0"
+            can_fd2_ts2 = "0"
+            can_fd2_sjw = "1"
+            can_fd2_er = "10e-3"
+            hil_device_id_combo_values = "[]"
+            saved_hil_device_config = ""
+        }
+
         "core/Current Measurement" {
             signal_access = "inherit"
             bw_limit = "False"
@@ -4433,7 +4519,8 @@ if (ev_ready)
         # To print information to the console, use info()
         
         # Signal Processing time step
-        Ts = 1e-3;
+        
+        Ts = 1e-3
         
         # Voltage accuracy is used in PreCharge state. The PreCharge is complete
         # when EVSE voltage is equal (with some deviation) to the battery voltage before closing the

@@ -186,7 +186,7 @@ displayValue = 0.0
                 <name><![CDATA[EVSE]]></name>
                 <type>Group</type>
                 <description><![CDATA[]]></description>
-                <components_ids><![CDATA[['ceea9873fdfe11edb479d43d7ef890c6', 'e8156c61fdfe11ed9788d43d7ef890c6']]]></components_ids>
+                <components_ids><![CDATA[['255a91c22d3c11eeb10dd43d7ef890c6', '416935e32d3c11ee8e2ad43d7ef890c6']]]></components_ids>
                 <canvas_bg_color>#ffffff</canvas_bg_color>
                 <initialization_code><![CDATA[# NOTE: Variables and functions defined here will be available for use in 
 # all Macro, Expression and handlers codes of components owned by this widget.
@@ -476,7 +476,7 @@ widgetValue = hil.model_read('Charging cable')
 # This object can be used as an argument in SCADA API functions.
 
 # specify Text Display options ('text' part is mandatory)
-state = hil.read_analog_signal(name='EV.chademoState')
+state = hil.read_analog_signal(name='CHAdeMO v1 EVCC.chademoState')
 stateText = 'STOPPED';
 
 if state == 0:
@@ -659,7 +659,7 @@ displayValue = False
 textDisplayData = {
 
     # label text
-    "text": str(hil.model_read('EV.sendBatt')),
+    "text": str(hil.model_read('CHAdeMO v1 EVCC.sendBatt')),
 
     # text color: 'red', 'green', 'blue', 'orange', 'black'
     "text_color": 'black',
@@ -698,7 +698,7 @@ displayValue = textDisplayData
 textDisplayData = {
 
     # label text
-    "text": str(hil.model_read('EV.sendStatus')),
+    "text": str(hil.model_read('CHAdeMO v1 EVCC.sendStatus')),
 
     # text color: 'red', 'green', 'blue', 'orange', 'black'
     "text_color": 'black',
@@ -737,7 +737,7 @@ displayValue = textDisplayData
 textDisplayData = {
 
     # label text
-    "text": str(hil.model_read('EV.sendTime')),
+    "text": str(hil.model_read('CHAdeMO v1 EVCC.sendTime')),
 
     # text color: 'red', 'green', 'blue', 'orange', 'black'
     "text_color": 'black',
@@ -777,7 +777,7 @@ displayValue = textDisplayData
 displayValue = 0.0
 
 ]]></code>
-                <signal_name><![CDATA[EV.chademoState]]></signal_name>
+                <signal_name><![CDATA[CHAdeMO v1 EVCC.chademoState]]></signal_name>
                 <unit><![CDATA[]]></unit>
                 <automatic_unit>True</automatic_unit>
                 <decimals><![CDATA[2]]></decimals>
@@ -819,7 +819,7 @@ displayValue = 0.0
 displayValue = 0.0
 
 ]]></code>
-                <signal_name><![CDATA[EV.ERRORdoP]]></signal_name>
+                <signal_name><![CDATA[CHAdeMO v1 EVCC.ERRORdoP]]></signal_name>
                 <unit><![CDATA[]]></unit>
                 <automatic_unit>True</automatic_unit>
                 <decimals><![CDATA[2]]></decimals>
@@ -861,7 +861,7 @@ displayValue = 0.0
 displayValue = 0.0
 
 ]]></code>
-                <signal_name><![CDATA[EV.ERRORhandle]]></signal_name>
+                <signal_name><![CDATA[CHAdeMO v1 EVCC.ERRORhandle]]></signal_name>
                 <unit><![CDATA[]]></unit>
                 <automatic_unit>True</automatic_unit>
                 <decimals><![CDATA[2]]></decimals>
@@ -883,92 +883,6 @@ displayValue = 0.0
                     <green_range>(0, 0, 0, 0)</green_range>
                     <orange_range>(0, 0, 0, 0)</orange_range>
                     <red_range>(0, 0, 0, 0)</red_range>
-                </advance_widget_settings>
-            </component_data>
-        <component_data>
-                <id>ceea9873fdfe11edb479d43d7ef890c6</id>
-                <name><![CDATA[Available voltage]]></name>
-                <type>Gauge</type>
-                <description><![CDATA[]]></description>
-                <data_type>Analog signal</data_type>
-                <code><![CDATA[# HIL API is imported as 'hil'
-# NOTE: Only read functions are available from the HIL API
-
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# mandatory variable used for storing value that will be displayed
-displayValue = 0.0
-
-]]></code>
-                <signal_name><![CDATA[EV.AV]]></signal_name>
-                <unit><![CDATA[]]></unit>
-                <automatic_unit>True</automatic_unit>
-                <updateRate>500</updateRate>
-                <decimals>2</decimals>
-                <scaling_factor>1.0</scaling_factor>
-                <widget_settings>
-                    <x>16</x>
-                    <y>16</y>
-                    <width>192</width>
-                    <height>144</height>
-                    <appearance><![CDATA[Flat]]></appearance>
-                    <hierarchy_position><![CDATA[2]]></hierarchy_position>
-                    <is_background><![CDATA[False]]></is_background>
-                    <label><![CDATA[]]></label>
-                    <use_label>False</use_label>
-                </widget_settings>
-                <advance_widget_settings>
-                    <color_range>False</color_range>
-                    <min>0.0</min>
-                    <max>500.0</max>
-                    <warning_range>(0, 0, 0, 0)</warning_range>
-                    <critical_range>(0, 0, 0, 0)</critical_range>
-                </advance_widget_settings>
-            </component_data>
-        <component_data>
-                <id>e8156c61fdfe11ed9788d43d7ef890c6</id>
-                <name><![CDATA[Present voltage]]></name>
-                <type>Gauge</type>
-                <description><![CDATA[]]></description>
-                <data_type>Analog signal</data_type>
-                <code><![CDATA[# HIL API is imported as 'hil'
-# NOTE: Only read functions are available from the HIL API
-
-# SCADA API is imported as 'panel'
-# SCADA API constants are imported as 'api_const'
-# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
-# This object can be used as an argument in SCADA API functions.
-
-# mandatory variable used for storing value that will be displayed
-displayValue = 0.0
-
-]]></code>
-                <signal_name><![CDATA[EV.PV]]></signal_name>
-                <unit><![CDATA[]]></unit>
-                <automatic_unit>True</automatic_unit>
-                <updateRate>500</updateRate>
-                <decimals>2</decimals>
-                <scaling_factor>1.0</scaling_factor>
-                <widget_settings>
-                    <x>248</x>
-                    <y>24</y>
-                    <width>200</width>
-                    <height>136</height>
-                    <appearance><![CDATA[Flat]]></appearance>
-                    <hierarchy_position><![CDATA[2]]></hierarchy_position>
-                    <is_background><![CDATA[False]]></is_background>
-                    <label><![CDATA[]]></label>
-                    <use_label>False</use_label>
-                </widget_settings>
-                <advance_widget_settings>
-                    <color_range>False</color_range>
-                    <min>0.0</min>
-                    <max>500.0</max>
-                    <warning_range>(0, 0, 0, 0)</warning_range>
-                    <critical_range>(0, 0, 0, 0)</critical_range>
                 </advance_widget_settings>
             </component_data>
         <component_data>
@@ -1002,11 +916,11 @@ data = {
     }
 displayValue = data
 ]]></code>
-                <analog_signals><![CDATA[['EV.KWH']]]></analog_signals>
+                <analog_signals><![CDATA[['CHAdeMO v1 EVCC.KWH']]]></analog_signals>
                 <digital_signals><![CDATA[[]]]></digital_signals>
                 <streaming_analog_signals><![CDATA[[]]]></streaming_analog_signals>
                 <streaming_digital_signals><![CDATA[[]]]></streaming_digital_signals>
-                <analog_signals_scaling_factors><![CDATA[{'EV.KWH': 1.0}]]></analog_signals_scaling_factors>
+                <analog_signals_scaling_factors><![CDATA[{'CHAdeMO v1 EVCC.KWH': 1.0}]]></analog_signals_scaling_factors>
                 <streaming_analog_signals_scaling_factors><![CDATA[{}]]></streaming_analog_signals_scaling_factors>
                 <update_rate>250</update_rate>
                 <execution_rate>None</execution_rate>
@@ -1690,6 +1604,92 @@ widgetValue = hil.model_read('presentCurrent')
                     <label><![CDATA[]]></label>
                     <use_label>False</use_label>
                 </widget_settings>
+            </component_data>
+        <component_data>
+                <id>255a91c22d3c11eeb10dd43d7ef890c6</id>
+                <name><![CDATA[Available voltage]]></name>
+                <type>Gauge</type>
+                <description><![CDATA[]]></description>
+                <data_type>Analog signal</data_type>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# mandatory variable used for storing value that will be displayed
+displayValue = 0.0
+
+]]></code>
+                <signal_name><![CDATA[CHAdeMO v1 EVCC.AV]]></signal_name>
+                <unit><![CDATA[]]></unit>
+                <automatic_unit>True</automatic_unit>
+                <updateRate>500</updateRate>
+                <decimals>2</decimals>
+                <scaling_factor>1.0</scaling_factor>
+                <widget_settings>
+                    <x>16</x>
+                    <y>16</y>
+                    <width>216</width>
+                    <height>144</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[2]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+                <advance_widget_settings>
+                    <color_range>False</color_range>
+                    <min>0.0</min>
+                    <max>500.0</max>
+                    <warning_range>(0, 0, 0, 0)</warning_range>
+                    <critical_range>(0, 0, 0, 0)</critical_range>
+                </advance_widget_settings>
+            </component_data>
+        <component_data>
+                <id>416935e32d3c11ee8e2ad43d7ef890c6</id>
+                <name><![CDATA[Present voltage]]></name>
+                <type>Gauge</type>
+                <description><![CDATA[]]></description>
+                <data_type>Analog signal</data_type>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# mandatory variable used for storing value that will be displayed
+displayValue = 0.0
+
+]]></code>
+                <signal_name><![CDATA[CHAdeMO v1 EVCC.PV]]></signal_name>
+                <unit><![CDATA[]]></unit>
+                <automatic_unit>True</automatic_unit>
+                <updateRate>500</updateRate>
+                <decimals>2</decimals>
+                <scaling_factor>1.0</scaling_factor>
+                <widget_settings>
+                    <x>232</x>
+                    <y>24</y>
+                    <width>224</width>
+                    <height>136</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[2]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+                <advance_widget_settings>
+                    <color_range>False</color_range>
+                    <min>0.0</min>
+                    <max>500.0</max>
+                    <warning_range>(0, 0, 0, 0)</warning_range>
+                    <critical_range>(0, 0, 0, 0)</critical_range>
+                </advance_widget_settings>
             </component_data>
         </components>
 </ui_settings>

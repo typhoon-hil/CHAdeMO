@@ -4,7 +4,7 @@ version = 4.2
 // Saved by sw version: 2023.3
 //
 
-model "chademo-typhoonhil" {
+model "CHAdeMO-TyphoonHIL" {
     configuration {
         hil_device = "HIL606"
         hil_configuration_id = 1
@@ -61,11 +61,15 @@ model "chademo-typhoonhil" {
         component Subsystem "CHAdeMO v1 EVCC" {
             layout = dynamic
             component "core/Advanced C function" "Advanced C function2" {
-                add_src_path = "chademo.cpp;chademo.h;globals.h"
-                add_src_path_full = "C:\Users\Teodora Mijovic\Desktop\CHAdeMO\chademo.cpp;C:\Users\Teodora Mijovic\Desktop\CHAdeMO\chademo.h;C:\Users\Teodora Mijovic\Desktop\CHAdeMO\globals.h"
+                add_src_path = "chademo.h;globals.h"
+                add_src_path_full = "C:\Users\Teodora Mijovic\Desktop\CHAdeMO\chademo.h;C:\Users\Teodora Mijovic\Desktop\CHAdeMO\globals.h"
                 arb_defs = "/*Begin code section*/
 
 /*End code section*/"
+                arm_a53_file_path = "libChademoLower.a"
+                arm_a53_file_path_full = "C:/Users/Teodora Mijovic/Desktop/CHAdeMO/libChademoLower.a"
+                arm_a9_file_path = "libChademoUpper.a"
+                arm_a9_file_path_full = "C:/Users/Teodora Mijovic/Desktop/CHAdeMO/libChademoUpper.a"
                 execution_rate = "excRate"
                 global_variables = "uint Count;uint PreviousMillis;uint Interval;uint Time;uint CurrentSecs;uint debugTick;uint receiveMillis;uint auxReceiveParams;uint auxReceiveStatus;uint receiveID;uint currentMillis;uint currentSeconds;"
                 init_fnc = "/*Begin code section*/
